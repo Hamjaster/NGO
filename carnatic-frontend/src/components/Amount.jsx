@@ -5,7 +5,7 @@ import axios from 'axios'
 import { Spinner } from '@chakra-ui/react'
 
 export default function Amount() {
-    const [amount, setAmount] = useState(0)
+    const [amount, setAmount] = useState()
     const navigate = useNavigate()
     const { donationInfo, setDonationInfo } = useContext(MyContext)
     const [loading, setLoading] = useState(false)
@@ -45,11 +45,11 @@ export default function Amount() {
                 Enter Amount
             </div>
 
-            <div className='flex flex-col items-center w-10/12  sm:w-[25rem] md:w-[30rem] space-y-2 '>
+            <div className='flex flex-col items-center w-10/12  sm:w-[25rem] md:w-[20rem] space-y-2 '>
 
                 <div className="flex w-full flex-row items-center justify-between">
 
-                    <div className="donateInput  w-2/3 relative rounded-xl text-2xl inline-block ">
+                    <div className="donateInput  w-full relative rounded-xl text-2xl inline-block ">
 
                         <input value={amount} onChange={(e) => { setAmount(e.target.value) }} type="number" name="phone" class="block w-full border-[1px] border-black  py-3 px-2 rounded-lg appearance-none focus:outline-none focus:ring-0 peer" placeholder="Amount here" required />
 
@@ -57,10 +57,10 @@ export default function Amount() {
 
                     </div>
 
-                    <div className="flex space-x-2 flex-row items-center">
+                    {/* <div className="flex space-x-2 flex-row items-center">
                         <span onClick={() => setAmount((amount) => Number(amount) + 1)} className='px-[14px] sm:px-[22px] py-2 text-4xl hover:bg-[#D60036] bg-[#fe0248] text-white rounded-lg select-none cursor-pointer'>+</span>
                         <span onClick={() => amount !== 0 ? setAmount((amount) => Number(amount) - 1) : 0} className='px-[14px] sm:px-[22px] py-2 text-4xl hover:bg-[#D60036] bg-[#fe0248] text-white select-none rounded-lg cursor-pointer'>-</span>
-                    </div>
+                    </div> */}
 
                 </div>
 

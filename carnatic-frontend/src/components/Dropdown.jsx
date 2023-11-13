@@ -28,9 +28,9 @@ export default function Dropdown() {
                 </div>
 
                 {/* Members dropdown */}
-                <div id="dropdown" class={`${open ? "" : "hidden"} top-full left-0 right-0  z-10 absolute  w-full divide-y divide-gray-100 rounded-lg dark:bg-gray-700`}>
+                <div id="dropdown" class={`${open ? "" : "hidden"} top-full left-0 right-0  z-10 absolute  w-full divide-y divide-gray-100 rounded-lg `}>
 
-                    <ul class="sm:text-2xl text-lg bg-gray-100 border-2  text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                    <ul class="sm:text-2xl text-lg bg-gray-100 border-2" aria-labelledby="dropdownDefaultButton">
                         <li>
                             <div onClick={() => {
                                 setMember('guest')

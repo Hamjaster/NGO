@@ -18,17 +18,26 @@ const createMember = async (req, res) => {
     try {
         const isAlreadyRegistered = await Member.findOne({ phone: data.phone })
         if (isAlreadyRegistered) {
-            return res.json({
+            return res.send({
                 error: true,
                 message: "The user is already present"
             })
         } else {
             const member = await Member.create(data)
-            return res.json(member)
+            return res.send(member)
         }
     } catch (error) {
-        return res.json(error)
+        return res.send(error)
     }
 }
 
-module.exports = { findMember, createMember }
+const getAllMembers = async (req, res) => {
+    try {
+        const members = await Member.find()
+        res.send(members)
+    } catch (error) {
+        res.send(error)
+    }
+}
+
+module.exports = { findMember, createMember, getAllMembers }

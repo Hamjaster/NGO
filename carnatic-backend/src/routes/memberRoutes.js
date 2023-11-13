@@ -1,8 +1,9 @@
 const express = require('express')
-const { findMember, createMember } = require('../controllers/memberController')
+const { findMember, createMember, getAllMembers } = require('../controllers/memberController')
 
 const router = express.Router()
 
+router.route('/all').get(getAllMembers)
 router.route('/find/:phone').get(findMember)
 router.route('/new').post(createMember)
 

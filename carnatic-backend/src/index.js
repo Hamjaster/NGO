@@ -18,7 +18,11 @@ app.use(express.json())
 app.use('/member', memberRoutes)
 app.use('/mail', mailRoutes)
 
+app.get('/', (req, res) => {
+    res.send("APi is running successfully")
+})
 
-// Mail route
 
-app.listen(port)
+app.listen(port, () => {
+    console.log(`'Server listening at ${port}`)
+})

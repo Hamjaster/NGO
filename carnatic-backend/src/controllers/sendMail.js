@@ -47,17 +47,14 @@ const sendMail = async (req, res) => {
   };
 
   const transporter = await nodemailer.createTransport({
-    host: 'smtp.ethereal.email',
-    port: 587,
+    host: "smtp.gmail.email",
+    service: 'gmail',
     auth: {
-      user: 'destinee.rolfson@ethereal.email',
-      pass: 'dPhf3qZyMC8cNKPuvE'
+      user: 'developedbyhmja@gmail.com',
+      pass: "sgoq bcpg uzck usut"
     },
-
-    tls: {
-      // do not fail on invalid certs
-      rejectUnauthorized: false
-    },
+    secure: false,
+    tls: { rejectUnauthorized: false }
 
   });
 

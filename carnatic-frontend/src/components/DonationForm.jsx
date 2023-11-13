@@ -45,9 +45,11 @@ export default function DonationForm() {
         })
     }, [project])
 
+
     useEffect(() => {
-        console.log(userInfo, donationInfo)
-    }, [userInfo])
+        console.log(donationInfo)
+    }, [donationInfo])
+
 
 
     return (
@@ -60,16 +62,16 @@ export default function DonationForm() {
 
                 <div class="relative z-0 w-full mb-11 group">
 
-                    <input disabled={member !== 'guest'} value={donationInfo.name} onChange={(e) => updateInfo(e)} type="text" name="name" id="name" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-[#fe0248] peer" placeholder=" " required />
+                    <input disabled={member !== 'guest'} value={donationInfo.name} onChange={(e) => updateInfo(e)} type="text" name="name" id="name" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   focus:outline-none focus:ring-0 focus:border-[#fe0248] peer" placeholder=" " required />
 
-                    <label for="name" class="peer-focus:font-medium absolute text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#fe0248] peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Name (As in PAN Card)</label>
+                    <label for="name" class="peer-focus:font-medium absolute text-lg text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#fe0248]  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Name (As in PAN Card)</label>
                 </div>
 
                 <div class="relative z-0 w-full mb-11 group flex flex-row space-x-5">
                     <div className={`${member === 'guest' ? "w-4/5" : "w-full"} '`}>
 
-                        <input disabled={member !== 'guest'} value={donationInfo.PAN} onChange={(e) => updateInfo(e)} type="text" name="PAN" id="pan" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-[#fe0248] peer" placeholder=" " required />
-                        <label for="pan" class="peer-focus:font-medium absolute text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#fe0248] peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">PAN Number</label>
+                        <input disabled={member !== 'guest'} value={donationInfo.PAN} onChange={(e) => updateInfo(e)} type="text" name="PAN" id="pan" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-[#fe0248] peer" placeholder=" " required />
+                        <label for="pan" class="peer-focus:font-medium absolute text-lg text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#fe0248] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">PAN Number</label>
 
                     </div>
                     <button className={`${member === 'guest' ? "" : "hidden"}  bg-[#fe0248] text-lg py-1 px-1 w-3/5 sm:w-1/5 rounded-md hover:bg-[#D60036] text-white`}>Verify</button>
@@ -77,12 +79,12 @@ export default function DonationForm() {
 
                 <div class="grid md:grid-cols-2 md:gap-6">
                     <div class="relative z-0 w-full mb-6 group">
-                        <input disabled={member !== 'guest'} value={donationInfo.phone} onChange={(e) => updateInfo(e)} type="text" name="phone" id="floating_first_name" class="pl-9 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-[#fe0248] peer" placeholder="Phone Number" required />
+                        <input disabled={member !== 'guest'} value={donationInfo.phone} onChange={(e) => updateInfo(e)} type="text" name="phone" id="floating_first_name" class="pl-9 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-[#fe0248] peer" placeholder="Phone Number" required />
                         <div className='absolute text-lg font-medium bottom-[12px] left-0'>+91</div>
                     </div>
                     <div class="relative z-0 w-full mb-6 group">
-                        <input disabled={member !== 'guest'} value={donationInfo.email} onChange={(e) => updateInfo(e)} type="email" name="email" id="floating_last_name" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-[#fe0248] peer" placeholder=" " required />
-                        <label for="email" class="peer-focus:font-medium absolute text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#fe0248] peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email</label>
+                        <input disabled={member !== 'guest'} value={donationInfo.email} onChange={(e) => updateInfo(e)} type="email" name="email" id="floating_last_name" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none    focus:outline-none focus:ring-0 focus:border-[#fe0248] peer" placeholder=" " required />
+                        <label for="email" class="peer-focus:font-medium absolute text-lg text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#fe0248]  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email</label>
                     </div>
                 </div>
 
@@ -109,9 +111,9 @@ export default function DonationForm() {
                     </div>
 
                     {/* Projects dropdown */}
-                    <div id="dropdown" class={`${open ? "" : "hidden"} top-full left-0 right-0 z-10 absolute select-none  w-full divide-y divide-gray-100 rounded-lg dark:bg-gray-700`}>
+                    <div id="dropdown" class={`${open ? "" : "hidden"} top-full left-0 right-0 z-10 absolute select-none  w-full divide-y divide-gray-100 rounded-lg `}>
 
-                        <ul class="text-2xl select-none bg-gray-100 border-2  text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                        <ul class="text-2xl select-none bg-gray-100 border-2  text-gray-700" aria-labelledby="dropdownDefaultButton">
                             <li>
                                 <div onClick={() => {
                                     setOpen(false)
