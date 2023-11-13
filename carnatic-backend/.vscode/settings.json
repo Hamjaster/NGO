@@ -1,0 +1,9 @@
+{
+    "editor.fontSize": 14,
+    "editor.tabSize": 1,
+    "editor.wordWrap": "on",
+    "editor.accessibilityPageSize": 3,
+    "editor.scrollbar.horizontalScrollbarSize": 2,
+    "editor.scrollbar.verticalScrollbarSize": 5,
+    "editor.mouseWheelZoom": true
+}

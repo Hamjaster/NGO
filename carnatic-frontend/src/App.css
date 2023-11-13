@@ -1,0 +1,8 @@
+.button-main {}
+
+.center {
+  background: linear-gradient(rgb(76, 216, 254, 0.1), rgb(76, 216, 254, 0.5)), url('images/ngoo.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
