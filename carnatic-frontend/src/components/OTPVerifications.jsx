@@ -21,8 +21,8 @@ export default function OTPVerifications({ isOpen, onClose, onOpen }) {
     const [otp, setOtp] = useState();
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
-    const { donationInfo } = useContext(MyContext)
     const navigate = useNavigate()
+    const { donationInfo } = useContext(MyContext)
 
     function onOTPVerify() {
         setLoading(true);
@@ -32,10 +32,11 @@ export default function OTPVerifications({ isOpen, onClose, onOpen }) {
                 console.log(res);
                 console.log(res.user);
                 setLoading(false);
+
                 navigate('/amount')
             })
             .catch((err) => {
-                console.log(err);
+                setError(err);
                 setLoading(false);
             });
     }
@@ -53,7 +54,7 @@ export default function OTPVerifications({ isOpen, onClose, onOpen }) {
                         <div className="mx-5 mt-5 font-roboto space-y-5">
                             <div className='text-2xl text-gray-500 mb-5'>
                                 Enter the code we've sent to <br />
-                                <span className='font-bold text-red-500'>+91 3045208070</span>
+                                <span className='font-bold text-red-500'>{donationInfo.phone}</span>
                             </div>
 
                             <OtpInput
@@ -67,7 +68,6 @@ export default function OTPVerifications({ isOpen, onClose, onOpen }) {
                                     width: '100%'
                                 }}
                                 inputType="number"
-                                // renderSeparator={<span className='text-4xl font-mono '>-</span>}
                                 inputStyle={{
                                     width: '4rem',
                                     padding: '12px 0px',
@@ -77,7 +77,6 @@ export default function OTPVerifications({ isOpen, onClose, onOpen }) {
                                     outline: 'none',
                                     color: 'black',
                                     borderRadius: '4px',
-                                    // boxShadow: '-1px 5px 10px 0px gainsboro'
                                     border: '1px solid red'
                                 }}
                                 className='opt-container'
@@ -96,7 +95,7 @@ export default function OTPVerifications({ isOpen, onClose, onOpen }) {
 
                     <ModalFooter>
 
-                        <button onClick={onOTPVerify} disabled={!otp} className='bg-[#fe1648] hover:bg-[#D60036] text-xl float-right flex items-center disabled:bg-gray-300 justify-center space-x-2 px-12 py-4 h-12 rounded-md text-white'>
+                        <button onClick={onOTPVerify} disabled={!otp} className='bg-[#fe1648] hover:bg-[#D60036] text-xl float-right flex items-center disabled:bg-gray-300 justify-center space-x-2 w-44 h-12 rounded-md text-white'>
                             {loading ?
                                 <div className='animate-spin'>
                                     <BiLoaderAlt />

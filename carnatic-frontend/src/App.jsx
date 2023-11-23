@@ -10,6 +10,7 @@ import Dropdown from './components/Dropdown'
 import Thanks from './components/Thanks'
 import VerifyCarnaticMemberModal from './components/VerifyCarnaticMemberModal'
 import Amount from './components/Amount'
+import { Toaster } from 'react-hot-toast'
 
 function App() {
 
@@ -26,7 +27,10 @@ function App() {
         <Route path='/verify' element={<VerifyCarnaticMemberModal />} />
         <Route path='/amount' element={<Amount />} />
       </Routes>
-
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+      />
     </div>
   )
 }
