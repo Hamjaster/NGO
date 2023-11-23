@@ -12,9 +12,9 @@ export default function Dropdown() {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
-        <div className='flex flex-col text-[#474848] h-screen space-y-4 items-center justify-start pt-32 sm:pt-64'>
+        <div className='flex flex-col text-[#474848] h-[84.5vh] space-y-4 items-center justify-start pt-32 sm:pt-64'>
 
-            {/* <div className=' text-4xl sm:text-6xl font-bold mb-16'>Tell us who you are ?</div> */}
+
 
             <div onClick={() => setOpen(!open)} className="text-lg sm:text-2xl cursor-pointer  border-2 w-1/3 px-4 py-2 relative ">
 
@@ -30,7 +30,7 @@ export default function Dropdown() {
                 {/* Members dropdown */}
                 <div id="dropdown" class={`${open ? "" : "hidden"} top-full left-0 right-0  z-10 absolute  w-full divide-y divide-gray-100 rounded-lg `}>
 
-                    <ul class="sm:text-2xl text-lg bg-gray-100 border-2" aria-labelledby="dropdownDefaultButton">
+                    <ul class="sm:text-2xl text-md bg-gray-100 border-2" aria-labelledby="dropdownDefaultButton">
                         <li>
                             <div onClick={() => {
                                 setMember('guest')

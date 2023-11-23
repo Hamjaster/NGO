@@ -62,7 +62,7 @@ export default function VerifyCarnaticMemberModal({ isOpen, onOpen, onClose }) {
                                 Carnatic Members
                             </div>
 
-                            <input className=' w-full px-2 py-3 outline-none rounded-md ring-2 ring-gray-300 focus:ring-2 focus:outline-none focus:ring-[#fe1648]' value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Type Your Password' />
+                            <input className=' w-full px-2 py-3 outline-none rounded-md ring-2 ring-gray-300 focus:ring-2 focus:outline-none focus:ring-[#fe1648]' value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Enter your Registered mobile number' />
 
 
                             <div className={`${!error ? "invisible" : ""}  text-red-700 px-1 py-3`}>

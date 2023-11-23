@@ -6,7 +6,7 @@ export default function Navbar() {
     return (
 
 
-        <nav class="bg-white  fixed w-full">
+        <nav class="bg-white  w-full">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-center border-b-2 mx-auto py-1">
 
                 <strong className=''>

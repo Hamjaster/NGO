@@ -4,29 +4,28 @@ import { LiaRupeeSignSolid } from 'react-icons/lia'
 import { BiSearch } from 'react-icons/bi'
 import Navbar from './Navbar'
 import Footer from './Footer'
+import explore from '../images/explore.jpg'
+import donate from '../images/donate.jpg'
 
 export default function Home() {
     return (
-        <div className='h-[110vh] sm:h-[100vh] overflow-hidden flex flex-col'>
+        <div className='h-[85vh]  overflow-hidden flex flex-col'>
 
-            <Navbar />
+
+
             <div className="flex items-center justify-center h-full ">
 
                 {/* <div className="text-4xl text-left mx-5 font-semibold">
                     We help businesses grow.
                 </div> */}
 
-                <div className="buttons mt-40 hidden sm:flex space-x-56 [&>*]:text-[7rem] [&>*]:lg:text-[12rem] [&>*]:text-white  [&>*]:p-12
-              [&>*]:px-14 mx-4 ">
-
-                    <Link to={'/dropdown'} className="flex rounded-3xl shadow-2xl flex-col bg-[#FE0248] hover:bg-[#D60036]">
-                        <LiaRupeeSignSolid />
-
+                <div className="buttons hidden sm:flex space-x-56 [&>*]:text-[7rem] [&>*]:lg:text-[12rem] [&>*]:text-white mx-4 ">
+                    <Link to={'/dropdown'}>
+                        <img className='w-64 shadow-xl hover:shadow-2xl transition-all cursor-pointer rounded-2xl' src={donate} alt="" srcset="" />
                     </Link>
 
-                    <Link to={'/explore'} className="flex rounded-3xl shadow-2xl flex-col bg-[#4CD8FE] hover:bg-[#35a9c6]  ">
-                        <BiSearch />
-
+                    <Link to={'/explore'}>
+                        <img className='w-64 shadow-xl hover:shadow-2xl transition-all cursor-pointer rounded-2xl' src={explore} alt="" srcset="" />
                     </Link>
 
                 </div>

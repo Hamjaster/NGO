@@ -39,17 +39,19 @@ export default function Amount() {
 
 
     return (
-        <div className='flex h-screen pt-44 bg-[#f4f9fa] space-y-8 sm:space-y-10 text-[#474848] md:space-y-20 flex-col items-center'>
+        <div className='flex h-[84.5vh] pt-44 space-y-8 sm:space-y-10 text-[#474848] md:space-y-10 flex-col items-center'>
 
-            <div className=" text-4xl sm:text-5xl md:text-6xl font-semibold">
-                Enter Amount
+            <div className="text-3xl w-[20rem] sm:text-4xl md:text-4xl font-semibold">
+                <span>
+                    Enter Amount
+                </span>
             </div>
 
             <div className='flex flex-col items-center w-10/12  sm:w-[25rem] md:w-[20rem] space-y-2 '>
 
                 <div className="flex w-full flex-row items-center justify-between">
 
-                    <div className="donateInput  w-full relative rounded-xl text-2xl inline-block ">
+                    <div className="donateInput  w-full relative rounded-xl text-xl inline-block ">
 
                         <input value={amount} onChange={(e) => { setAmount(e.target.value) }} type="number" name="phone" class="block w-full border-[1px] border-black  py-3 px-2 rounded-lg appearance-none focus:outline-none focus:ring-0 peer" placeholder="Amount here" required />
 
@@ -64,7 +66,7 @@ export default function Amount() {
 
                 </div>
 
-                <button onClick={handleAmountSubmit} className='bg-[#3dd0f9] hover:bg-[#35a9c6] text-xl px-9 py-3 rounded-md text-white w-full'>
+                <button onClick={handleAmountSubmit} className='bg-[#3dd0f9] hover:bg-[#35a9c6] text-lg px-9 py-3 rounded-md text-white w-full'>
                     {loading ?
                         <Spinner />
                         : "Donate"

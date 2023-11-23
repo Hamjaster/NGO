@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div className='flex bg-[#f4f9fa] flex-col font-roboto'>
-
+      <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/dropdown' element={<Dropdown />} />
@@ -26,10 +26,6 @@ function App() {
         <Route path='/verify' element={<VerifyCarnaticMemberModal />} />
         <Route path='/amount' element={<Amount />} />
       </Routes>
-
-
-
-
 
     </div>
   )
