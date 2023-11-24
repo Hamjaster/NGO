@@ -7,7 +7,9 @@ export default function Explore() {
 
         <>
             {loading && <div className='flex h-screen items-center justify-center text-7xl'>
-                <Spinner size={'xl'} />
+                {/* <Spinner size={'xl'} /> */}
+                Loading...
+
             </div>}
 
             <div className="chatbot absolute bottom-0 right-0 left-0 top-0 mx-10">
