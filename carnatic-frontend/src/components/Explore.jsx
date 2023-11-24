@@ -9,7 +9,6 @@ export default function Explore() {
             {loading && <div className='flex h-screen mt-44 justify-center text-lg'>
                 {/* <Spinner size={'xl'} /> */}
                 Loading...
-
             </div>}
 
             <div className="chatbot absolute bottom-0 right-0 left-0 top-0 mx-10">

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import MyContext from '../context/context'
 import { BiDownArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
-import { Spinner, useDisclosure } from '@chakra-ui/react/dist'
+import { useDisclosure } from '@chakra-ui/react/dist'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import OTPVerifications from './OTPVerifications'
@@ -247,7 +247,7 @@ export default function DonationForm() {
                             : navigate('/amount')
                     }} id='sign-in-button' type='submit' className='recaptcha bg-[#fe0248] hover:bg-[#D60036] text-xl mt-5 float-right disabled:bg-gray-400 py-3 flex items-center justify-center space-x-2 px-1 w-3/5 sm:w-1/5 rounded-md text-white'>
                     {loading
-                        ? <Spinner />
+                        ? <>Loading...</>
                         :
                         <>
                             <span> Proceed</span>
