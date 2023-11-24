@@ -8,7 +8,10 @@ const memberRoutes = require('../src/routes/memberRoutes');
 const mailRoutes = require('../src/routes/mailRotues')
 const { sendMail } = require('./controllers/sendMail');
 
-app.use(cors());
+
+app.use(cors({
+    origin: '*'
+}));
 connectDB()
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
