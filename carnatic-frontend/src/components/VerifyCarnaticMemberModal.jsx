@@ -30,6 +30,7 @@ export default function VerifyCarnaticMemberModal({ isOpen, onOpen, onClose }) {
             const { data } = await axios.get(`http://localhost:5000/member/find/${password}`)
             if (data.name && data.PAN) {
                 setLoading(false)
+                console.log(data)
                 setDonationInfo(data)
                 setError(null)
                 navigate('/donate')

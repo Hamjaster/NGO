@@ -22,6 +22,8 @@ export default function DonationForm() {
 
     const createUser = async () => {
         try {
+            // Check if such user don't exists
+
             const { data } = await axios.post('http://localhost:5000/member/new', {
                 name: donationInfo.name,
                 PAN: donationInfo.PAN,
@@ -29,10 +31,17 @@ export default function DonationForm() {
                 phone: donationInfo.phone
             })
             console.log(data);
-            toast.success('Registered successfully')
+            if (data['_id']) {
+                toast.success('Registered successfully')
+                return true
+            } else {
+                toast.error(data.message)
+                return false
+            }
         } catch (error) {
             toast.error('Error while registeration')
             console.log(error);
+            return false
         }
     }
 
@@ -61,15 +70,16 @@ export default function DonationForm() {
                 toast.success('OTP sent !')
                 window.confirmationResult = confirmationResult;
                 setLoading(false);
-                await createUser()
-                onOpen()
+                const done = await createUser()
+                if (done) {
+
+                    onOpen()
+                }
             })
             .catch((error) => {
                 console.log(error);
-                toast.error("Error while sending OTP")
                 setLoading(false);
             });
-
     }
 
     const updateInfo = (e) => {
@@ -89,12 +99,17 @@ export default function DonationForm() {
     }, [project])
 
     useEffect(() => {
-        setDonationInfo((donationInfo) => {
-            return {
-                ...donationInfo,
-                "phone": phone
-            }
-        })
+        {
+            member === "guest"
+                ? setDonationInfo((donationInfo) => {
+                    return {
+                        ...donationInfo,
+                        "phone": parseInt("+" + phone)
+                    }
+                })
+                : console.log('You are a carnatic member')
+        }
+
     }, [phone])
 
     useEffect(() => {
@@ -138,7 +153,7 @@ export default function DonationForm() {
                             member !== "guest"
                                 ?
                                 <>
-                                    <input value={donationInfo.phone} onChange={(e) => updateInfo(e)} type="text" name="phone" id="floating_first_name" class="pl-9 block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-[#fe0248] peer" placeholder="Phone Number" required />
+                                    <input value={donationInfo.phone} onChange={(e) => updateInfo(e)} type="text" name="phone" id="floating_first_name" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-[#fe0248] peer" placeholder="Phone Number" required />
                                     {/* <div className='absolute text-lg font-medium bottom-[12px] left-0'>+91</div> */}
                                 </>
 
