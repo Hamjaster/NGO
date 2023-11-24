@@ -6,7 +6,7 @@ export default function Explore() {
     return (
 
         <>
-            {loading && <div className='flex h-screen items-center justify-center text-7xl'>
+            {loading && <div className='flex h-screen mt-44 justify-center text-lg'>
                 {/* <Spinner size={'xl'} /> */}
                 Loading...
 
