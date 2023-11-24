@@ -25,6 +25,10 @@ app.get('/', (req, res) => {
     res.send("APi is running successfully")
 })
 
+app.get('/test', function (req, res) {
+    res.send('API is testing successfuly')
+})
+
 
 app.listen(port, () => {
     console.log(`'Server listening at ${port}`)
