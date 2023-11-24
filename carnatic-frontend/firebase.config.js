@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyD7kBQaLI3N-H-qxS82PSGOO9y1gGN63uU",
-    authDomain: "carnatic-foundation.firebaseapp.com",
-    projectId: "carnatic-foundation",
-    storageBucket: "carnatic-foundation.appspot.com",
-    messagingSenderId: "1070551419292",
-    appId: "1:1070551419292:web:79824598f045d27ed1e059"
+    apiKey: "AIzaSyBswsYD9AfRHu11VP5wjf83Er9VuMZ_Ns4",
+    authDomain: "carnatic-ngo.firebaseapp.com",
+    projectId: "carnatic-ngo",
+    storageBucket: "carnatic-ngo.appspot.com",
+    messagingSenderId: "952435075524",
+    appId: "1:952435075524:web:b3ee4f8e3c47937609dc91"
 };
 
 // Initialize Firebase
