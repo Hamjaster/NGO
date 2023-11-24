@@ -15,6 +15,7 @@ import MyContext from '../context/context'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { BiLoader, BiLoaderAlt, BiLoaderCircle } from 'react-icons/bi'
+import { CgSpinner } from "react-icons/cg";
 
 export default function VerifyCarnaticMemberModal({ isOpen, onOpen, onClose }) {
     const { member, setDonationInfo } = useContext(MyContext)
@@ -78,7 +79,7 @@ export default function VerifyCarnaticMemberModal({ isOpen, onOpen, onClose }) {
                         <button disabled={!password} onClick={handleVerifyMember} className='bg-[#fe1648] hover:bg-[#D60036] text-xl mt-5 float-right flex items-center disabled:bg-gray-300 justify-center space-x-2 w-44 h-12 rounded-md text-white'>
                             {loading ?
                                 <div className='animate-spin'>
-                                    <BiLoaderAlt />
+                                    <CgSpinner />
                                 </div>
                                 :
                                 <>

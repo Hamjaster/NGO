@@ -13,7 +13,7 @@ import OtpInput from 'react-otp-input';
 import MyContext from '../context/context';
 import { BiLoaderAlt } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
-
+import { CgSpinner } from "react-icons/cg";
 
 export default function OTPVerifications({ isOpen, onClose, onOpen }) {
     const [otp, setOtp] = useState();
@@ -30,11 +30,11 @@ export default function OTPVerifications({ isOpen, onClose, onOpen }) {
                 console.log(res);
                 console.log(res.user);
                 setLoading(false);
-
                 navigate('/amount')
             })
             .catch((err) => {
                 setError(err);
+                console.log(err)
                 setLoading(false);
             });
     }
@@ -84,7 +84,7 @@ export default function OTPVerifications({ isOpen, onClose, onOpen }) {
 
 
                             <div className={`${!error ? "invisible" : ""}  text-red-700 px-1 py-3`}>
-                                * {error}
+                                * Error occured
                             </div>
 
 
@@ -96,7 +96,7 @@ export default function OTPVerifications({ isOpen, onClose, onOpen }) {
                         <button onClick={onOTPVerify} disabled={!otp} className='bg-[#fe1648] hover:bg-[#D60036] text-xl float-right flex items-center disabled:bg-gray-300 justify-center space-x-2 w-44 h-12 rounded-md text-white'>
                             {loading ?
                                 <div className='animate-spin'>
-                                    <BiLoaderAlt />
+                                    <CgSpinner />
                                 </div>
                                 :
                                 <>

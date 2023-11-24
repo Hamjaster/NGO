@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import MyContext from '../context/context'
-import { BiDownArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
+import { BiDownArrowAlt, BiLoaderCircle, BiRightArrowAlt } from 'react-icons/bi'
 import { useDisclosure } from '@chakra-ui/react/dist'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
@@ -10,6 +10,7 @@ import { auth } from '../../firebase.config'
 import toast from 'react-hot-toast'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
+import { CgSpinner } from "react-icons/cg";
 
 export default function DonationForm() {
     const { member, project, setProject, userInfo, donationInfo, setDonationInfo } = useContext(MyContext)
@@ -67,12 +68,11 @@ export default function DonationForm() {
 
         signInWithPhoneNumber(auth, "+" + donationInfo.phone, appVerifier)
             .then(async (confirmationResult) => {
-                toast.success('OTP sent !')
                 window.confirmationResult = confirmationResult;
                 setLoading(false);
                 const done = await createUser()
                 if (done) {
-
+                    toast.success('OTP sent !')
                     onOpen()
                 }
             })
@@ -247,7 +247,9 @@ export default function DonationForm() {
                             : navigate('/amount')
                     }} id='sign-in-button' type='submit' className='recaptcha bg-[#fe0248] hover:bg-[#D60036] text-xl mt-5 float-right disabled:bg-gray-400 py-3 flex items-center justify-center space-x-2 px-1 w-3/5 sm:w-1/5 rounded-md text-white'>
                     {loading
-                        ? <>Loading...</>
+                        ? <div className='animate-spin'>
+                            <CgSpinner />
+                        </div>
                         :
                         <>
                             <span> Proceed</span>

@@ -2,10 +2,11 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import MyContext from '../context/context'
 import axios from 'axios'
-import { Spinner } from '@chakra-ui/react'
+import { CgSpinner } from 'react-icons/cg'
+
 
 export default function Amount() {
-    const [amount, setAmount] = useState()
+    const [amount, setAmount] = useState(0)
     const navigate = useNavigate()
     const { donationInfo, setDonationInfo } = useContext(MyContext)
     const [loading, setLoading] = useState(false)
@@ -59,19 +60,24 @@ export default function Amount() {
 
                     </div>
 
-                    {/* <div className="flex space-x-2 flex-row items-center">
-                        <span onClick={() => setAmount((amount) => Number(amount) + 1)} className='px-[14px] sm:px-[22px] py-2 text-4xl hover:bg-[#D60036] bg-[#fe0248] text-white rounded-lg select-none cursor-pointer'>+</span>
-                        <span onClick={() => amount !== 0 ? setAmount((amount) => Number(amount) - 1) : 0} className='px-[14px] sm:px-[22px] py-2 text-4xl hover:bg-[#D60036] bg-[#fe0248] text-white select-none rounded-lg cursor-pointer'>-</span>
-                    </div> */}
+                </div>
+
+                <div className="w-full text-end">
+
+                    <button onClick={handleAmountSubmit} className='bg-[#3dd0f9] hover:bg-[#35a9c6] w-44 text-lg h-12 rounded-md text-white'>
+                        {loading ?
+                            <div className='animate-spin w-min text-center mx-auto text-2xl'>
+                                <CgSpinner />
+                            </div>
+
+                            : <span className=''>
+                                Donate
+                            </span>
+                        }
+                    </button>
 
                 </div>
 
-                <button onClick={handleAmountSubmit} className='bg-[#3dd0f9] hover:bg-[#35a9c6] text-lg px-9 py-3 rounded-md text-white w-full'>
-                    {loading ?
-                        <Spinner />
-                        : "Donate"
-                    }
-                </button>
             </div>
 
 

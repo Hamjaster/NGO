@@ -50,8 +50,8 @@ const sendMail = async (req, res) => {
     host: "smtp.gmail.email",
     service: 'gmail',
     auth: {
-      user: 'developedbyhmja@gmail.com',
-      pass: "sgoq bcpg uzck usut"
+      user: 'carnaticfoundation@gmail.com',
+      pass: "xlvj bshe ucmr jnzk"
     },
     secure: false,
     tls: { rejectUnauthorized: false }
