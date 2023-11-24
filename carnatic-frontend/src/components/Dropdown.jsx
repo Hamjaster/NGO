@@ -16,7 +16,7 @@ export default function Dropdown() {
 
 
 
-            <div onClick={() => setOpen(!open)} className="text-lg sm:text-2xl cursor-pointer  border-2 w-1/3 px-4 py-2 relative ">
+            <div onClick={() => setOpen(!open)} className="text-lg sm:text-2xl cursor-pointer  border-2 w-2/3 sm:w-1/3 px-4 py-2 relative ">
 
                 <div className=''>
                     <span>

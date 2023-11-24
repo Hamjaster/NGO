@@ -8,7 +8,7 @@ export default function Thanks() {
     return (
         <div style={{ backgroundImage: `url(${bg})` }} className='h-[80vh] bg-center bg-cover '>
 
-            <div className="z-10 mx-20 shadow-2xl rounded-lg relative mt-[20vh] w-[40%] text-white bg-[#fe1648] p-8 space-y-5">
+            <div className="z-10 mx-auto md:mx-20 shadow-2xl rounded-lg relative mt-[10vh] md:mt-[20vh] w-10/12 md:w-[40%] text-white bg-[#fe1648] p-8 space-y-5">
                 <h1 className='font-bold text-6xl '>Thank You</h1>
                 <div className="text-xl leading-loose">
                     Dear <b>{donationInfo.name} </b>, Thank you for the generous donation of  <b>{donationInfo.amount} INR </b> to Carnatic Foundation. We are so grateful for your support.

@@ -122,7 +122,7 @@ export default function DonationForm() {
         <div className='h-[84.5vh] text-[#474848] font-roboto mx-auto w-full'>
 
 
-            <form onSubmit={(e) => e.preventDefault()} className='mt-4 md:mt-12 mx-auto w-full sm:w-2/3 bg-white shadow-lg px-10 pb-24 text-[#474848] pt-7'>
+            <form onSubmit={(e) => e.preventDefault()} className='mt-4 md:mt-12 mx-auto w-full md:w-2/3 bg-white shadow-lg px-10 pb-24 text-[#474848] pt-7'>
 
                 <h1 className='font-bold font-poppins 
             text-center mx-auto text-4xl flex items-center space-x-8 my-8 md:text-5xl'>
@@ -160,6 +160,12 @@ export default function DonationForm() {
                                 : <PhoneInput
                                     country={'in'}
                                     value={phone}
+                                    // containerStyle={{
+                                    //     width: '100%'
+                                    // }}
+                                    // inputStyle={{
+                                    //     width: '100%'
+                                    // }}
                                     onChange={phone => setphone(phone)}
                                 />
                         }
