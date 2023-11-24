@@ -14,6 +14,7 @@ import MyContext from '../context/context';
 import { BiLoaderAlt } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 import { CgSpinner } from "react-icons/cg";
+import { useMediaQuery } from 'react-responsive';
 
 export default function OTPVerifications({ isOpen, onClose, onOpen }) {
     const [otp, setOtp] = useState();
@@ -21,6 +22,7 @@ export default function OTPVerifications({ isOpen, onClose, onOpen }) {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
     const { donationInfo } = useContext(MyContext)
+    const isMobile = useMediaQuery({ query: '(max-width: 524px)' })
 
     function onOTPVerify() {
         setLoading(true);
@@ -42,7 +44,7 @@ export default function OTPVerifications({ isOpen, onClose, onOpen }) {
     return (
         <div>
 
-            <Modal size={'lg'} isOpen={isOpen} onClose={onClose}>
+            <Modal size={{ xs: 'full', base: 'full', sm: 'lg' }} isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>Mobile Number Verification</ModalHeader>
@@ -67,8 +69,8 @@ export default function OTPVerifications({ isOpen, onClose, onOpen }) {
                                 }}
                                 inputType="number"
                                 inputStyle={{
-                                    width: '4rem',
-                                    padding: '12px 0px',
+                                    width: isMobile ? '3rem' : '4rem',
+                                    padding: isMobile ? "8px 0" : '12px 0px',
                                     margin: "0 0px",
                                     fontSize: '27px',
                                     background: "white",
@@ -76,6 +78,7 @@ export default function OTPVerifications({ isOpen, onClose, onOpen }) {
                                     color: 'black',
                                     borderRadius: '4px',
                                     border: '1px solid red'
+
                                 }}
                                 className='opt-container'
                                 renderInput={(props) => <input {...props} />}

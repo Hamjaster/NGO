@@ -52,7 +52,7 @@ export default function VerifyCarnaticMemberModal({ isOpen, onOpen, onClose }) {
 
     return (
         <div>
-            <Modal size={'lg'} isOpen={isOpen} onClose={onClose}>
+            <Modal size={{ xs: 'full', base: 'full', sm: 'md', md: 'md', lg: 'lg' }} isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>Verification</ModalHeader>
@@ -60,7 +60,7 @@ export default function VerifyCarnaticMemberModal({ isOpen, onOpen, onClose }) {
                     <ModalBody>
 
                         <div className="mx-5 mt-5 font-roboto">
-                            <div className='text-4xl font-bold mb-5'>
+                            <div className='text-2xl md:text-4xl font-bold mb-5'>
                                 Carnatic Members
                             </div>
 
