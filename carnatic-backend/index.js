@@ -1,12 +1,12 @@
 const express = require('express');
 const cors = require('cors');
-const connectDB = require('./utils/db');
+const connectDB = require('./src/utils/db');
 const bodyParser = require('body-parser');
 const port = 5000;
 const app = express();
-const memberRoutes = require('../src/routes/memberRoutes');
-const mailRoutes = require('../src/routes/mailRotues')
-const { sendMail } = require('./controllers/sendMail');
+const memberRoutes = require('./src/routes/memberRoutes');
+const mailRoutes = require('./src/routes/mailRotues')
+const { sendMail } = require('./src/controllers/sendMail');
 
 
 app.use(cors({
