@@ -11,8 +11,6 @@ import {
 } from '@chakra-ui/react'
 import OtpInput from 'react-otp-input';
 import MyContext from '../context/context';
-
-import { auth } from '../../firebase.config';
 import { BiLoaderAlt } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 
