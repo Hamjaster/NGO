@@ -25,7 +25,7 @@ export default function DonationForm() {
         try {
             // Check if such user don't exists
 
-            const { data } = await axios.post('http://localhost:5000/member/new', {
+            const { data } = await axios.post('https://carnatic-backend.vercel.app/member/new', {
                 name: donationInfo.name,
                 PAN: donationInfo.PAN,
                 email: donationInfo.email,

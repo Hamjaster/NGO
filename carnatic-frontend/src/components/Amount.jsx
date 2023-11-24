@@ -14,7 +14,7 @@ export default function Amount() {
     const handleAmountSubmit = async () => {
         setLoading(true)
         try {
-            const { data } = await axios.post('http://localhost:5000/mail', donationInfo)
+            const { data } = await axios.post('https://carnatic-backend.vercel.app/mail', donationInfo)
             if (data.msg) {
                 setLoading(false)
                 navigate('/thanks')

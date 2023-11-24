@@ -28,7 +28,7 @@ export default function VerifyCarnaticMemberModal({ isOpen, onOpen, onClose }) {
     const handleVerifyMember = async () => {
         setLoading(true)
         try {
-            const { data } = await axios.get(`http://localhost:5000/member/find/${password}`)
+            const { data } = await axios.get(`https://carnatic-backend.vercel.app/member/find/${password}`)
             if (data.name && data.PAN) {
                 setLoading(false)
                 console.log(data)
