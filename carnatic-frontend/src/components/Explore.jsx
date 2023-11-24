@@ -1,4 +1,4 @@
-import { Spinner } from '@chakra-ui/react'
+import { Spinner } from '@chakra-ui/react/dist'
 import React, { useState } from 'react'
 
 export default function Explore() {
@@ -6,9 +6,6 @@ export default function Explore() {
     return (
 
         <>
-
-
-
             {loading && <div className='flex h-screen items-center justify-center text-7xl'>
                 <Spinner size={'xl'} />
             </div>}
