@@ -15,10 +15,6 @@ export default function Home() {
 
             <div className="flex items-center justify-center h-full ">
 
-                {/* <div className="text-4xl text-left mx-5 font-semibold">
-                    We help businesses grow.
-                </div> */}
-
                 <div className="buttons hidden sm:flex space-x-56 [&>*]:text-[7rem] [&>*]:lg:text-[12rem] [&>*]:text-white mx-4 ">
                     <Link to={'/dropdown'}>
                         <img className='w-64 shadow-xl hover:shadow-2xl transition-all cursor-pointer rounded-2xl' src={donate} alt="" srcset="" />
@@ -29,6 +25,13 @@ export default function Home() {
                     </Link>
 
                 </div>
+
+                <div className="explorebtn-wrapper sm:hidden [&>*]:text-[7rem] [&>*]:lg:text-[12rem] [&>*]:text-white mx-4">
+                    <Link to={'/explore'}>
+                        <img className='w-52 shadow-xl hover:shadow-2xl transition-all cursor-pointer rounded-2xl' src={explore} alt="" srcset="" />
+                    </Link>
+                </div>
+
             </div>
 
             {/* Donate button in mobile */}

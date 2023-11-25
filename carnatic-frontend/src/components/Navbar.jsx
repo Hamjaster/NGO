@@ -9,9 +9,9 @@ export default function Navbar() {
         <nav class="bg-white  w-full">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-center border-b-2 mx-auto py-1">
 
-                <strong className=''>
+                <Link to={'/'} className='  '>
                     <img src={logo} className='w-32' />
-                </strong>
+                </Link>
 
             </div>
         </nav>

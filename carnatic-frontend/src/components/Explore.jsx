@@ -12,13 +12,15 @@ export default function Explore() {
             </div>}
 
             <div className="chatbot absolute bottom-0 right-0 left-0 top-0 mx-10">
+
                 <iframe
-                    src="https://www.chatbase.co/chatbot-iframe/48unQZTvdjMee1Y75C08y"
+                    src="https://www.chatbase.co/chatbot-iframe/b4ASrGE61noWsSdH6yK63"
                     width="100%"
                     onLoad={() => setLoading(false)}
                     style={{ height: '100%', minHeight: '100vh' }}
                     frameborder="0"
                 ></iframe>
+
             </div>
 
 
