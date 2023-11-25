@@ -34,12 +34,13 @@ export default function DonationForm() {
                 PAN: donationInfo.PAN,
                 email: donationInfo.email,
                 phone: donationInfo.phone,
-                contacted: checked
+                isContacted: checked
             })
             console.log(data);
             if (data['_id']) {
                 toast.success('Registered successfully')
                 setLoading(false)
+                navigate('/amount')
                 return true
             } else {
                 toast.error(data.message)
@@ -129,13 +130,6 @@ export default function DonationForm() {
 
     }, [phone])
 
-    useEffect(() => {
-        console.log(donationInfo);
-    }, [donationInfo])
-
-    useEffect(() => {
-        console.log(otpsent);
-    }, [otpsent])
 
     function onOTPVerify() {
         setotpvalidateLoading(true);
@@ -154,6 +148,10 @@ export default function DonationForm() {
                 setotpvalidateLoading(false);
             });
     }
+
+    useEffect(() => {
+        console.log(donationInfo)
+    }, [donationInfo])
 
 
     return (
@@ -184,7 +182,7 @@ export default function DonationForm() {
 
                     </div>
 
-                    <button className={`${member === 'guest' ? "" : "hidden"} w-44 bg-[#fe0248] text-lg py-2.5 px-1 rounded-md hover:bg-[#D60036] text-white`}>
+                    <button className={`${member === 'guest' ? "" : "hidden"} w-44 bg-[#fe0248] text-lg h-[3.1rem] px-1 rounded-md hover:bg-[#D60036] text-white`}>
                         {loading
                             ? <div className='animate-spin'>
                                 <CgSpinner />
@@ -195,16 +193,17 @@ export default function DonationForm() {
 
                 </div>
 
-                {/* Phone number */}
-                <div class="flex flex-col space-y-5 mb-2">
+                {/* Phone, otp and email */}
+                <div class="flex flex-col space-y-9 mb-2">
+
                     {/* Phone */}
                     <div class="relative z-0 w-full group">
                         {
                             member !== "guest"
                                 ?
                                 <>
-                                    <input value={donationInfo.phone} onChange={(e) => updateInfo(e)} type="text" name="phone" id="floating_first_name" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-[#fe0248] peer" placeholder="Phone Number" required />
-                                    {/* <div className='absolute text-lg font-medium bottom-[12px] left-0'>+91</div> */}
+                                    <input disabled value={donationInfo.phone} type="text" name="phone" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-[#fe0248] peer" placeholder=" " required />
+                                    <label for="pan" class="peer-focus:font-medium absolute text-lg text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#fe0248] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone Number</label>
                                 </>
 
                                 :
@@ -227,7 +226,7 @@ export default function DonationForm() {
 
                                     <button id='sign-in-button' disabled={phoneVerified} onClick={async () => {
                                         await onSignup()
-                                    }} className={`${member === 'guest' ? "" : "hidden"} w-44 h-full    bg-[#fe0248] text-lg py-2.5  rounded-md disabled:bg-gray-400 hover:bg-[#D60036] text-white`}>
+                                    }} className={`${member === 'guest' ? "" : "hidden"} w-44    bg-[#fe0248] text-lg h-[3.1rem]  rounded-md disabled:bg-gray-400 hover:bg-[#D60036] text-white`}>
 
                                         {
                                             phoneVerified ? "Verified" :
@@ -301,8 +300,8 @@ export default function DonationForm() {
                             <li>
                                 <div onClick={() => {
                                     setOpen(false)
-                                    setProject('Project 1')
-                                }} class="block  px-3  py-2  hover:bg-gray-200">Project 1</div>
+                                    setProject('Corpus')
+                                }} class="block  px-3  py-2  hover:bg-gray-200">Corpus</div>
                             </li>
                             <li>
                                 <div onClick={() => {
@@ -347,12 +346,17 @@ export default function DonationForm() {
 
                 {/* Proceed button */}
                 <button
-                    disabled={!project || !donationInfo.PAN || !phoneVerified || !donationInfo.email || !donationInfo.name}
+                    disabled={
+                        member === "guest"
+                            ?
+                            !project || !donationInfo.PAN || !phoneVerified || !donationInfo.email || !donationInfo.name
+                            : !project
+                    }
                     onClick={() => {
                         member === 'guest'
                             ? createUser()
                             : navigate('/amount')
-                    }} className='bg-[#fe0248] hover:bg-[#D60036] text-xl mt-5 float-right disabled:bg-gray-400 py-3 flex items-center justify-center space-x-2 px-1 w-3/5 sm:w-1/5 rounded-md text-white'>
+                    }} className='bg-[#fe0248] hover:bg-[#D60036] text-xl mt-5 float-right disabled:bg-gray-400 h-12 flex items-center justify-center space-x-2 px-1 w-44 rounded-md text-white'>
                     {loading
                         ? <div className='animate-spin'>
                             <CgSpinner />
