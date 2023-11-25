@@ -143,7 +143,12 @@ export default function DonationForm() {
                 setotpsent(false)
             })
             .catch((err) => {
-                setError(err);
+
+                if (err.message === "Firebase: Error (auth/invalid-verification-code).") {
+                    toast.error('Invalid OTP')
+                } else {
+                    toast.error(err.message)
+                }
                 console.log(err)
                 setotpvalidateLoading(false);
             });
@@ -216,6 +221,7 @@ export default function DonationForm() {
                                             containerStyle={{
                                                 width: '100%'
                                             }}
+                                            disabled={phoneVerified}
                                             inputStyle={{
                                                 width: '100%'
                                             }}
@@ -234,7 +240,7 @@ export default function DonationForm() {
                                                     ? <div className='animate-spin mx-auto text-2xl max-w-min'>
                                                         <CgSpinner />
                                                     </div>
-                                                    : "Verify"
+                                                    : otpsent ? "Send again" : "Verify"
 
                                         }
                                     </button>
