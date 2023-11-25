@@ -14,6 +14,7 @@ import Terms from './components/Terms'
 import Privacy from './components/Privacy'
 import { Toaster } from 'react-hot-toast'
 
+
 function App() {
 
 
@@ -25,9 +26,9 @@ function App() {
         <Route path='/dropdown' element={<Dropdown />} />
         <Route path='/donate' element={<DonationForm />} />
         <Route path='/explore' element={<Explore />} />
-        <Route path='/thanks' element={<Thanks />} />
+        <Route path='/thanks' Component={Thanks} />
         <Route path='/verify' element={<VerifyCarnaticMemberModal />} />
-        <Route path='/amount' element={<Amount />} />
+        <Route path='/amount' Component={Amount} />
         <Route path='/terms-and-conditions' element={<Terms />} />
         <Route path='/privacy-policy' element={<Privacy />} />
       </Routes>

@@ -3,9 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import MyContext from '../context/context'
 import axios from 'axios'
 import { CgSpinner } from 'react-icons/cg'
+import withDonationInfo from './DonationWrapper'
 
 
-export default function Amount() {
+function Amount() {
     const [amount, setAmount] = useState(0)
     const navigate = useNavigate()
     const { donationInfo, setDonationInfo } = useContext(MyContext)
@@ -85,3 +86,5 @@ export default function Amount() {
         </div>
     )
 }
+
+export default withDonationInfo(Amount)

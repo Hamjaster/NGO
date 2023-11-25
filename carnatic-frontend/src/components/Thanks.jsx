@@ -2,8 +2,9 @@ import React, { useContext } from 'react'
 import bg from '../images/thanks.jpg'
 import { useConst } from '@chakra-ui/react'
 import MyContext from '../context/context'
+import withDonationInfo from './DonationWrapper'
 
-export default function Thanks() {
+function Thanks() {
     const { donationInfo } = useContext(MyContext)
     return (
         <div style={{ backgroundImage: `url(${bg})` }} className='h-[80vh] bg-center bg-cover '>
@@ -20,3 +21,5 @@ export default function Thanks() {
         </div>
     )
 }
+
+export default withDonationInfo(Thanks)
