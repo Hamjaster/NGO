@@ -9,13 +9,13 @@ import withDonationInfo from './DonationWrapper'
 function Amount() {
     const [amount, setAmount] = useState(0)
     const navigate = useNavigate()
-    const { donationInfo, setDonationInfo } = useContext(MyContext)
+    const { donationInfo, setDonationInfo, proxy } = useContext(MyContext)
     const [loading, setLoading] = useState(false)
 
     const handleAmountSubmit = async () => {
         setLoading(true)
         try {
-            const { data } = await axios.post('https://carnatic-backend.vercel.app/mail', donationInfo)
+            const { data } = await axios.post(`${proxy}/mail`, donationInfo)
             if (data.msg) {
                 setLoading(false)
                 navigate('/thanks')

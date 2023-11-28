@@ -13,7 +13,7 @@ import 'react-phone-input-2/lib/style.css'
 import { CgSpinner } from "react-icons/cg";
 
 export default function DonationForm() {
-    const { member, project, setProject, userInfo, donationInfo, setDonationInfo } = useContext(MyContext)
+    const { member, project, setProject, userInfo, donationInfo, setDonationInfo, proxy } = useContext(MyContext)
     const [open, setOpen] = useState(false)
     const [checked, setChecked] = useState(true)
     const [loading, setLoading] = useState(false)
@@ -29,7 +29,7 @@ export default function DonationForm() {
     const createUser = async () => {
         setLoading(true)
         try {
-            const { data } = await axios.post('https://carnatic-backend.vercel.app/member/new', {
+            const { data } = await axios.post(`${proxy}/member/new`, {
                 name: donationInfo.name,
                 PAN: donationInfo.PAN,
                 email: donationInfo.email,
@@ -187,7 +187,7 @@ export default function DonationForm() {
 
                     </div>
 
-                    <button className={`${member === 'guest' ? "" : "hidden"} w-44 bg-[#fe0248] text-lg h-[3.1rem] px-1 rounded-md hover:bg-[#D60036] text-white`}>
+                    <button className={`${member === 'guest' ? "" : "hidden"} w-44 bg-[#4dd7fe] text-lg h-[3.1rem] px-1 rounded-md hover:bg-[#00c8ff] text-white`}>
                         {loading
                             ? <div className='animate-spin'>
                                 <CgSpinner />
@@ -217,7 +217,9 @@ export default function DonationForm() {
                                     <div className={`w-full`}>
                                         <PhoneInput
                                             country={'in'}
+                                            countryCodeEditable={false}
                                             value={phone}
+                                            onlyCountries={['in']}
                                             containerStyle={{
                                                 width: '100%'
                                             }}
@@ -232,7 +234,7 @@ export default function DonationForm() {
 
                                     <button id='sign-in-button' disabled={phoneVerified} onClick={async () => {
                                         await onSignup()
-                                    }} className={`${member === 'guest' ? "" : "hidden"} w-44    bg-[#fe0248] text-lg h-[3.1rem]  rounded-md disabled:bg-gray-400 hover:bg-[#D60036] text-white`}>
+                                    }} className={`${member === 'guest' ? "" : "hidden"} w-44    bg-[#4dd7fe] text-lg h-[3.1rem]  rounded-md disabled:bg-gray-400 hover:bg-[#00c8ff] text-white`}>
 
                                         {
                                             phoneVerified ? "Verified" :
@@ -265,7 +267,7 @@ export default function DonationForm() {
 
                                 <button onClick={() => {
                                     onOTPVerify()
-                                }} className={`${member === 'guest' ? "" : "hidden"} bg-[#fe0248] text-lg py-1 w-32 rounded-md hover:bg-[#D60036] text-white`}>
+                                }} className={`${member === 'guest' ? "" : "hidden"} bg-[#4dd7fe] text-lg py-1 w-32 rounded-md hover:bg-[#00c8ff] text-white`}>
                                     {otpvalidateLoading
                                         ? <div className='animate-spin mx-auto text-2xl max-w-min'>
                                             <CgSpinner />
@@ -279,9 +281,19 @@ export default function DonationForm() {
                     }
 
                     {/* Email */}
-                    <div class="relative z-0 w-full mb-6 group">
-                        <input disabled={member !== 'guest'} value={donationInfo.email} onChange={(e) => updateInfo(e)} type="email" name="email" id="floating_last_name" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none    focus:outline-none focus:ring-0 focus:border-[#fe0248] peer" placeholder=" " required />
-                        <label for="email" class="peer-focus:font-medium absolute text-lg text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#fe0248]  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email</label>
+                    <div className="grid grid-cols-2 gap-5">
+
+
+                        <div class="relative z-0 w-full mb-6 group">
+                            <input disabled={member !== 'guest'} value={donationInfo.email} onChange={(e) => updateInfo(e)} type="email" name="email" id="floating_last_name" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none    focus:outline-none focus:ring-0 focus:border-[#fe0248] peer" placeholder=" " required />
+                            <label for="email" class="peer-focus:font-medium absolute text-lg text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#fe0248]  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email</label>
+                        </div>
+
+                        <div class="relative z-0 w-full mb-6 group">
+                            <input disabled={member !== 'guest'} value={donationInfo.address} onChange={(e) => updateInfo(e)} type="text" name="address" id="address" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none    focus:outline-none focus:ring-0 focus:border-[#fe0248] peer" placeholder=" " required />
+                            <label for="address" class="peer-focus:font-medium absolute text-lg text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#fe0248]  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Address</label>
+                        </div>
+
                     </div>
 
                 </div>
@@ -362,7 +374,7 @@ export default function DonationForm() {
                         member === 'guest'
                             ? createUser()
                             : navigate('/amount')
-                    }} className='bg-[#fe0248] hover:bg-[#D60036] text-xl mt-5 float-right disabled:bg-gray-400 h-12 flex items-center justify-center space-x-2 px-1 w-44 rounded-md text-white'>
+                    }} className='bg-[#4dd7fe] hover:bg-[#00c8ff] text-xl mt-5 float-right disabled:bg-gray-400 h-12 flex items-center justify-center space-x-2 px-1 w-44 rounded-md text-white'>
                     {loading
                         ? <div className='animate-spin'>
                             <CgSpinner />

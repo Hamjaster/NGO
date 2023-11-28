@@ -9,9 +9,10 @@ const MyContextProvider = ({ children }) => {
     const [donationInfo, setDonationInfo] = useState(
         {}
     )
+    const proxy = "http://localhost:5000"
 
     return (
-        <MyContext.Provider value={{ donationInfo, setDonationInfo, member, setMember, project, setProject, userInfo, setUserInfo }}>
+        <MyContext.Provider value={{ proxy, donationInfo, setDonationInfo, member, setMember, project, setProject, userInfo, setUserInfo }}>
             {children}
         </MyContext.Provider>
     );

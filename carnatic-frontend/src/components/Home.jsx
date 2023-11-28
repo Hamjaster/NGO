@@ -22,7 +22,7 @@ export default function Home() {
                         <div className='pl-28 px-14 py-7 text-3xl font-sans     font-semibold relative z-50'>Donate</div>
                     </Link>
 
-                    <Link className=' relative 0shadow-xl hover:shadow-2xl transition-all cursor-pointer rounded-full bg-[#fd1647] flex-row px-5' to={'/explore'}>
+                    <Link className=' relative shadow-xl hover:shadow-2xl transition-all cursor-pointer rounded-full bg-[#fd1647] flex-row px-5' to={'/explore'}>
                         <img className='w-16 absolute top-1/2 left-4  -translate-y-1/2 ' src={explore} alt="" srcset="" />
                         <div className='pl-28 px-14 py-7 text-3xl font-sans     font-semibold relative z-50'>Explore</div>
                     </Link>

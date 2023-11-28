@@ -16,9 +16,10 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { BiLoader, BiLoaderAlt, BiLoaderCircle } from 'react-icons/bi'
 import { CgSpinner } from "react-icons/cg";
+import PhoneInput from 'react-phone-input-2'
 
 export default function VerifyCarnaticMemberModal({ isOpen, onOpen, onClose }) {
-    const { member, setDonationInfo } = useContext(MyContext)
+    const { member, setDonationInfo, proxy } = useContext(MyContext)
     const navigate = useNavigate()
     const [password, setPassword] = useState(null)
     const [error, setError] = useState(null)
@@ -28,7 +29,7 @@ export default function VerifyCarnaticMemberModal({ isOpen, onOpen, onClose }) {
     const handleVerifyMember = async () => {
         setLoading(true)
         try {
-            const { data } = await axios.get(`https://carnatic-backend.vercel.app/member/find/${password}`)
+            const { data } = await axios.get(`${proxy}/member/find/${password}`)
             if (data.name && data.PAN) {
                 setLoading(false)
                 console.log(data)
@@ -64,7 +65,22 @@ export default function VerifyCarnaticMemberModal({ isOpen, onOpen, onClose }) {
                                 Carnatic Members
                             </div>
 
-                            <input className=' w-full px-2 py-3 outline-none rounded-md ring-2 ring-gray-300 focus:ring-2 focus:outline-none focus:ring-[#fe1648]' value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Enter your Registered mobile number' />
+                            {/* <input className=' w-full px-2 py-3 outline-none rounded-md ring-2 ring-gray-300 focus:ring-2 focus:outline-none focus:ring-[#fe1648]' value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Enter your Registered mobile number' /> */}
+                            <div className={`w-full`}>
+                                <PhoneInput
+                                    country={'in'}
+                                    countryCodeEditable={false}
+                                    onlyCountries={['in']}
+                                    value={password}
+                                    containerStyle={{
+                                        width: '100%'
+                                    }}
+                                    inputStyle={{
+                                        width: '100%'
+                                    }}
+                                    onChange={p => setPassword(p)}
+                                />
+                            </div>
 
 
                             <div className={`${!error ? "invisible" : ""}  text-red-700 px-1 py-3`}>

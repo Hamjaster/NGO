@@ -1,10 +1,11 @@
 const { model } = require("mongoose")
-const Member = require("../models/CarnaticMember")
+const Guest = require("../models/GuestSchema");
+const Carnatic = require("../models/CarnaticMember");
 
 const findMember = async (req, res) => {
     const { phone } = req.params;
     try {
-        const member = await Member.findOne({
+        const member = await Carnatic.findOne({
             phone
         })
         return res.send(member)
@@ -16,14 +17,15 @@ const findMember = async (req, res) => {
 const createMember = async (req, res) => {
     const data = req.body
     try {
-        const isAlreadyRegistered = await Member.findOne({ phone: data.phone })
+        const isAlreadyRegistered = await Guest.findOne({ phone: data.phone })
         if (isAlreadyRegistered) {
-            return res.send({
-                error: true,
-                message: "The user is already present"
-            })
+
+            const member = await Guest.findByIdAndUpdate(isAlreadyRegistered._id, data, { new: true })
+            res.send(member)
+            console.log('member updated')
+
         } else {
-            const member = await Member.create(data)
+            const member = await Guest.create(data)
             return res.send(member)
         }
     } catch (error) {
@@ -33,7 +35,7 @@ const createMember = async (req, res) => {
 
 const getAllMembers = async (req, res) => {
     try {
-        const members = await Member.find()
+        const members = await Guest.find()
         res.send(members)
     } catch (error) {
         res.send(error)
