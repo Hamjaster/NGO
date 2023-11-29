@@ -7,12 +7,12 @@ import withDonationInfo from './DonationWrapper'
 function Thanks() {
     const { donationInfo } = useContext(MyContext)
     return (
-        <div className='h-[80vh] font-dancing bg-center bg-cover '>
+        <div className='h-[80vh] font-curly italic bg-center bg-cover '>
 
-            <div className="z-10 mx-auto mt-36 leading-[6rem] shadow-2xl rounded-lg relative w-10/12 sm:w-8/12 p-8 space-y-8">
+            <div className="z-10 mx-auto mt-36 shadow-2xl rounded-lg relative w-10/12 sm:w-8/12 p-8 space-y-8">
 
 
-                <div className="text-lg sm:text-4xl leading-[6rem] font-thin text-center">
+                <div className="text-2xl leading-snug sm:leading-[3.5rem] sm:text-4xl font-thin text-center">
                     Dear <b className='font-semibold'>{donationInfo.name} </b>, Thank you for the generous donation of  <b className='font-semibold'>{donationInfo.amount} INR </b> to Carnatic Foundation. We are so grateful for your support.
                     We've sent an email to <b className='font-semibold'>{donationInfo.email}</b> regarding donation details
                 </div>

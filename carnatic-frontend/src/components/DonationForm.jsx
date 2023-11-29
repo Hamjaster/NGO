@@ -15,7 +15,7 @@ import { CgSpinner } from "react-icons/cg";
 export default function DonationForm() {
     const { member, project, setProject, userInfo, donationInfo, setDonationInfo, proxy } = useContext(MyContext)
     const [open, setOpen] = useState(false)
-    const [checked, setChecked] = useState(true)
+    const [checked, setChecked] = useState(false)
     const [loading, setLoading] = useState(false)
     const [otploading, setOtploading] = useState(false)
     const [phone, setphone] = useState(null)
@@ -169,6 +169,7 @@ export default function DonationForm() {
             text-center mx-auto text-4xl flex items-center space-x-8 my-8 md:text-5xl'>
                     <span className='text-center mx-auto'>Donation Form</span>
                 </h1>
+
                 {/* Name input */}
                 <div class="relative z-0 w-full mb-11 group">
 
@@ -364,12 +365,12 @@ export default function DonationForm() {
 
                 {/* Proceed button */}
                 <button
-                    disabled={
-                        member === "guest"
-                            ?
-                            !project || !donationInfo.PAN || !phoneVerified || !donationInfo.email || !donationInfo.name
-                            : !project
-                    }
+                    // disabled={
+                    //     member === "guest"
+                    //         ?
+                    //         !project || !donationInfo.PAN || !phoneVerified || !donationInfo.email || !donationInfo.name
+                    //         : !project
+                    // }
                     onClick={() => {
                         member === 'guest'
                             ? createUser()

@@ -25,7 +25,7 @@ const sendMail = async (req, res) => {
       const mailOptions = {
         from: 'carnaticfoundation@gmail.com',
         to: email,
-        subject: 'Your Donation receipt',
+        subject: 'Carnatic Foundation - Thanks & Donation Receipt',
         // html: "The PDF of your receipt has been attached, download it.",
         attachments: [{
           content: attachment,
@@ -65,9 +65,9 @@ const sendMail = async (req, res) => {
 
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
-          return res.status(500).send(error)
+          res.status(500).send(error)
         } else {
-          return res.status(200).send({ msg: 'Email sent successfully!', data: info })
+          res.status(200).send({ msg: 'Email sent successfully!', data: info })
         }
       });
 

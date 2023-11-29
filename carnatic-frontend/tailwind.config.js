@@ -10,7 +10,8 @@ export default {
         roboto: ['Roboto'],
         poppings: ['Poppins'],
         dancing: ['Dancing Script'],
-        satisfy: ['Satisfy', "cursive"]
+        satisfy: ['Satisfy', "cursive"],
+        curly: ['Simonetta']
       }
     },
   },
