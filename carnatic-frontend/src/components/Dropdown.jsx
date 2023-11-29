@@ -56,7 +56,7 @@ export default function Dropdown() {
                 } else {
                     navigate('/donate');
                 }
-            }} className='disabled:bg-gray-400 bg-[#fe0248]  py-4 hover:bg-[#D60036] rounded-md text-xl text-center text-white w-1/3'>
+            }} className='disabled:bg-gray-400 bg-[#4dd7fe]  py-4 hover:bg-[#00c8ff] rounded-md text-xl text-center text-white w-1/3'>
                 Continue
             </button>
             <VerifyCarnaticMemberModal isOpen={isOpen} onOpen={onOpen} onClose={onClose} />

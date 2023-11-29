@@ -92,7 +92,7 @@ export default function VerifyCarnaticMemberModal({ isOpen, onOpen, onClose }) {
                     </ModalBody>
 
                     <ModalFooter>
-                        <button disabled={!password} onClick={handleVerifyMember} className='bg-[#fe1648] hover:bg-[#D60036] text-xl mt-5 float-right flex items-center disabled:bg-gray-300 justify-center space-x-2 w-44 h-12 rounded-md text-white'>
+                        <button disabled={!password} onClick={handleVerifyMember} className='bg-[#4dd7fe] hover:bg-[#00c8ff] text-xl mt-5 float-right flex items-center disabled:bg-gray-300 justify-center space-x-2 w-44 h-12 rounded-md text-white'>
                             {loading ?
                                 <div className='animate-spin'>
                                     <CgSpinner />

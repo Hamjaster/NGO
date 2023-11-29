@@ -167,7 +167,7 @@ export default function DonationForm() {
 
                 <h1 className='font-bold font-poppins 
             text-center mx-auto text-4xl flex items-center space-x-8 my-8 md:text-5xl'>
-                    <span className=''>Donation Form</span>
+                    <span className='text-center mx-auto'>Donation Form</span>
                 </h1>
                 {/* Name input */}
                 <div class="relative z-0 w-full mb-11 group">

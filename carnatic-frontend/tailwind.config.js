@@ -8,7 +8,9 @@ export default {
     extend: {
       fontFamily: {
         roboto: ['Roboto'],
-        poppings: ['Poppins']
+        poppings: ['Poppins'],
+        dancing: ['Dancing Script'],
+        satisfy: ['Satisfy', "cursive"]
       }
     },
   },
