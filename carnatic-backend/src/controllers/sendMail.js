@@ -66,8 +66,10 @@ const sendMail = async (req, res) => {
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
           res.status(500).send(error)
+          console.log(error)
         } else {
           res.status(200).send({ msg: 'Email sent successfully!', data: info })
+          console.log('done')
         }
       });
 
