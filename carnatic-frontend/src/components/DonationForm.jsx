@@ -217,9 +217,9 @@ export default function DonationForm() {
                                     <div className={`w-full`}>
                                         <PhoneInput
                                             country={'in'}
-                                            countryCodeEditable={false}
+                                            // countryCodeEditable={false}
                                             value={phone}
-                                            onlyCountries={['in']}
+                                            // onlyCountries={['in']}
                                             containerStyle={{
                                                 width: '100%'
                                             }}
