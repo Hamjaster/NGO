@@ -7,7 +7,7 @@ import withDonationInfo from './DonationWrapper'
 function Thanks() {
     const { donationInfo } = useContext(MyContext)
     return (
-        <div className='h-[80vh] font-curly italic bg-center bg-cover '>
+        <div className='h-[80vh] font-curly bg-center bg-cover '>
 
             <div className="z-10 mx-auto mt-36 shadow-2xl rounded-lg relative w-10/12 sm:w-8/12 p-8 space-y-8">
 
