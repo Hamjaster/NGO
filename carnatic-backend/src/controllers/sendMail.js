@@ -5,8 +5,8 @@ const sendMail = async (req, res) => {
   const { name, email, PAN, phone, amount, project, address } = req.body;
   const currentDate = new Date();
   const mailOptions = {
-    from: 'user@example.com',
-    to: 'hilma.dibbert@ethereal.email',
+    from: 'carnaticfoundation@gmail.com',
+    to: email,
     subject: 'Your Donation receipt',
     html: `
       

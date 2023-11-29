@@ -217,9 +217,9 @@ export default function DonationForm() {
                                     <div className={`w-full`}>
                                         <PhoneInput
                                             country={'in'}
-                                            // countryCodeEditable={false}
+                                            countryCodeEditable={false}
                                             value={phone}
-                                            // onlyCountries={['in']}
+                                            onlyCountries={['in']}
                                             containerStyle={{
                                                 width: '100%'
                                             }}
@@ -364,12 +364,12 @@ export default function DonationForm() {
 
                 {/* Proceed button */}
                 <button
-                    disabled={
-                        member === "guest"
-                            ?
-                            !project || !donationInfo.PAN || !phoneVerified || !donationInfo.email || !donationInfo.name
-                            : !project
-                    }
+                    // disabled={
+                    //     member === "guest"
+                    //         ?
+                    //         !project || !donationInfo.PAN || !phoneVerified || !donationInfo.email || !donationInfo.name
+                    //         : !project
+                    // }
                     onClick={() => {
                         member === 'guest'
                             ? createUser()
