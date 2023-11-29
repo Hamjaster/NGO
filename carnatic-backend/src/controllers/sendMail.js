@@ -18,7 +18,7 @@ const sendMail = async (req, res) => {
 </head>
 <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px;">
 
-<div style="border: 2px solid black; padding: 1rem; width: 30rem; font-size: 0.875rem; display: flex; flex-direction: column;">
+<div style="border: 2px solid black; padding: 1rem; width: 30rem; height:80vh ; font-size: 0.875rem; display: flex; flex-direction: column;">
 
 <div style="border-bottom: 2px solid black; display: flex; justify-content: space-between; align-items: center;">
     <img style="width: 7rem;" src="https://i.postimg.cc/vmH5jVzy/logo.jpg" alt="" />
