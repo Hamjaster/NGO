@@ -27,6 +27,14 @@ const sendMail = async (req, res) => {
     to: email,
     subject: 'Carnatic Foundation - Thanks & Donation Receipt',
     html: giveHTML(req.body),
+    text: `Dear ${req.body.name},
+    We want to sincerely thank you for your generous donation of INR ${req.body.amount} in support of ${req.body.project}. It is through the incredible support of donors like you that we are able to continue providing crucial projects. 
+    We truly appreciate you making the choice not only to contribute to Carnatic Foundation today but also to stand with us as a supporter in the future.
+    Please find the attached receipt for your donation. 
+    Thank you once again for your tremendous generosity. We are so grateful for your support.
+    Carnatic Foundation
+    P.s : Tax Exemption certificate will be sent to you shortly.
+    `
     // attachments: [{
     //   content: attachment,
     //   filename: 'invoice.pdf',

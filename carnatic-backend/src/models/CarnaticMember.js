@@ -5,6 +5,8 @@ const CarnaticMember = new mongoose.Schema({
     PAN: { type: String, required: true, unique: true },
     email: { type: String, required: true },
     phone: { type: Number, required: true },
+    display_name: String,
+    timestamp: Date,
     address: String,
 });
 
