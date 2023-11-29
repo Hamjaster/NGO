@@ -16,7 +16,8 @@ function Amount() {
         setLoading(true)
         try {
             const { data } = await axios.post(`${proxy}/mail`, donationInfo)
-            if (data.msg) {
+            console.log(data)
+            if (data.success) {
                 setLoading(false)
                 navigate('/thanks')
             } else {
