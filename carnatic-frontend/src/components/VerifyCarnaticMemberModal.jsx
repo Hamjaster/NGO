@@ -28,8 +28,11 @@ export default function VerifyCarnaticMemberModal({ isOpen, onOpen, onClose }) {
 
     const handleVerifyMember = async () => {
         setLoading(true)
+        let phone = password.toString()
+        phone = phone.slice(2)
+        console.log(phone, 'final ph')
         try {
-            const { data } = await axios.get(`${proxy}/member/find/${password}`)
+            const { data } = await axios.get(`${proxy}/member/find/${phone}`)
             if (data.name && data.PAN) {
                 setLoading(false)
                 console.log(data)
@@ -50,6 +53,11 @@ export default function VerifyCarnaticMemberModal({ isOpen, onOpen, onClose }) {
 
         }
     }
+
+    console.log(password);
+    useEffect(() => {
+        console.log(password);
+    }, [password])
 
     return (
         <div>
@@ -78,7 +86,8 @@ export default function VerifyCarnaticMemberModal({ isOpen, onOpen, onClose }) {
                                     inputStyle={{
                                         width: '100%'
                                     }}
-                                    onChange={p => setPassword(p)}
+                                    onChange={phone => setPassword(phone)}
+
                                 />
                             </div>
 
