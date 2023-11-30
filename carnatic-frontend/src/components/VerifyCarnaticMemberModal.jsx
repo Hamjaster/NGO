@@ -17,6 +17,9 @@ import axios from 'axios'
 import { BiLoader, BiLoaderAlt, BiLoaderCircle } from 'react-icons/bi'
 import { CgSpinner } from "react-icons/cg";
 import PhoneInput from 'react-phone-input-2'
+import toast from 'react-hot-toast'
+import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth'
+import { auth } from '../../firebase.config'
 
 export default function VerifyCarnaticMemberModal({ isOpen, onOpen, onClose }) {
     const { member, setDonationInfo, proxy } = useContext(MyContext)
@@ -24,9 +27,14 @@ export default function VerifyCarnaticMemberModal({ isOpen, onOpen, onClose }) {
     const [password, setPassword] = useState(null)
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(false)
-
+    const [otpsent, setotpsent] = useState(false)
+    const [otploading, setOtploading] = useState(false)
+    const [otpvalidateLoading, setOtpvalidateLoading] = useState(false)
+    const [otp, setotp] = useState()
+    const [isVerified, setIsVerified] = useState(false)
 
     const handleVerifyMember = async () => {
+        console.log('verifying')
         setLoading(true)
         let phone = password.toString()
         phone = phone.slice(2)
@@ -39,20 +47,85 @@ export default function VerifyCarnaticMemberModal({ isOpen, onOpen, onClose }) {
                 setDonationInfo(data)
                 setError(null)
                 navigate('/donate')
+                return true
             } else {
-                setLoading(false)
                 setError('No such member found ')
                 console.log('No such user found');
+                setLoading(false)
+                return false
             }
-            console.log(data);
 
         } catch (error) {
             console.log(error)
             setError('Some unexpected error occured ')
             setLoading(false)
+            return false
+        }
+    }
+
+    function onCaptchVerify() {
+        if (!window.recaptchaVerifier) {
+            window.recaptchaVerifier = new RecaptchaVerifier('sign-in-button', {
+                'size': 'invisible',
+                'callback': (response) => {
+
+                    onSignup();
+                }
+            }
+                , auth
+            );
 
         }
     }
+
+    const onSignup = async () => {
+        setOtploading(true);
+        onCaptchVerify();
+
+        const appVerifier = window.recaptchaVerifier;
+        try {
+            const res = await signInWithPhoneNumber(auth, "+" + password, appVerifier)
+            window.confirmationResult = res
+            toast.success("We've sent OTP")
+            setOtploading(false)
+            setotpsent(true)
+            return true
+        } catch (error) {
+            console.log(error);
+            setOtploading(false);
+            setotpsent(false)
+            return false
+        }
+    }
+
+    async function onOTPVerify() {
+        setOtpvalidateLoading(true);
+        window.confirmationResult
+            .confirm(otp)
+            .then(async (res) => {
+                console.log(res);
+                console.log(res.user);
+                setOtpvalidateLoading(false);
+                setotpsent(false)
+                setIsVerified(true)
+                handleVerifyMember()
+            })
+            .catch((err) => {
+                if (err.message === "Firebase: Error (auth/invalid-verification-code).") {
+                    setOtpvalidateLoading(false);
+                    toast.error('Invalid OTP')
+                    return false
+                } else {
+                    setOtpvalidateLoading(false);
+                    toast.error(err.message)
+                    return false
+                }
+                console.log(err)
+                setOtpvalidateLoading(false);
+                return false
+            });
+    }
+
 
     console.log(password);
     useEffect(() => {
@@ -73,7 +146,6 @@ export default function VerifyCarnaticMemberModal({ isOpen, onOpen, onClose }) {
                                 Carnatic Members
                             </div>
 
-                            {/* <input className=' w-full px-2 py-3 outline-none rounded-md ring-2 ring-gray-300 focus:ring-2 focus:outline-none focus:ring-[#fe1648]' value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Enter your Registered mobile number' /> */}
                             <div className={`w-full`}>
                                 <PhoneInput
                                     country={'in'}
@@ -91,8 +163,34 @@ export default function VerifyCarnaticMemberModal({ isOpen, onOpen, onClose }) {
                                 />
                             </div>
 
+                            {otpsent ?
+                                <div class="relative my-5 z-0 w-full group">
+                                    <div className='flex flex-row gap-5'>
 
-                            <div className={`${!error ? "invisible" : ""}  text-red-700 px-1 py-3`}>
+
+                                        <div className={` '`}>
+                                            <input value={otp} onChange={(e) => setotp(e.target.value)} class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-[#fe0248] peer" placeholder="OTP code" required />
+                                        </div>
+
+
+
+                                        <button onClick={() => {
+                                            onOTPVerify()
+                                        }} className={`bg-[#4dd7fe] text-lg py-1 w-32 rounded-md hover:bg-[#00c8ff] text-white`}>
+                                            {otpvalidateLoading
+                                                ? <div className='animate-spin mx-auto text-2xl max-w-min'>
+                                                    <CgSpinner />
+                                                </div>
+                                                : "Validate"
+                                            }
+                                        </button>
+                                    </div>
+                                </div>
+                                : <></>
+                            }
+
+
+                            <div className={`${!error ? "hidden" : ""}  text-red-700 px-1 py-3`}>
                                 * {error}
                             </div>
 
@@ -101,14 +199,17 @@ export default function VerifyCarnaticMemberModal({ isOpen, onOpen, onClose }) {
                     </ModalBody>
 
                     <ModalFooter>
-                        <button disabled={!password} onClick={handleVerifyMember} className='bg-[#4dd7fe] hover:bg-[#00c8ff] text-xl mt-5 float-right flex items-center disabled:bg-gray-300 justify-center space-x-2 w-44 h-12 rounded-md text-white'>
-                            {loading ?
+
+                        <button id='sign-in-button' disabled={!password} onClick={async () => {
+                            onSignup()
+                        }} className='bg-[#4dd7fe] hover:bg-[#00c8ff] text-xl mt-5 float-right flex items-center disabled:bg-gray-300 justify-center space-x-2 w-44 h-12 rounded-md text-white'>
+                            {otploading || loading ?
                                 <div className='animate-spin'>
                                     <CgSpinner />
                                 </div>
                                 :
                                 <>
-                                    Continue
+                                    Verify
                                 </>
                             }
                         </button>

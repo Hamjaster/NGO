@@ -83,7 +83,7 @@ export default function DonationForm() {
     }
 
     const onSignup = async () => {
-        if (phoneVerified) return;
+
         setOtploading(true);
         onCaptchVerify();
 
@@ -100,16 +100,6 @@ export default function DonationForm() {
             setotpsent(false)
             return false
         }
-        // .then((confirmationResult) => {
-        //     window.confirmationResult = confirmationResult;
-        //     setOtploading(false);
-        //     toast.success("We've sent OTP to your number")
-        //     setotpsent(true)
-        //     return true
-        // })
-        // .catch((error) => {
-        //     console.log(error);
-        // });
     }
 
     const updateInfo = (e) => {
