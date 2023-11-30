@@ -22,11 +22,19 @@ const giveHTML = ({ name, email, phone, PAN, address, amount, project }) => {
         <title>Donation Receipt</title>
     </head>
     
-    <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px;">
-    
+    <body style="font-family: Arial, sans-serif;margin: 0; padding: 20px;">
+    <div style = "font-size : 19px">
+    Dear <b>${name}</b> , <br>
+    We want to sincerely thank you for your generous donation of INR  <b>${amount}</b> in support of <b>${project}</b>. It is through the incredible support of donors like you that we are able to continue providing crucial projects. 
+    We truly appreciate you making the choice not only to contribute to Carnatic Foundation today but also to stand with us as a supporter in the future.
+    Please find the attached receipt for your donation. 
+    Thank you once again for your tremendous generosity. We are so grateful for your support.
+    Carnatic Foundation
+    P.s : Tax Exemption certificate will be sent to you shortly.
+    </div>
     
         <table width="100%" border="0" cellpadding="0" cellspacing="0"
-            style="border: 2px solid black; width: 30rem; font-size: 0.875rem; padding : 20px">
+            style="border: 2px solid black; width: 30rem; font-size: 0.875rem; padding : 20px; margin : 44px 0px;">
             <!-- Header -->
             <tr>
                 <td colspan="2" style="border-bottom: 2px solid black;">

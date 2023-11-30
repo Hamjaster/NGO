@@ -10,7 +10,7 @@ export default function Navbar() {
             <div class="max-w-screen-xl flex flex-wrap items-center justify-center border-b-2 mx-auto py-1">
 
                 <Link to={'/'} className='  '>
-                    <img src={logo} className='w-32' />
+                    <img src={logo} className='w-36' />
                 </Link>
 
             </div>

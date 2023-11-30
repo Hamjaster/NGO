@@ -12,7 +12,7 @@ export default function Dropdown() {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
-        <div className='flex flex-col text-[#474848] h-[84.5vh] space-y-4 items-center justify-start pt-32 sm:pt-64'>
+        <div className='flex flex-col text-[#474848] h-[83vh] space-y-4 items-center justify-start pt-32 sm:pt-64'>
 
 
 

@@ -25,6 +25,18 @@ export default function DonationForm() {
     const [otp, setotp] = useState()
     const navigate = useNavigate()
 
+    const [isValidEmail, setIsValidEmail] = useState(false);
+
+    const validateEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
+    useEffect(() => {
+        setIsValidEmail(validateEmail(donationInfo.email));
+    }, [donationInfo.email]);
+
+
 
     const createUser = async () => {
         setLoading(true)
@@ -160,7 +172,7 @@ export default function DonationForm() {
 
 
     return (
-        <div className='h-[84.5vh] text-[#474848] font-roboto mx-auto w-full'>
+        <div className='h-[83vh] text-[#474848] font-roboto mx-auto w-full'>
 
 
             <section className='mt-4 md:mt-6 mx-auto w-full md:w-2/3 bg-white shadow-lg px-10 pb-24 text-[#474848] pt-7'>
@@ -286,8 +298,10 @@ export default function DonationForm() {
 
 
                         <div class="relative z-0 w-full mb-6 group">
-                            <input disabled={member !== 'guest'} value={donationInfo.email} onChange={(e) => updateInfo(e)} type="email" name="email" id="floating_last_name" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none    focus:outline-none focus:ring-0 focus:border-[#fe0248] peer" placeholder=" " required />
-                            <label for="email" class="peer-focus:font-medium absolute text-lg text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#fe0248]  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email</label>
+                            <input disabled={member !== 'guest'} value={donationInfo.email} onChange={(e) => updateInfo(e)} type="email" name="email" id="floating_last_name" class={`"block py-2.5 px-2 w-full text-lg text-gray-900 rounded-lg bg-transparent border-2 
+                            ${isValidEmail ? 'border-gray-300' : 'border-red-500'}
+                                 appearance-none  focus:outline-none peer"`} placeholder="Enter Email " required />
+                            {/* <label for="email" class="peer-focus:font-medium absolute text-lg text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#fe0248]  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email</label> */}
                         </div>
 
                         <div class="relative z-0 w-full mb-6 group">
@@ -365,12 +379,12 @@ export default function DonationForm() {
 
                 {/* Proceed button */}
                 <button
-                    // disabled={
-                    //     member === "guest"
-                    //         ?
-                    //         !project || !donationInfo.PAN || !phoneVerified || !donationInfo.email || !donationInfo.name
-                    //         : !project
-                    // }
+                    disabled={
+                        member === "guest"
+                            ?
+                            !project || !donationInfo.PAN || !phoneVerified || !donationInfo.email || !donationInfo.name || !isValidEmail
+                            : !project
+                    }
                     onClick={() => {
                         member === 'guest'
                             ? createUser()
