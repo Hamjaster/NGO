@@ -22,7 +22,7 @@ const giveHTML = ({ name, email, phone, PAN, address, amount, project }) => {
         <title>Donation Receipt</title>
     </head>
     
-    <body style="font-family: Arial, sans-serif;margin: 0; padding: 20px;">
+    <body style="font-family: Arial, sans-serif;margin: 0; padding: 16px;">
     <div style = "font-size : 19px">
     Dear <b>${name}</b> , <br>
     We want to sincerely thank you for your generous donation of INR  <b>${amount}</b> in support of <b>${project}</b>. It is through the incredible support of donors like you that we are able to continue providing crucial projects. 
