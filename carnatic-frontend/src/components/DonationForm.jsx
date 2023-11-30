@@ -320,7 +320,7 @@ export default function DonationForm() {
                         {project
                             ? <>Donating to : {project} </>
                             : <>
-                                <span>Chose a Project</span>
+                                <span>Select a Project</span>
                                 <span><BiDownArrowAlt /></span>
                             </>
                         }
