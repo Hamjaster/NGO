@@ -11,6 +11,7 @@ import toast from 'react-hot-toast'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import { CgSpinner } from "react-icons/cg";
+import logo from '../assets/logo.jpeg'
 
 export default function DonationForm() {
     const { member, project, setProject, userInfo, donationInfo, setDonationInfo, proxy } = useContext(MyContext)
@@ -162,18 +163,19 @@ export default function DonationForm() {
 
 
     return (
-        <div className='h-[83vh] text-[#474848] font-roboto mx-auto w-full'>
+        <div className='text-[#474848] h-screen overflow-y-scroll font-roboto mx-auto w-full'>
 
 
-            <section className='mt-4 md:mt-6 mx-auto w-full md:w-2/3 bg-white shadow-lg px-10 pb-24 text-[#474848] pt-7'>
+            <section className='mx-auto w-full md:w-2/3 justify-evenly flex h-screen flex-col bg-white shadow-lg px-10 text-[#474848]'>
 
                 <h1 className='font-bold font-poppins 
-            text-center mx-auto text-4xl flex items-center space-x-8 my-8 md:text-5xl'>
-                    <span className='text-center mx-auto'>Donation Form</span>
+            text-center mx-auto text-4xl flex w-full items-center justify-between space-x-8 md:text-5xl'>
+                    <img src={logo} className='w-32' />
+                    <span className='text-center  w-full'>Donation Form</span>
                 </h1>
 
                 {/* Name input */}
-                <div class="relative z-0 w-full mb-11 group">
+                <div class="relative z-0 w-full  group">
 
                     <input disabled={member !== 'guest'} value={donationInfo.name} onChange={(e) => updateInfo(e)} type="text" name="name" id="name" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none   focus:outline-none focus:ring-0 focus:border-[#fe0248] peer" placeholder=" " required />
 
@@ -181,7 +183,7 @@ export default function DonationForm() {
                 </div>
 
                 {/* PAN number input */}
-                <div class="relative z-0 w-full mb-11 group flex flex-row items-center justify-between gap-3">
+                <div class="relative z-0 w-full  group flex flex-row items-center justify-between gap-3">
 
                     <div className={`${member === 'guest' ? "w-full" : "w-full"} '`}>
 
@@ -202,109 +204,109 @@ export default function DonationForm() {
                 </div>
 
                 {/* Phone, otp and email */}
-                <div class="flex flex-col space-y-9 mb-2">
-
-                    {/* Phone */}
-                    <div class="relative z-0 w-full group">
-                        {
-                            member !== "guest"
-                                ?
-                                <>
-                                    <input disabled value={donationInfo.phone} type="text" name="phone" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-[#fe0248] peer" placeholder=" " required />
-                                    <label for="pan" class="peer-focus:font-medium absolute text-lg text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#fe0248] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone Number</label>
-                                </>
-
-                                :
-                                <div className='flex flex-row items-center justify-between w-full gap-3'>
-
-                                    <div className={`w-full`}>
-                                        <PhoneInput
-                                            country={'in'}
-                                            countryCodeEditable={false}
-                                            value={phone}
-                                            onlyCountries={['in']}
-                                            containerStyle={{
-                                                width: '100%'
-                                            }}
-                                            disabled={phoneVerified}
-                                            inputStyle={{
-                                                width: '100%'
-                                            }}
-                                            onChange={phone => setphone(phone)}
-                                        />
-                                    </div>
 
 
-                                    <button id='sign-in-button' disabled={phoneVerified} onClick={async () => {
-                                        await onSignup()
-                                    }} className={`${member === 'guest' ? "" : "hidden"} w-44    bg-[#4dd7fe] text-lg h-[3.1rem]  rounded-md disabled:bg-gray-400 hover:bg-[#00c8ff] text-white`}>
+                {/* Phone */}
+                <div class="relative z-0 w-full group">
+                    {
+                        member !== "guest"
+                            ?
+                            <>
+                                <input disabled value={donationInfo.phone} type="text" name="phone" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-[#fe0248] peer" placeholder=" " required />
+                                <label for="pan" class="peer-focus:font-medium absolute text-lg text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#fe0248] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone Number</label>
+                            </>
 
-                                        {
-                                            phoneVerified ? "Verified" :
-                                                otploading
-                                                    ? <div className='animate-spin mx-auto text-2xl max-w-min'>
-                                                        <CgSpinner />
-                                                    </div>
-                                                    : otpsent ? "Send again" : "Verify"
+                            :
+                            <div className='flex flex-row items-center justify-between w-full gap-3'>
 
-                                        }
-                                    </button>
-
-
-                                </div>
-                        }
-
-                    </div>
-
-                    {/* OTP validation */}
-                    {otpsent ?
-                        <div class="relative my-5 z-0 w-full group">
-                            <div className='flex flex-row gap-5'>
-
-
-                                <div className={` '`}>
-                                    <input value={otp} onChange={(e) => setotp(e.target.value)} class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-[#fe0248] peer" placeholder="OTP code" required />
+                                <div className={`w-full`}>
+                                    <PhoneInput
+                                        country={'in'}
+                                        countryCodeEditable={false}
+                                        value={phone}
+                                        onlyCountries={['in']}
+                                        containerStyle={{
+                                            width: '100%'
+                                        }}
+                                        disabled={phoneVerified}
+                                        inputStyle={{
+                                            width: '100%'
+                                        }}
+                                        onChange={phone => setphone(phone)}
+                                    />
                                 </div>
 
 
+                                <button id='sign-in-button' disabled={phoneVerified} onClick={async () => {
+                                    await onSignup()
+                                }} className={`${member === 'guest' ? "" : "hidden"} w-44    bg-[#4dd7fe] text-lg h-[3.1rem]  rounded-md disabled:bg-gray-400 hover:bg-[#00c8ff] text-white`}>
 
-                                <button onClick={() => {
-                                    onOTPVerify()
-                                }} className={`${member === 'guest' ? "" : "hidden"} bg-[#4dd7fe] text-lg py-1 w-32 rounded-md hover:bg-[#00c8ff] text-white`}>
-                                    {otpvalidateLoading
-                                        ? <div className='animate-spin mx-auto text-2xl max-w-min'>
-                                            <CgSpinner />
-                                        </div>
-                                        : "Validate"
+                                    {
+                                        phoneVerified ? "Verified" :
+                                            otploading
+                                                ? <div className='animate-spin mx-auto text-2xl max-w-min'>
+                                                    <CgSpinner />
+                                                </div>
+                                                : otpsent ? "Send again" : "Verify"
+
                                     }
                                 </button>
+
+
                             </div>
-                        </div>
-                        : <></>
                     }
 
-                    {/* Email */}
-                    <div className="grid grid-cols-2 gap-5">
+                </div>
+
+                {/* OTP validation */}
+                {otpsent ?
+                    <div class="relative z-0 w-full group">
+                        <div className='flex flex-row gap-5'>
 
 
-                        <div class="relative z-0 w-full mb-6 group">
-                            <input disabled={member !== 'guest'} value={donationInfo.email} onChange={(e) => updateInfo(e)} type="email" name="email" id="floating_last_name" class={`"block py-2.5 px-2 w-full text-lg text-gray-900 rounded-lg bg-transparent border-2 
+                            <div className={` '`}>
+                                <input value={otp} onChange={(e) => setotp(e.target.value)} class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-[#fe0248] peer" placeholder="OTP code" required />
+                            </div>
+
+
+
+                            <button onClick={() => {
+                                onOTPVerify()
+                            }} className={`${member === 'guest' ? "" : "hidden"} bg-[#4dd7fe] text-lg py-1 w-32 rounded-md hover:bg-[#00c8ff] text-white`}>
+                                {otpvalidateLoading
+                                    ? <div className='animate-spin mx-auto text-2xl max-w-min'>
+                                        <CgSpinner />
+                                    </div>
+                                    : "Validate"
+                                }
+                            </button>
+                        </div>
+                    </div>
+                    : <></>
+                }
+
+                {/* Email & Address */}
+                <div className="grid grid-cols-2 gap-5">
+
+
+                    <div class="relative z-0 w-full group">
+                        <input disabled={member !== 'guest'} value={donationInfo.email} onChange={(e) => updateInfo(e)} type="email" name="email" id="floating_last_name" class={`"block py-2.5 px-2 w-full text-lg text-gray-900 rounded-lg bg-transparent border-2 
                             ${isValidEmail ? 'border-gray-300' : 'border-red-500'}
                                  appearance-none  focus:outline-none peer"`} placeholder="Enter Email " required />
-                            {/* <label for="email" class="peer-focus:font-medium absolute text-lg text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#fe0248]  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email</label> */}
-                        </div>
+                        {/* <label for="email" class="peer-focus:font-medium absolute text-lg text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#fe0248]  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email</label> */}
+                    </div>
 
-                        <div class="relative z-0 w-full mb-6 group">
-                            <input disabled={member !== 'guest'} value={donationInfo.address} onChange={(e) => updateInfo(e)} type="text" name="address" id="address" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none    focus:outline-none focus:ring-0 focus:border-[#fe0248] peer" placeholder=" " required />
-                            <label for="address" class="peer-focus:font-medium absolute text-lg text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#fe0248]  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Address</label>
-                        </div>
-
+                    <div class="relative z-0 w-full group">
+                        <input disabled={member !== 'guest'} value={donationInfo.address} onChange={(e) => updateInfo(e)} type="text" name="address" id="address" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none    focus:outline-none focus:ring-0 focus:border-[#fe0248] peer" placeholder=" " required />
+                        <label for="address" class="peer-focus:font-medium absolute text-lg text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#fe0248]  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Address</label>
                     </div>
 
                 </div>
 
+
+
                 {/* Project Dropdown */}
-                <div onClick={() => setOpen(!open)} className={`relative z-0 select-none text-center my-8 w-full`}>
+                <div onClick={() => setOpen(!open)} className={`relative z-0 select-none text-center w-full`}>
 
                     <div className={`flex flex-row items-center text-lg justify-center py-2 cursor-pointer space-x-7 hover:bg-[#fe1648] hover:text-white border border-[#fe1648]`}>
                         {project
@@ -369,17 +371,17 @@ export default function DonationForm() {
 
                 {/* Proceed button */}
                 <button
-                    // disabled={
-                    //     member === "guest"
-                    //         ?
-                    //         !project || !donationInfo.PAN || !phoneVerified || !donationInfo.email || !donationInfo.name || !isValidEmail
-                    //         : !project
-                    // }
+                    disabled={
+                        member === "guest"
+                            ?
+                            !project || !donationInfo.PAN || !phoneVerified || !donationInfo.email || !donationInfo.name || !isValidEmail
+                            : !project
+                    }
                     onClick={() => {
                         member === 'guest'
                             ? createUser()
                             : navigate('/amount')
-                    }} className='bg-[#4dd7fe] hover:bg-[#00c8ff] text-xl mt-5 float-right disabled:bg-gray-400 h-12 flex items-center justify-center space-x-2 px-1 w-44 rounded-md text-white'>
+                    }} className='bg-[#4dd7fe] hover:bg-[#00c8ff] text-xl float-right disabled:bg-gray-400 h-12 flex items-center justify-center space-x-2 px-1 w-44 rounded-md text-white'>
                     {loading
                         ? <div className='animate-spin'>
                             <CgSpinner />

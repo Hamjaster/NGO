@@ -149,8 +149,8 @@ export default function VerifyCarnaticMemberModal({ isOpen, onOpen, onClose }) {
                             <div className={`w-full`}>
                                 <PhoneInput
                                     country={'in'}
-                                    countryCodeEditable={false}
-                                    onlyCountries={['in']}
+                                    // countryCodeEditable={false}
+                                    // onlyCountries={['in']}
                                     value={password}
                                     containerStyle={{
                                         width: '100%'
@@ -209,7 +209,7 @@ export default function VerifyCarnaticMemberModal({ isOpen, onOpen, onClose }) {
                                 </div>
                                 :
                                 <>
-                                    Verify
+                                    {otpsent ? "Send Again" : "Verify"}
                                 </>
                             }
                         </button>

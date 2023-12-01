@@ -19,8 +19,8 @@ function App() {
 
 
   return (
-    <div className='flex bg-[#f4f9fa] flex-col font-roboto'>
-      <Navbar />
+    <div className='flex bg-[#f4f9fa] flex-col h-screen relative justify-center w-full items-center font-roboto'>
+
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/dropdown' element={<Dropdown />} />
@@ -36,6 +36,8 @@ function App() {
         position="top-center"
         reverseOrder={false}
       />
+
+
     </div>
   )
 }
