@@ -25,8 +25,9 @@ export default function DonationForm() {
     const [phoneVerified, setPhoneVerified] = useState(false)
     const [otp, setotp] = useState()
     const navigate = useNavigate()
-
+    const [panValidated, setPanValidated] = useState(false)
     const [isValidEmail, setIsValidEmail] = useState(false);
+    const [panverifyloading, setPanverifyloading] = useState(false)
 
     const validateEmail = (email) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -161,6 +162,54 @@ export default function DonationForm() {
         console.log(donationInfo)
     }, [donationInfo])
 
+    const verifyPAN = async () => {
+
+        setPanverifyloading(true)
+        const BearerToken = "Karthik_will_put_token_here"
+        // Checking if name is empty
+        if (!donationInfo.name) {
+            toast.error("Fill the Name Field first")
+            setPanverifyloading(false)
+        } else {
+            // Body for Request
+            const body = {
+                id_number: donationInfo.PAN
+            }
+            // Headers for request
+            const headers = {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${BearerToken}`,
+            }
+
+            try {
+                const { data } = await axios.post('https://kyc-api.aadhaarkyc.io/api/v1/pan/pan-comprehensive', body,
+                    {
+                        headers: headers
+                    }
+                )
+                // If request succeeds
+                if (data.message_code === "success") {
+                    // Checking if name of PAN matches with entered-name
+                    if (data.data.full_name === donationInfo.name) {
+                        setPanValidated(true)
+                        setPanverifyloading(false)
+                        toast.success('Your PAN card no. is verified')
+                    } else {
+                        toast.error("Your name is inconsistent with that of PAN card name")
+                        setPanValidated(false)
+                        setPanverifyloading(false)
+                    }
+                } else {
+                    setPanverifyloading(false)
+                    toast.error('An error occured.')
+                }
+            } catch (error) {
+                setPanverifyloading(false)
+                console.log(error)
+                toast.error('An error occured.')
+            }
+        }
+    }
 
     return (
         <div className='text-[#474848] h-screen overflow-y-scroll font-roboto mx-auto w-full'>
@@ -187,23 +236,22 @@ export default function DonationForm() {
 
                     <div className={`${member === 'guest' ? "w-full" : "w-full"} '`}>
 
-                        <input disabled={member !== 'guest'} value={donationInfo.PAN} onChange={(e) => updateInfo(e)} type="text" name="PAN" id="pan" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-[#fe0248] peer" placeholder=" " required />
+                        <input disabled={member !== 'guest' || (member === 'guest' && panValidated)} value={donationInfo.PAN} onChange={(e) => updateInfo(e)} type="text" name="PAN" id="pan" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-[#fe0248] peer" placeholder=" " required />
                         <label for="pan" class="peer-focus:font-medium absolute text-lg text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#fe0248] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">PAN Number</label>
 
                     </div>
 
-                    <button className={`${member === 'guest' ? "" : "hidden"} w-44 bg-[#4dd7fe] text-lg h-[3.1rem] px-1 rounded-md hover:bg-[#00c8ff] text-white`}>
-                        {loading
+                    <button disabled={panValidated} onClick={verifyPAN} className={`${member === 'guest' ? "" : "hidden"} w-44 bg-[#4dd7fe] text-lg h-[3.1rem] px-1 rounded-md disabled:bg-gray-400 hover:bg-[#00c8ff] text-white`}>
+                        {panverifyloading
                             ? <div className='animate-spin'>
                                 <CgSpinner />
                             </div>
-                            : "Verify"
+                            // If pan is validated, show verified
+                            : panValidated ? "Verified" : "Verify"
                         }
                     </button>
 
                 </div>
-
-                {/* Phone, otp and email */}
 
 
                 {/* Phone */}

@@ -1,0 +1,37 @@
+{
+    "data": {
+        "client_id": "pan_comprehensive_bdNzhdLMVpxGHkfwkhGl",
+        "pan_number": "ABCPD9716F",
+        "full_name": "JOHN DOE",
+        "full_name_split": [
+            "JOHN",
+            "",
+            "DOE"
+        ],
+        "masked_aadhaar": "XXXXXXXX0617",
+        "address": {
+            "line_1": "21 KEHNA KING MARKET",
+            "line_2": "PURANA GANJ",
+            "street_name": "",
+            "zip": "110072",
+            "city": "DELHI",
+            "state": "",
+            "country": "",
+            "full": "21 KEHNA KING MARKET PURANA GANJ 110072 DELHI"
+        },
+        "email": "JOHNDOE@GMAIL.COM",
+        "phone_number": "9999955555",
+        "gender": "M",
+        "dob": "1996-01-01",
+        "input_dob": null,
+        "aadhaar_linked": true,
+        "dob_verified": false,
+        "dob_check": false,
+        "category": "person",
+        "less_info": false
+    },
+    "status_code": 200,
+    "success": true,
+    "message": null,
+    "message_code": "success"
+}
