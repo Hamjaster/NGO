@@ -250,9 +250,9 @@ export default function DonationForm() {
 
                     </div>
 
-                    <button disabled={panValidated} onClick={verifyPAN} className={`${member === 'guest' ? "" : "hidden"} w-44 bg-[#4dd7fe] text-lg h-[3.1rem] px-1 rounded-md disabled:bg-gray-400 hover:bg-[#00c8ff] text-white`}>
+                    <button disabled={panValidated} onClick={verifyPAN} className={`${member === 'guest' ? "" : "hidden"} w-44    bg-[#4dd7fe] text-lg h-[3.1rem]  rounded-md disabled:bg-gray-400 hover:bg-[#00c8ff] text-white`}>
                         {panverifyloading
-                            ? <div className='animate-spin'>
+                            ? <div className='animate-spin mx-auto text-2xl max-w-min'>
                                 <CgSpinner />
                             </div>
                             // If pan is validated, show verified
