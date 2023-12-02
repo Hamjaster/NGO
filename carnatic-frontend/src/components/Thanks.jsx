@@ -18,7 +18,8 @@ function Thanks() {
 
                     <div className="text-2xl leading-snug sm:leading-[3.5rem] sm:text-4xl font-thin text-center">
                         Dear <b className='font-semibold'>{donationInfo.name} </b>, Thank you for the generous donation of  <b className='font-semibold'>{donationInfo.amount} INR </b> to Carnatic Foundation. We are so grateful for your support.
-                        We've sent an email to <b className='font-semibold'>{donationInfo.email}</b> regarding donation details
+                        <br />
+                        We have emailed you the receipt at <b className='font-semibold'>{donationInfo.email}</b> regarding your donation.
                     </div>
                     <div className='text-center text-3xl font-bold'> - Carnatic Foundation</div>
                 </div>

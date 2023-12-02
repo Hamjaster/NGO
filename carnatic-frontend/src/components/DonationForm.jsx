@@ -210,12 +210,12 @@ export default function DonationForm() {
                     }
                 } else {
                     setPanverifyloading(false)
-                    toast.error('Invalid PAN card number.')
+                    toast.error('Validation Failed.')
                 }
             } catch (error) {
                 setPanverifyloading(false)
                 console.log(error)
-                toast.error('An error occured.')
+                toast.error('Validation falied.')
             }
         }
     }
@@ -224,11 +224,11 @@ export default function DonationForm() {
         <div className='text-[#474848] h-screen overflow-y-scroll font-roboto mx-auto w-full'>
 
 
-            <section className='mx-auto w-full md:w-2/3 justify-evenly flex h-screen flex-col bg-white shadow-lg px-10 text-[#474848]'>
+            <section className='mx-auto w-full md:w-2/3 justify-evenly flex h-screen flex-col bg-white shadow-lg px-2 sm:px-10 text-[#474848]'>
 
                 <h1 className='font-bold font-poppins 
-            text-center mx-auto text-4xl flex w-full items-center justify-between space-x-8 md:text-5xl'>
-                    <img src={logo} className='w-32' />
+            text-center mx-auto text-4xl flex w-full items-center justify-between space-x-0 sm:space-x-8 md:text-5xl'>
+                    <img src={logo} className='w-20 sm:w-32' />
                     <span className='text-center  w-full'>Donation Form</span>
                 </h1>
 

@@ -25,7 +25,7 @@ const giveHTML = ({ name, email, phone, PAN, address, amount, project }) => {
     <body style="font-family: Arial, sans-serif;margin: 0; padding: 16px;">
     <div style = "font-size : 19px">
     Dear <b>${name}</b> , <br>
-    We want to sincerely thank you for your generous donation of INR  <b>${amount}</b> in support of <b>${project}</b>. It is through the incredible support of donors like you that we are able to continue providing crucial projects. 
+    We want to sincerely thank you for your generous donation of <b>${amount} INR</b>  in support of <b>${project}</b>. It is through the incredible support of donors like you that we are able to continue providing crucial projects. 
     We truly appreciate you making the choice not only to contribute to Carnatic Foundation today but also to stand with us as a supporter in the future. 
     <br>
     Thank you once again for your tremendous generosity. We are so grateful for your support.
