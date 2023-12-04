@@ -10,7 +10,7 @@ import logo from '../assets/logo.jpeg'
 
 export default function Home() {
     return (
-        <>
+        <div className='w-full'>
 
             <div className='h-[83vh] items-center overflow-hidden flex flex-col'>
 
@@ -37,6 +37,6 @@ export default function Home() {
 
             </div>
             <Footer />
-        </>
+        </div>
     )
 }

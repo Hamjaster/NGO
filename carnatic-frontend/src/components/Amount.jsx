@@ -8,7 +8,7 @@ import Navbar from './Navbar'
 
 
 function Amount() {
-    const [amount, setAmount] = useState(0)
+    const [amount, setAmount] = useState(null)
     const navigate = useNavigate()
     const { donationInfo, setDonationInfo, proxy } = useContext(MyContext)
     const [loading, setLoading] = useState(false)
