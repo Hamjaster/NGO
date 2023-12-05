@@ -43,10 +43,10 @@ function Amount() {
 
 
     return (
-        <>
+        <div className='h-screen w-full'>
             <Navbar />
 
-            <div className='flex h-[84.5vh] pt-44 space-y-8 sm:space-y-10 text-[#474848] md:space-y-10 flex-col items-center'>
+            <div className='flex  justify-center h-[84.5vh] pt-44 space-y-8 sm:space-y-10 text-[#474848] md:space-y-10 flex-col items-center'>
 
                 <div className="text-3xl w-[20rem] sm:text-4xl md:text-4xl font-semibold">
                     <span>
@@ -89,7 +89,7 @@ function Amount() {
 
 
             </div>
-        </>
+        </div>
     )
 }
 

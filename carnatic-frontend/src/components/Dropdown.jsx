@@ -13,10 +13,10 @@ export default function Dropdown() {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
-        <>
+        <div className='h-screen w-full'>
             <Navbar />
 
-            <div className='flex w-full flex-col text-[#474848] h-[83vh] space-y-4 items-center justify-start pt-32 sm:pt-64'>
+            <div className='flex w-full  flex-col text-[#474848] h-[70vh] space-y-4 items-center justify-center pt-32 sm:pt-64'>
 
 
 
@@ -65,7 +65,7 @@ export default function Dropdown() {
                 </button>
                 <VerifyCarnaticMemberModal isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
             </div>
-        </>
+        </div>
 
     )
 }

@@ -19,7 +19,7 @@ function App() {
 
 
   return (
-    <div className='flex bg-[#f4f9fa] flex-col h-screen relative justify-center w-full items-center font-roboto'>
+    <div className='flex bg-[#f4f9fa] h-full flex-col relative justify-center w-full items-center font-roboto'>
 
       <Routes>
         <Route path='/' element={<Home />} />

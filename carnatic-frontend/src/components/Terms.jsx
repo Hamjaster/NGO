@@ -1,10 +1,10 @@
 import React from 'react';
-
+import Navbar from './Navbar'
 const PrivacyPolicy = () => {
     return (
         <>
             <Navbar />
-            <div className="py-12 px-4">
+            <div className="px-4 py-16 mt-36    ">
 
 
                 <div className="mx-auto w-10/12 ">

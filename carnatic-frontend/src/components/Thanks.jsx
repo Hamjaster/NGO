@@ -8,10 +8,10 @@ import Navbar from './Navbar'
 function Thanks() {
     const { donationInfo } = useContext(MyContext)
     return (
-        <>
+        <div className='h-screen w-full '>
             <Navbar />
 
-            <div className='h-[80vh] font-curly bg-center bg-cover '>
+            <div className='h-[80vh] flex items-center justify-center font-curly bg-center bg-cover '>
 
                 <div className="z-10 mx-auto mt-36 shadow-2xl rounded-lg relative w-10/12 sm:w-8/12 p-4 sm:p-8 space-y-8">
 
@@ -25,7 +25,7 @@ function Thanks() {
                 </div>
 
             </div>
-        </>
+        </div>
     )
 }
 
