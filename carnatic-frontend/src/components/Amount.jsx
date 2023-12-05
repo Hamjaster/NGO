@@ -60,7 +60,7 @@ function Amount() {
 
                         <div className="donateInput  w-full relative rounded-xl text-xl inline-block ">
 
-                            <input value={amount} onChange={(e) => { setAmount(e.target.value) }} type="number" name="phone" class="block w-full border-[1px] border-black  py-3 px-2 rounded-lg appearance-none focus:outline-none focus:ring-0 peer" placeholder="Amount here" required />
+                            <input value={amount} onChange={(e) => { setAmount(e.target.value) }} type="number" name="phone" class="block w-full border-[1px] border-black  py-3 px-2 rounded-lg appearance-none focus:outline-none focus:ring-0 peer" placeholder="Enter amount here" required />
 
                             <div className='absolute right-[1px] rounded-tr-lg rounded-br-lg top-1/2 py-3 px-2 bg-gray-200 -translate-y-1/2'> INR </div>
 
