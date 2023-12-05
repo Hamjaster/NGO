@@ -23,7 +23,7 @@ const sendMail = async (req, res) => {
   // const attachment = fs.readFileSync(pdfPath).toString('base64')
 
   const mailOptions = {
-    from: 'carnaticfoundation@gmail.com',
+    from: 'noreply@gmail.com',
     to: email,
     subject: 'Carnatic Foundation - Thanks & Donation Receipt',
     html: giveHTML(req.body),
