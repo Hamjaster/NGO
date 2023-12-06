@@ -13,7 +13,7 @@ const Privacy = () => {
                     </p>
 
                     <p className="text-gray-700 mb-6">
-                        If you have any questions about our Privacy Policy, you may contact us at:
+                        If you have any questions about our Privacy Policy, please contact us at:
                         <br />
                         Carnatic Foundation
                         <br />
@@ -77,6 +77,13 @@ const Privacy = () => {
 
                         From time to time our site requests information from visitors via interactive features, such as surveys or quizzes. Participation in these features is completely voluntary and the visitor therefore has a choice whether or not to disclose this information. The requested information typically includes contact information (such as name and e-mail), and information on the visitor’s interests. Survey information will be used for purposes of monitoring or improving the use and satisfaction of this site and providing pertinent information to participants. Visitors’ personally identifiable information is not shared with third parties.
                     </p>
+
+
+                    <p className="font-bold">Carnatic Foundation</p>
+                    <p>No: 2, Deju Plaza, Basement 2</p>
+                    <p>South Avenue Sri Nagar Colony, Saidapet</p>
+                    <p>Chennai, Tamil Nadu – 600015</p>
+                    <p>Email – trustee@carnaticfoundation.in</p>
                 </div>
             </div>
         </>

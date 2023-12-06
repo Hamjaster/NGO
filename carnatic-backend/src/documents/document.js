@@ -1,3 +1,4 @@
+
 // Function to generate a 5-digit unique number
 const generateUniqueNumber = () => {
     const timestamp = Date.now().toString(); // Get current timestamp
@@ -10,9 +11,18 @@ const generateUniqueNumber = () => {
 };
 
 const giveHTML = ({ name, email, phone, PAN, address, amount, project }) => {
-    const currentDate = new Date()
     const uniqueNumber = generateUniqueNumber();
+    const months = [
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    ];
 
+    const date = new Date();
+    const day = String(date.getDate()).padStart(2, '0'); // Ensures two digits for day
+    const monthAbbrev = months[date.getMonth()];
+    const year = date.getFullYear();
+
+    const currentDate = `${day} ${monthAbbrev} ${year}`;
     return `
     <html lang="en">
 
