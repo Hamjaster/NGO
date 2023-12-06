@@ -70,7 +70,7 @@ function Amount() {
 
                     <div className="w-full text-end">
 
-                        <button onClick={handleAmountSubmit} className='bg-[#3dd0f9] hover:bg-[#35a9c6] w-44 text-lg h-12 rounded-md text-white'>
+                        <button disabled={!amount} onClick={handleAmountSubmit} className='bg-[#3dd0f9] hover:bg-[#35a9c6] w-44 text-lg h-12 rounded-md text-white'>
                             {loading ?
                                 <div className='animate-spin w-min text-center mx-auto text-2xl'>
                                     <CgSpinner />
