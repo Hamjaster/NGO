@@ -89,7 +89,7 @@ width: 33%;
                     <td style="font-weight: bold;width: 33%;/* font-size: 13px; */">DONATION RECEIPT</td>
                     <td style="
 width: 33%;
-">Date : Mon 22 Nov</td>
+">Date : ${currentDate}</td>
                 </tr>
             </tbody>
         </table>
