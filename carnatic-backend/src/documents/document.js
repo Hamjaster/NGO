@@ -56,6 +56,7 @@ const giveHTML = ({ name, email, phone, PAN, address, amount, project }) => {
 </div>
 
     
+
 <table width="100%" border="0" cellpadding="0" cellspacing="0"
 style="border: 2px solid black; width: 30rem; font-size: 0.875rem; padding : 20px; margin : 44px 0px;">
 <!-- Header -->
@@ -84,12 +85,15 @@ style="border: 2px solid black; width: 30rem; font-size: 0.875rem; padding : 20p
                 <tr
                     style="/* display: flex; *//* justify-content: space-between; *//* align-items: center; */font-size: 14px;">
                     <td style="
-width: 33%;
-">No. 123</td>
+                        width: 33%;
+                        ">No. 123
+                    </td>
                     <td style="font-weight: bold;width: 33%;/* font-size: 13px; */">DONATION RECEIPT</td>
                     <td style="
-width: 33%;
-">Date : ${currentDate}</td>
+                        width: 33%;
+                        text-align: end;
+                        ">Date : ${currentDate}
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -177,7 +181,7 @@ width: 33%;
             </tr>
             <tr>
                 <td>
-                    <div style="margin-top: 1.2rem;">
+                    <div style="margin-top: 1.2rem; font-size: 14px;">
                         <div>For Queries</div>
                         <div
                             style="display: flex; flex-direction: row; justify-content: space-between; margin-top: 12px;">
@@ -192,6 +196,8 @@ width: 33%;
 </tr>
 
 </table>
+
+
     
     </body>
     

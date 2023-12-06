@@ -12,21 +12,11 @@ const Privacy = () => {
                         This Website is owned and operated by Carnatic Foundation. We recognize that visitors to our site may be concerned about the information they provide to us and how we treat that information. Carnatic Foundation is committed to ensuring that your privacy is protected. This Privacy Policy addresses those concerns. This policy may be changed or updated from time to time. You should check this page from time to time to ensure that you are happy with any changes. This policy is effective from 22/11/2023.
                     </p>
 
-                    <p className="text-gray-700 mb-6">
-                        If you have any questions about our Privacy Policy, please contact us at:
-                        <br />
-                        Carnatic Foundation
-                        <br />
-                        Physical Address:
-                        <br />
-                        No:2, Deju Plaza, Basement 2
-                        <br />
-                        South Avenue Sri Nagar Colony, Saidapet.
-                        <br />
-                        Chennai, Tamil Nadu – 600015
-                        <br />
-                        Email - trustee@carnaticfoundation.in
-                    </p>
+                    <p className="font-bold">Carnatic Foundation</p>
+                    <p>No: 2, Deju Plaza, Basement 2</p>
+                    <p>South Avenue Sri Nagar Colony, Saidapet</p>
+                    <p>Chennai, Tamil Nadu – 600015</p>
+                    <p>Email – trustee@carnaticfoundation.in</p>
 
                     <h2 className="text-xl font-semibold mb-3">Personal Information</h2>
                     <p className="text-gray-700 mb-6">
@@ -78,12 +68,6 @@ const Privacy = () => {
                         From time to time our site requests information from visitors via interactive features, such as surveys or quizzes. Participation in these features is completely voluntary and the visitor therefore has a choice whether or not to disclose this information. The requested information typically includes contact information (such as name and e-mail), and information on the visitor’s interests. Survey information will be used for purposes of monitoring or improving the use and satisfaction of this site and providing pertinent information to participants. Visitors’ personally identifiable information is not shared with third parties.
                     </p>
 
-
-                    <p className="font-bold">Carnatic Foundation</p>
-                    <p>No: 2, Deju Plaza, Basement 2</p>
-                    <p>South Avenue Sri Nagar Colony, Saidapet</p>
-                    <p>Chennai, Tamil Nadu – 600015</p>
-                    <p>Email – trustee@carnaticfoundation.in</p>
                 </div>
             </div>
         </>
