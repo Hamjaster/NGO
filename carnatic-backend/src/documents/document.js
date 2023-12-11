@@ -56,7 +56,6 @@ const giveHTML = ({ name, email, phone, PAN, address, amount, project }) => {
 </div>
 
     
-
 <table width="100%" border="0" cellpadding="0" cellspacing="0"
 style="border: 2px solid black; width: 30rem; font-size: 0.875rem; padding : 20px; margin : 44px 0px;">
 <!-- Header -->
@@ -85,14 +84,14 @@ style="border: 2px solid black; width: 30rem; font-size: 0.875rem; padding : 20p
                 <tr
                     style="/* display: flex; *//* justify-content: space-between; *//* align-items: center; */font-size: 14px;">
                     <td style="
-                        width: 33%;
-                        ">No. 123
+                    width: 33%;
+                    ">No. 123
                     </td>
                     <td style="font-weight: bold;width: 33%;/* font-size: 13px; */">DONATION RECEIPT</td>
                     <td style="
-                        width: 33%;
-                        text-align: end;
-                        ">Date : ${currentDate}
+                    width: 33%;
+                    text-align: end;
+                    ">Date : ${currentDate}
                     </td>
                 </tr>
             </tbody>
@@ -183,11 +182,19 @@ style="border: 2px solid black; width: 30rem; font-size: 0.875rem; padding : 20p
                 <td>
                     <div style="margin-top: 1.2rem; font-size: 14px;">
                         <div>For Queries</div>
-                        <div
-                            style="display: flex; flex-direction: row; justify-content: space-between; margin-top: 12px;">
-                            <div>Email: <b>trustee@carnaticfoundation.in</b></div>
-                            <div>Phone: <b>9884232121</b></div>
-                        </div>
+                        <table style="width: 100%; margin-top: 6px; font-size: 15px;">
+                            <tr style="width: 100%;">
+                                <td style="width: 50%; ">
+                                    Email:
+                                    <b>trustee@carnaticfoundation.in</b>
+                                </td>
+                                <td style="width: 50%; float: right;">
+                                    Phone:
+                                    <b>9884232121</b>
+                                </td>
+                            </tr>
+                        </table>
+
                     </div>
                 </td>
             </tr>
@@ -196,7 +203,6 @@ style="border: 2px solid black; width: 30rem; font-size: 0.875rem; padding : 20p
 </tr>
 
 </table>
-
 
     
     </body>

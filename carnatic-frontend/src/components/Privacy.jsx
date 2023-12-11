@@ -18,7 +18,7 @@ const Privacy = () => {
                     <p>Chennai, Tamil Nadu – 600015</p>
                     <p>Email – trustee@carnaticfoundation.in</p>
 
-                    <h2 className="text-xl font-semibold mb-3">Personal Information</h2>
+                    <h2 className="text-xl font-semibold my-3">Personal Information</h2>
                     <p className="text-gray-700 mb-6">
                         Carnatic Foundation uses its best efforts to respect the privacy of its online visitors. At our site, we do not collect personally identifiable information from individuals unless they provide it to us voluntarily and knowingly. This means we do not require you to register or provide information to us in order to view our website. Carnatic Foundation only gathers personally identifiable data, such as names, addresses, zip/postal codes, e-mail addresses, etc., when voluntarily submitted by a visitor. For example, we ask for personal information on our online donation pages, and use this information to acknowledge receipt of your donation for tax purposes.
                     </p>
