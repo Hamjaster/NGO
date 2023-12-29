@@ -5,13 +5,40 @@ import axios from 'axios'
 import { CgSpinner } from 'react-icons/cg'
 import withDonationInfo from './DonationWrapper'
 import Navbar from './Navbar'
+import Payment from './Payment'
 
 
 function Amount() {
     const [amount, setAmount] = useState(null)
     const navigate = useNavigate()
-    const { donationInfo, setDonationInfo, proxy } = useContext(MyContext)
+    const { donationInfo, setDonationInfo, proxy, user } = useContext(MyContext)
     const [loading, setLoading] = useState(false)
+
+    const handlePay = async () => {
+        setLoading(true)
+        try {
+            const { data } = await axios.post(`${proxy}/pay`, {
+                amount: parseFloat(amount),
+                txnid: 'AbCdEfG123_||-',
+                productInfo: 'Carnatic Foundation dontaion',
+                firstname: donationInfo.name,
+                email: dontaionInfo.email,
+                phone: donationInfo.phone,
+                surl: `${proxy}/thanks`,
+                furl: `${proxy}/failed`
+            })
+            setLoading(false)
+            console.log(data)
+            if (data.success) {
+                return (
+                    <Payment access_key={access_key} />
+                )
+            }
+        } catch (error) {
+            console.log(error)
+            setLoading(false)
+        }
+    }
 
     const handleAmountSubmit = async () => {
         setLoading(true)
@@ -70,7 +97,7 @@ function Amount() {
 
                     <div className="w-full text-end">
 
-                        <button disabled={!amount} onClick={handleAmountSubmit} className='bg-[#3dd0f9] hover:bg-[#35a9c6] w-44 text-lg h-12 rounded-md text-white'>
+                        <button id='ebz-checkout-btn' disabled={!amount} onClick={handlePay} className='bg-[#3dd0f9] hover:bg-[#35a9c6] w-44 text-lg h-12 rounded-md text-white'>
                             {loading ?
                                 <div className='animate-spin w-min text-center mx-auto text-2xl'>
                                     <CgSpinner />

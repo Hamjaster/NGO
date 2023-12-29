@@ -31,6 +31,19 @@ app.get('/test', function (req, res) {
     res.send('API is testing successfuly')
 })
 
+//initiate_payment API
+app.post('/pay', function (req, res) {
+    data = req.body;
+    let config = {
+        key: "fdsdf",
+        salt: 'flkdsjf',
+        env: 'test',
+        enable_iframe: '1'
+    }
+    var initiate_payment = require('./Easebuzz/initiate_payment.js');
+    initiate_payment.initiate_payment(data, config, res);
+});
+
 
 app.listen(port, () => {
     console.log(`'Server listening at ${port}`)
