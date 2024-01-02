@@ -72,7 +72,7 @@ function Amount() {
                     } else if (response.status === "userCancelled") {
                         toast.error("You've turned down the transaction.")
                     } else {
-                        toast.error("Something went wrong")
+                        toast.error(response.status)
                     }
                 },
                 theme: "#123456" // color hex
