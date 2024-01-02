@@ -41,12 +41,10 @@ function Amount() {
                 split_payments: '',
                 sub_merchant_id: '',
                 customer_authentication_id: '',
-
             })
             setLoading(false)
             console.log(data)
             if (data.success) {
-                console.log('rendering iframe')
                 renderIframe(data.access_key, data.key)
             }
         } catch (error) {
@@ -56,28 +54,22 @@ function Amount() {
     }
 
     const renderIframe = (access_key, key) => {
-        const script = document.createElement('script');
-        script.src = 'https://ebz-static.s3.ap-south-1.amazonaws.com/easecheckout/easebuzz-checkout.js';
-        script.async = true;
-        document.body.appendChild(script);
-        script.onload = () => {
-            const easebuzzCheckout = window.EasebuzzCheckout; // Access the function from the global scope
 
-            if (easebuzzCheckout) {
-                const instance = new easebuzzCheckout(key, 'prod');
+        console.log('rendering iframe for ', access_key)
+        const easebuzzCheckout = window.EasebuzzCheckout; // Access the function from the global scope
 
-                document.getElementById('ebz-checkout-btn').addEventListener('click', function (e) {
-                    const options = {
-                        access_key, // access key received via Initiate Payment
-                        onResponse: (response) => {
-                            console.log(response);
-                        },
-                        theme: "#123456" // color hex
-                    };
-                    instance.initiatePayment(options);
-                });
-            }
-        };
+        if (easebuzzCheckout) {
+            const instance = new easebuzzCheckout(key, 'prod');
+            const options = {
+                access_key, // access key received via Initiate Payment
+                onResponse: (response) => {
+                    console.log(response);
+                },
+                theme: "#123456" // color hex
+            };
+            instance.initiatePayment(options);
+        }
+
 
     }
 
