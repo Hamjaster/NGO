@@ -33,13 +33,14 @@ app.get('/test', function (req, res) {
 
 //initiate_payment API
 app.post('/pay', function (req, res) {
-    data = req.body;
-    let config = {
-        key: "fdsdf",
-        salt: 'flkdsjf',
-        env: 'test',
-        enable_iframe: '1'
-    }
+    let data = req.body;
+    var config = {
+        key: "8O8HMOWD9Y",
+        salt: "LH06DRZKC8",
+        env: "prod",
+        enable_iframe: 1,
+    };
+    console.log(config, 'thats config')
     var initiate_payment = require('./Easebuzz/initiate_payment.js');
     initiate_payment.initiate_payment(data, config, res);
 });

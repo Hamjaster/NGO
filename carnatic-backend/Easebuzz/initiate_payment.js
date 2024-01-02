@@ -1,5 +1,4 @@
 var util = require('./util.js');
-
 var sha512 = require('js-sha512');
 
 let initiate_payment = function (data, config, res) {
@@ -17,12 +16,13 @@ let initiate_payment = function (data, config, res) {
         "data": "Mandatory Parameter name can not empty"
       });
     }
-    if (!(data.amount.trim()) || !(isFloat(data.amount))) {
-      res.json({
-        "status": 0,
-        "data": "Mandatory Parameter amount can not empty and must be in decimal "
-      });
-    }
+    // if (!(data.amount.trim()) || !(isFloat(data.amount))) {
+    //   res.json({
+    //     "status": 0,
+    //     "data": "Mandatory Parameter amount can not empty and must be in decimal "
+    //   });
+    // }
+
     if (!(data.txnid.trim())) {
       res.json({
         "status": 0,
@@ -35,12 +35,12 @@ let initiate_payment = function (data, config, res) {
         "data": "Email validation failed. Please enter proper value for email"
       });
     }
-    if (!(data.phone.trim()) || util.validate_phone(data.phone)) {
-      res.json({
-        "status": 0,
-        "data": "Phone validation failed. Please enter proper value for phone"
-      });
-    }
+    // if (!(data.phone.trim()) || util.validate_phone(data.phone)) {
+    //   res.json({
+    //     "status": 0,
+    //     "data": "Phone validation failed. Please enter proper value for phone"
+    //   });
+    // }
     if (!(data.productinfo.trim())) {
       res.json({
         "status": 0,
@@ -111,12 +111,13 @@ let initiate_payment = function (data, config, res) {
   }
 
   // main calling part is below
-
   checkArgumentValidation(data, config);
   var hash_key = generateHash();
+  console.log(hash_key, 'hash gen.')
   payment_url = geturl(config.env);
   call_url = payment_url + 'payment/initiateLink';
   util.call(call_url, form()).then(function (response) {
+
     pay(response.data, payment_url)
   });
 

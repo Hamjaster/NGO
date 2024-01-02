@@ -1,5 +1,5 @@
 let curl_call = function (url, data, method = 'POST') {
-
+  console.log('paying at', data)
   var request = require('request');
   var options = {
     'method': method,

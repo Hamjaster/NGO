@@ -6,6 +6,7 @@ import { CgSpinner } from 'react-icons/cg'
 import withDonationInfo from './DonationWrapper'
 import Navbar from './Navbar'
 import Payment from './Payment'
+import { v4 as uuidv4 } from 'uuid';
 
 
 function Amount() {
@@ -18,26 +19,66 @@ function Amount() {
         setLoading(true)
         try {
             const { data } = await axios.post(`${proxy}/pay`, {
-                amount: parseFloat(amount),
-                txnid: 'AbCdEfG123_||-',
-                productInfo: 'Carnatic Foundation dontaion',
-                firstname: donationInfo.name,
-                email: dontaionInfo.email,
-                phone: donationInfo.phone,
-                surl: `${proxy}/thanks`,
-                furl: `${proxy}/failed`
+                amount: `${parseFloat(amount).toFixed(2)}`,
+                txnid: uuidv4(),
+                productinfo: 'Carnatic Foundation dontaion',
+                name: donationInfo.name,
+                email: donationInfo.email,
+                phone: `${donationInfo.phone}`,
+                surl: `http://localhost:3000/response`,
+                furl: `http://localhost:3000/response`,
+                udf1: '',
+                udf2: '',
+                udf3: '',
+                udf4: '',
+                udf5: '',
+                udf6: '',
+                udf7: '',
+                udf8: '',
+                udf9: '',
+                udf10: '',
+                unique_id: '',
+                split_payments: '',
+                sub_merchant_id: '',
+                customer_authentication_id: '',
+
             })
             setLoading(false)
             console.log(data)
             if (data.success) {
-                return (
-                    <Payment access_key={access_key} />
-                )
+                console.log('rendering iframe')
+                renderIframe(data.access_key, data.key)
             }
         } catch (error) {
             console.log(error)
             setLoading(false)
         }
+    }
+
+    const renderIframe = (access_key, key) => {
+        const script = document.createElement('script');
+        script.src = 'https://ebz-static.s3.ap-south-1.amazonaws.com/easecheckout/easebuzz-checkout.js';
+        script.async = true;
+        document.body.appendChild(script);
+        script.onload = () => {
+            const easebuzzCheckout = window.EasebuzzCheckout; // Access the function from the global scope
+
+            if (easebuzzCheckout) {
+                const instance = new easebuzzCheckout(key, 'prod');
+
+                document.getElementById('ebz-checkout-btn').addEventListener('click', function (e) {
+                    const options = {
+                        access_key, // access key received via Initiate Payment
+                        onResponse: (response) => {
+                            console.log(response);
+                        },
+                        theme: "#123456" // color hex
+                    };
+                    instance.initiatePayment(options);
+                });
+            }
+        };
+
     }
 
     const handleAmountSubmit = async () => {
@@ -58,6 +99,7 @@ function Amount() {
             console.log(error);
         }
     }
+
     useEffect(() => {
         setDonationInfo((donationInfo) => {
             return { ...donationInfo, "amount": Number(amount) }
