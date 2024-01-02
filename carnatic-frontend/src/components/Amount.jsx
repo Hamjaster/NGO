@@ -7,6 +7,7 @@ import withDonationInfo from './DonationWrapper'
 import Navbar from './Navbar'
 import Payment from './Payment'
 import { v4 as uuidv4 } from 'uuid';
+import toast from 'react-hot-toast'
 
 
 function Amount() {
@@ -62,8 +63,17 @@ function Amount() {
             const instance = new easebuzzCheckout(key, 'prod');
             const options = {
                 access_key, // access key received via Initiate Payment
-                onResponse: (response) => {
+                onResponse: async (response) => {
                     console.log(response);
+                    if (response.status === "success") {
+                        await handleAmountSubmit()
+                    } else if (response.status === "failure") {
+                        toast.error("Transaction Failed")
+                    } else if (response.status === "userCancelled") {
+                        toast.error("You've turned down the transaction.")
+                    } else {
+                        toast.error("Something went wrong")
+                    }
                 },
                 theme: "#123456" // color hex
             };
