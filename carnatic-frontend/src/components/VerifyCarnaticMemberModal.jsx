@@ -175,7 +175,7 @@ export default function VerifyCarnaticMemberModal({ isOpen, onOpen, onClose }) {
 
 
                                         <button onClick={() => {
-                                            onOTPVerify()
+                                            onSignup()
                                         }} className={`bg-[#4dd7fe] text-lg py-1 w-32 rounded-md hover:bg-[#00c8ff] text-white`}>
                                             {otpvalidateLoading
                                                 ? <div className='animate-spin mx-auto text-2xl max-w-min'>
@@ -200,9 +200,11 @@ export default function VerifyCarnaticMemberModal({ isOpen, onOpen, onClose }) {
 
                     <ModalFooter>
 
-                        <button id='sign-in-button' disabled={!password} onClick={async () => {
-                            onSignup()
-                        }} className='bg-[#4dd7fe] hover:bg-[#00c8ff] text-xl mt-5 float-right flex items-center disabled:bg-gray-300 justify-center space-x-2 w-44 h-12 rounded-md text-white'>
+                        <button id='sign-in-button'
+                            //  disabled={!password} 
+                            onClick={async () => {
+                                handleVerifyMember()
+                            }} className='bg-[#4dd7fe] hover:bg-[#00c8ff] text-xl mt-5 float-right flex items-center disabled:bg-gray-300 justify-center space-x-2 w-44 h-12 rounded-md text-white'>
                             {otploading || loading ?
                                 <div className='animate-spin'>
                                     <CgSpinner />
