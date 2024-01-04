@@ -4,7 +4,7 @@ const nodemailer = require('nodemailer');
 const sendCheckedMail = async (req, res) => {
     const mailOptions = {
         from: 'noreply@gmail.com',
-        to: "hamzashah.dev@gmail.com",
+        to: "trustee@carnaticfoundation.in",
         subject: 'Carnatic Foundation - Donor update',
         html: `
         <!DOCTYPE html>
