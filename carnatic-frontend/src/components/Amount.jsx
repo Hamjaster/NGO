@@ -13,7 +13,7 @@ import toast from 'react-hot-toast'
 function Amount() {
     const [amount, setAmount] = useState(null)
     const navigate = useNavigate()
-    const { donationInfo, setDonationInfo, proxy, user } = useContext(MyContext)
+    const { donationInfo, setDonationInfo, proxy, user, member } = useContext(MyContext)
     const [loading, setLoading] = useState(false)
 
     const handlePay = async () => {
@@ -86,11 +86,25 @@ function Amount() {
     const handleAmountSubmit = async () => {
         setLoading(true)
         try {
+            // let data = { success: true }
+
+            // Sending mail about dontaion
             const { data } = await axios.post(`${proxy}/mail`, donationInfo)
             console.log(data)
             if (data.success) {
                 setLoading(false)
-                navigate('/thanks')
+                // If box is checked, send mail
+                if (member === "guest" && donationInfo.isContacted) {
+                    const { data } = await axios.post(`${proxy}/mail/checkedMail`, donationInfo)
+                    console.log(data)
+                    if (!data.success) {
+                        toast.error(data.data)
+                    } else {
+                        navigate('/thanks')
+                    }
+                } else {
+                    navigate('/thanks')
+                }
             } else {
                 setLoading(false)
                 console.log("Donation couldnt proceed");
@@ -99,6 +113,19 @@ function Amount() {
         } catch (error) {
             setLoading(false)
             console.log(error);
+        }
+    }
+
+    const sendEmailIfChecked = async () => {
+        setLoading(true)
+        try {
+            const { data } = await axios.post(`${proxy}/checkedMail`, donationInfo)
+            console.log(data)
+            return true
+        } catch (error) {
+            setLoading(false)
+            console.log(error);
+            return false
         }
     }
 
@@ -141,7 +168,10 @@ function Amount() {
 
                     <div className="w-full text-end">
 
-                        <button id='ebz-checkout-btn' disabled={!amount} onClick={handlePay} className='bg-[#3dd0f9] hover:bg-[#35a9c6] w-44 text-lg h-12 rounded-md text-white'>
+                        <button id='ebz-checkout-btn' disabled={!amount}
+                            onClick={handlePay}
+                            // onClick={handleAmountSubmit}
+                            className='bg-[#3dd0f9] hover:bg-[#35a9c6] w-44 text-lg h-12 rounded-md text-white'>
                             {loading ?
                                 <div className='animate-spin w-min text-center mx-auto text-2xl'>
                                     <CgSpinner />

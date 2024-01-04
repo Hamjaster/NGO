@@ -30,6 +30,9 @@ app.get('/', (req, res) => {
 app.get('/test', function (req, res) {
     res.send('API is testing successfuly')
 })
+app.get('/checkedMail', function (req, res) {
+    res.send('API is fucking')
+})
 
 //initiate_payment API
 app.post('/pay', function (req, res) {

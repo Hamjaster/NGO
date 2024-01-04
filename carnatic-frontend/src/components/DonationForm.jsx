@@ -147,6 +147,20 @@ export default function DonationForm() {
 
     }, [phone])
 
+    useEffect(() => {
+        {
+            member === "guest"
+                ? setDonationInfo((donationInfo) => {
+                    return {
+                        ...donationInfo,
+                        "isContacted": checked
+                    }
+                })
+                : console.log('You are a carnatic member')
+        }
+
+    }, [checked])
+
 
     function onOTPVerify() {
         setotpvalidateLoading(true);
