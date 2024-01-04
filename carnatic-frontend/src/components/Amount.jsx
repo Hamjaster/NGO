@@ -95,13 +95,7 @@ function Amount() {
                 setLoading(false)
                 // If box is checked, send mail
                 if (member === "guest" && donationInfo.isContacted) {
-                    const { data } = await axios.post(`${proxy}/mail/checkedMail`, donationInfo)
-                    console.log(data)
-                    if (!data.success) {
-                        toast.error(data.data)
-                    } else {
-                        navigate('/thanks')
-                    }
+                    await sendEmailIfChecked()
                 } else {
                     navigate('/thanks')
                 }
@@ -118,14 +112,12 @@ function Amount() {
 
     const sendEmailIfChecked = async () => {
         setLoading(true)
-        try {
-            const { data } = await axios.post(`${proxy}/checkedMail`, donationInfo)
-            console.log(data)
-            return true
-        } catch (error) {
-            setLoading(false)
-            console.log(error);
-            return false
+        const { data } = await axios.post(`${proxy}/mail/checkedMail`, donationInfo)
+        console.log(data)
+        if (!data.success) {
+            toast.error(data.data)
+        } else {
+            navigate('/thanks')
         }
     }
 
