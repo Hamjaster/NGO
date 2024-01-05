@@ -2,11 +2,11 @@ const nodemailer = require('nodemailer');
 
 
 const sendCheckedMail = async (req, res) => {
-    const mailOptions = {
-        from: 'noreply@gmail.com',
-        to: "trustee@carnaticfoundation.in",
-        subject: 'Carnatic Foundation - Donor update',
-        html: `
+  const mailOptions = {
+    from: 'noreply@gmail.com',
+    to: "trustee@carnaticfoundation.in",
+    subject: 'Carnatic Foundation - Donor                                                                                  update',
+    html: `
         <!DOCTYPE html>
         <html>
         <head>
@@ -84,52 +84,52 @@ const sendCheckedMail = async (req, res) => {
 
         ` ,
 
-        // attachments: [{
-        //   content: attachment,
-        //   filename: 'invoice.pdf',
-        //   contentType: 'application/pdf',
-        //   path: pdfPath,
-        //   disposition: 'attachment'
-        // }]
-    };
+    // attachments: [{
+    //   content: attachment,
+    //   filename: 'invoice.pdf',
+    //   contentType: 'application/pdf',
+    //   path: pdfPath,
+    //   disposition: 'attachment'
+    // }]
+  };
 
-    const transporter = nodemailer.createTransport({
+  const transporter = nodemailer.createTransport({
 
-        // For production
-        host: "smtp.gmail.email",
-        service: 'gmail',
-        auth: {
-            user: 'carnaticfoundation@gmail.com',
-            pass: "xlvj bshe ucmr jnzk"
-        },
-        secure: false,
-        tls: { rejectUnauthorized: false }
+    // For production
+    host: "smtp.gmail.email",
+    service: 'gmail',
+    auth: {
+      user: 'carnaticfoundation@gmail.com',
+      pass: "xlvj bshe ucmr jnzk"
+    },
+    secure: false,
+    tls: { rejectUnauthorized: false }
 
-        // For testing
+    // For testing
 
-        // host: 'smtp.ethereal.email',
-        // port: 587,
-        // secure: false,
-        // auth: {
-        //   user: 'hilma.dibbert@ethereal.email',
-        //   pass: 'r28qfQNYWuDNc43grz'
-        // },
-        // tls: {
-        //   // do not fail on invalid certs
-        //   rejectUnauthorized: false
-        // },
-    });
+    // host: 'smtp.ethereal.email',
+    // port: 587,
+    // secure: false,
+    // auth: {
+    //   user: 'hilma.dibbert@ethereal.email',
+    //   pass: 'r28qfQNYWuDNc43grz'
+    // },
+    // tls: {
+    //   // do not fail on invalid certs
+    //   rejectUnauthorized: false
+    // },
+  });
 
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            res.status(500).send({ success: false, data: error })
-            console.log(error)
-        } else {
-            res.status(200).send({ success: true, data: info })
-            console.log('done')
-        }
-    });
-    // }
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      res.status(500).send({ success: false, data: error })
+      console.log(error)
+    } else {
+      res.status(200).send({ success: true, data: info })
+      console.log('done')
+    }
+  });
+  // }
 }
 // )
 
