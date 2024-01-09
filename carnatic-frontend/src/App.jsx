@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import './App.css'
-import Navbar from './components/Navbar'
 import Home from './components/Home'
 import { Route, Routes } from 'react-router-dom'
 import DonationForm from './components/DonationForm'
@@ -13,7 +12,10 @@ import Amount from './components/Amount'
 import Terms from './components/Terms'
 import Privacy from './components/Privacy'
 import { Toaster } from 'react-hot-toast'
-
+import Dashboard from './dashboard/Dashboard'
+import MembersPanel from './dashboard/MembersPanel'
+import GuestsPanel from './dashboard/GuestsPanel'
+import Transactions from './dashboard/Transactions'
 
 function App() {
 
@@ -31,11 +33,19 @@ function App() {
         <Route path='/amount' Component={Amount} />
         <Route path='/terms-and-conditions' element={<Terms />} />
         <Route path='/privacy-policy' element={<Privacy />} />
+
+        {/* Dashboard Routes */}
+        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/dashboard/membersDB' element={<MembersPanel />} />
+        <Route path='/dashboard/membersDB/member' element={<Transactions />} />
+        <Route path='/dashboard/guestsDB' element={<GuestsPanel />} />
+
       </Routes>
       <Toaster
         position="top-center"
         reverseOrder={false}
       />
+
 
 
     </div>

@@ -4,11 +4,12 @@ const connectDB = require('./src/utils/db');
 const bodyParser = require('body-parser');
 const port = 5000;
 const app = express();
-const memberRoutes = require('./src/routes/memberRoutes');
 const mailRoutes = require('./src/routes/mailRotues')
 const pdfRoutes = require('./src/routes/pdfRoutes')
+const donationRoutes = require('./src/routes/donationRoutes')
 const { sendMail } = require('./src/controllers/sendMail');
-
+const memberRoutes = require('./src/dashboardBackend/routes/memberRoutes')
+const guestRoutes = require('./src/dashboardBackend/routes/guestRoutes')
 
 app.use(cors({
     origin: '*'
@@ -22,6 +23,11 @@ app.use(express.json())
 app.use('/member', memberRoutes)
 app.use('/mail', mailRoutes)
 app.use('/pdf', pdfRoutes)
+app.use('/donate', donationRoutes)
+
+// Dashbaord Routes
+app.use('/dashboard/members', memberRoutes)
+app.use('/dashboard/guests', guestRoutes)
 
 app.get('/', (req, res) => {
     res.send("APi is running successfully")

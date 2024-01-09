@@ -13,7 +13,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <ChakraProvider>
       <BrowserRouter>
         <MyContextProvider>
+          {/* <ThemeProvider theme={theme}> */}
           <App />
+          {/* </ThemeProvider> */}
         </MyContextProvider>
       </BrowserRouter>
     </ChakraProvider>

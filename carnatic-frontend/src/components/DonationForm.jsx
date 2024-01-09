@@ -51,6 +51,7 @@ export default function DonationForm() {
             })
             console.log(data);
             if (data['_id']) {
+                donationInfo['id'] = data['_id']
                 toast.success('Registered successfully')
                 setLoading(false)
                 navigate('/amount')

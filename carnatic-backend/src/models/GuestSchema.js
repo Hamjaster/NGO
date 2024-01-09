@@ -8,8 +8,8 @@ const GuestSchema = new mongoose.Schema({
     address: String,
     isContacted: {
         type: Boolean
-    }
-
+    },
+    donation: Number
 });
 
 const Guest = mongoose.model('Guest', GuestSchema);

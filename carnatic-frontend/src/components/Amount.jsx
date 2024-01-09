@@ -85,28 +85,50 @@ function Amount() {
 
     const handleAmountSubmit = async () => {
         setLoading(true)
-        try {
-            // let data = { success: true }
+        const isDonated = await createTransaction()
+        if (isDonated) {
+            try {
+                // let data = { success: true }
 
-            // Sending mail about dontaion
-            const { data } = await axios.post(`${proxy}/mail`, donationInfo)
+                // Sending mail about dontaion
+                const { data } = await axios.post(`${proxy}/mail`, donationInfo)
+                console.log(data)
+                if (data.success) {
+                    setLoading(false)
+                    // If box is checked, send mail
+                    if (member === "guest" && donationInfo.isContacted) {
+                        await sendEmailIfChecked()
+                    } else {
+                        navigate('/thanks')
+                    }
+                } else {
+                    setLoading(false)
+                    console.log("Donation couldnt proceed");
+                }
+
+            } catch (error) {
+                setLoading(false)
+                console.log(error);
+            }
+        }
+    }
+
+    const createTransaction = async () => {
+        try {
+            const { data } = await axios.post(`${proxy}/donate`, {
+                amount: parseFloat(amount),
+                id: donationInfo.id,
+                member: member
+            })
             console.log(data)
             if (data.success) {
-                setLoading(false)
-                // If box is checked, send mail
-                if (member === "guest" && donationInfo.isContacted) {
-                    await sendEmailIfChecked()
-                } else {
-                    navigate('/thanks')
-                }
+                return true
             } else {
-                setLoading(false)
-                console.log("Donation couldnt proceed");
+                return false
             }
-
         } catch (error) {
-            setLoading(false)
-            console.log(error);
+            console.log(error)
+            return false
         }
     }
 

@@ -8,6 +8,7 @@ const CarnaticMember = new mongoose.Schema({
     display_name: String,
     timestamp: Date,
     address: String,
+    donation: Number
 });
 
 const Carnatic = mongoose.model('carnatic', CarnaticMember);
