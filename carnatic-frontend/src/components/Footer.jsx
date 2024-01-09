@@ -19,6 +19,10 @@ export default function Footer() {
                             <Link to={'/terms-and-conditions'} href="#" class="mr-4 w-full hover:underline md:mr-6">Terms and Conditions</Link>
                         </li>
 
+                        <li className='w-'>
+                            <Link to={'/dashboard'} href="#" class="mr-4 w-full hover:underline md:mr-6">Admin</Link>
+                        </li>
+
                     </ul>
 
                 </div>
