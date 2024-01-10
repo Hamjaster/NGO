@@ -1,16 +1,13 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import DataTable from 'react-data-table-component';
-import Addmember from './Addmember';
-import { useDisclosure } from '@chakra-ui/react';
 import axios from 'axios';
 import MyContext from '../context/context';
-import { useNavigate } from 'react-router-dom';
-
+import { useReactToPrint } from 'react-to-print';
 
 const tableCustomStyles = {
     headCells: {
         style: {
-            fontSize: '20px',
+            fontSize: '14px',
             fontWeight: 'bold',
             paddingLeft: '0 8px',
             justifyContent: 'center',
@@ -41,13 +38,12 @@ const tableCustomStyles = {
 }
 
 export default function MembersPanel() {
-    const [selectedRows, setSelectedRows] = useState([]);
-    const [toggleCleared, setToggleCleared] = useState(false);
+
     const [loading, setLoading] = useState(false)
     const { proxy } = useContext(MyContext)
     const [count, setCount] = useState(0)
     const [data, setData] = useState([])
-    const navigate = useNavigate()
+    const pdfRef = useRef()
 
     const getGuests = async () => {
         setLoading(true)
@@ -72,6 +68,7 @@ export default function MembersPanel() {
         {
             name: 'S.no',
             selector: row => row.serial,
+            width: "5%",
             cell: (row, index, column, id) => { return <>{index + 1}</> }
 
         },
@@ -83,6 +80,7 @@ export default function MembersPanel() {
         {
             name: 'Receipt No',
             selector: row => row.receipt,
+            width: '5%'
         },
         {
             name: 'Timestamp',
@@ -100,10 +98,16 @@ export default function MembersPanel() {
         {
             name: 'Email',
             selector: row => row.email,
+            cell: row => <span>{row.email}</span>,
+            width: '20%',
+            style: {
+                fontSize: '16px'
+            }
         },
         {
             name: 'Phone',
             selector: row => row.phone,
+            width: '15%'
         },
         {
             name: 'Address',
@@ -112,26 +116,36 @@ export default function MembersPanel() {
         {
             name: 'Membership Request',
             selector: row => row.isContacted,
-            cell: row => <span> {row.isContacted ? "Yes" : "No"} </span>
+            cell: row => <span> {row.isContacted ? "Yes" : "No"} </span>,
+            width: '5%'
         },
     ];
 
+    const donwloadPDf2 = useReactToPrint({
+        content: () => pdfRef.current,
+        documentTitle: 'Database',
+        onAfterPrint: () => console.log('Save pdf')
+    })
+
     return (
         <div className="flex flex-col justify-evenly h-screen items-center">
-            <div className="text my-4 text-5xl font-medium">
-                Guest Members Table
+            <div ref={pdfRef} className="containerr flex flex-col justify-evenly items-center space-y-8">
+
+                <div className="text my-4 text-5xl font-medium">
+                    Guest Members Table
+                </div>
+
+                {loading ? <>Loading...</> : <div className="table">
+                    <DataTable
+                        columns={columns}
+                        data={data}
+                        customStyles={tableCustomStyles}
+                        pagination
+                    />
+                </div>}
+
             </div>
-
-            {!loading && <div className="table">
-                <DataTable
-                    columns={columns}
-                    data={data}
-                    customStyles={tableCustomStyles}
-                    pagination
-                />
-            </div>}
-
-            <div className="buttons  w-full items-end justify-end flex flex-row space-x-5">
+            <div onClick={donwloadPDf2} className="buttons  w-full items-end justify-end flex flex-row space-x-5">
                 <div className="bg-[#b5c3ff] hover:bg-[#92a6ff] cursor-pointer text-black rounded-xl px-10 py-3">
                     Print / Download
                 </div>

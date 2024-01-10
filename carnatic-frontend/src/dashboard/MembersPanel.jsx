@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import DataTable from 'react-data-table-component';
 import Addmember from './Addmember';
 import { useDisclosure } from '@chakra-ui/react';
@@ -62,7 +62,7 @@ export default function MembersPanel() {
     const ids = selectedRows.map(item => item.id)
     console.log(ids)
     try {
-      const { data } = await axios.delete(`http://localhost:5000/dashboard/members`, {
+      const { data } = await axios.delete(`${proxy}/dashboard/members`, {
         data: { ids: ids }
       })
       console.log(data);
@@ -112,10 +112,12 @@ export default function MembersPanel() {
     {
       name: 'Email',
       selector: row => row.email,
+      cell: row => <span>{row.email}</span>,
       width: '25%'
     },
     {
       name: 'Phone',
+      cell: row => <span>{row.phone}</span>,
       selector: row => row.phone,
     },
     {
@@ -136,7 +138,7 @@ export default function MembersPanel() {
         Carnatic Members Table
       </div>
 
-      {!loading && <div className="table">
+      {loading ? <>Loading...</> : <div className="table">
         <DataTable
           columns={columns}
           data={data}
