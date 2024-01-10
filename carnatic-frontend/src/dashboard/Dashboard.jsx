@@ -14,10 +14,10 @@ const Dashboard = () => {
                 <Link to="/dashboard/guestsDB" className="w-2/3 py-6 text-center text-2xl border-b-2 border-l-2 border-r-2 border-[#99acff] option-btn">
                     Guests Database
                 </Link>
-                <Link to="/option3" className="w-2/3 py-6 text-center text-2xl border-b-2 border-l-2 border-r-2 border-[#99acff] option-btn">
+                <Link to="https://auth.easebuzz.in/easebuzz/login?next=easebuzz.in%2Fmerchant%2Fdashboard" className="w-2/3 py-6 text-center text-2xl border-b-2 border-l-2 border-r-2 border-[#99acff] option-btn">
                     Easebuzz Dashboard
                 </Link>
-                <Link to="/option4" className="w-2/3 py-6 text-center text-2xl border-b-2 border-l-2 border-r-2 border-[#99acff] option-btn">
+                <Link to="https://www.chatbase.co/auth/signin" className="w-2/3 py-6 text-center text-2xl border-b-2 border-l-2 border-r-2 border-[#99acff] option-btn">
                     Chatbase Dashboard
                 </Link>
             </div>
