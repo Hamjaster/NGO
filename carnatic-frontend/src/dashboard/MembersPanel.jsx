@@ -133,7 +133,7 @@ export default function MembersPanel() {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
-    <div className="flex flex-col justify-evenly h-screen items-center">
+    <div className="flex flex-col justify-evenly py-20 space-y-4 items-center">
       <div className="text my-4 text-5xl font-medium">
         Carnatic Members Table
       </div>

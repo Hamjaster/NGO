@@ -99,7 +99,7 @@ export default function Transactions() {
 
     return (
         <div>
-            <div className="flex flex-col justify-evenly h-screen items-center">
+            <div className="flex flex-col justify-evenly py-20 space-y-4 items-center">
                 <div ref={pdfRef} className="transactions flex flex-col justify-evenly items-center space-y-6">
 
                     <div className="text my-4 text-center text-5xl font-medium">

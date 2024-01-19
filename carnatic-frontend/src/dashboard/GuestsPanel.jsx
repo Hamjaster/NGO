@@ -128,7 +128,7 @@ export default function MembersPanel() {
     })
 
     return (
-        <div className="flex flex-col justify-evenly h-screen items-center">
+        <div className="flex flex-col justify-evenly py-20 space-y-4 items-center">
             <div ref={pdfRef} className="containerr flex flex-col justify-evenly items-center space-y-8">
 
                 <div className="text my-4 text-5xl font-medium">
