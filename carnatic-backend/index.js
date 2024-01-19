@@ -6,9 +6,10 @@ const port = 5000;
 const app = express();
 const mailRoutes = require('./src/routes/mailRotues')
 const pdfRoutes = require('./src/routes/pdfRoutes')
+const memberRoutes = require('./src/routes/memberRoutes')
 const donationRoutes = require('./src/routes/donationRoutes')
 const { sendMail } = require('./src/controllers/sendMail');
-const memberRoutes = require('./src/dashboardBackend/routes/memberRoutes')
+const dashboardMemberRoutes = require('./src/dashboardBackend/routes/memberRoutes')
 const guestRoutes = require('./src/dashboardBackend/routes/guestRoutes')
 
 app.use(cors({
@@ -26,7 +27,7 @@ app.use('/pdf', pdfRoutes)
 app.use('/donate', donationRoutes)
 
 // Dashbaord Routes
-app.use('/dashboard/members', memberRoutes)
+app.use('/dashboard/members', dashboardMemberRoutes)
 app.use('/dashboard/guests', guestRoutes)
 
 app.get('/', (req, res) => {
