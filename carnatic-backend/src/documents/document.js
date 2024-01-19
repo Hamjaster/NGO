@@ -10,7 +10,7 @@ const generateUniqueNumber = () => {
     return uniqueNumber;
 };
 
-const giveHTML = ({ name, email, phone, PAN, address, amount, project }) => {
+const giveHTML = ({ name, email, phone, PAN, address, amount, project }, receipt) => {
     const uniqueNumber = generateUniqueNumber();
     const months = [
         "Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -85,7 +85,7 @@ style="border: 2px solid black; width: 30rem; font-size: 0.875rem; padding : 20p
                     style="/* display: flex; *//* justify-content: space-between; *//* align-items: center; */font-size: 14px;">
                     <td style="
                     width: 33%;
-                    ">No. 123
+                    ">No. ${receipt}
                     </td>
                     <td style="font-weight: bold;width: 33%;/* font-size: 13px; */">DONATION RECEIPT</td>
                     <td style="

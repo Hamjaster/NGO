@@ -118,7 +118,8 @@ function Amount() {
             const { data } = await axios.post(`${proxy}/donate`, {
                 amount: parseFloat(amount),
                 id: donationInfo.id,
-                member: member
+                member: member,
+
             })
             console.log(data)
             if (data.success) {

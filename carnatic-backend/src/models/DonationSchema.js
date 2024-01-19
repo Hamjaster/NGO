@@ -25,6 +25,18 @@ const DonationSchema = new mongoose.Schema({
 
 });
 
-const Donation = mongoose.model('Donation', DonationSchema);
+const CounterSchema = new mongoose.Schema({
+    id: {
+        type: String,
+        required: true
+    },
+    sequence: {
+        type: Number,
+        required: true
+    }
+})
 
-module.exports = Donation;
+const Donation = mongoose.model('Donation', DonationSchema);
+const Counter = mongoose.model('Counter', CounterSchema);
+
+module.exports = { Donation, Counter };

@@ -3,11 +3,14 @@ const { v4: uuidv4 } = require('uuid');
 const giveHTML = require('../documents/document')
 const path = require('path')
 const fs = require('fs');
-const pdf = require('html-pdf')
+const pdf = require('html-pdf');
+const { Counter } = require('../models/DonationSchema');
 
 
 
 const sendMail = async (req, res) => {
+  const count = await Counter.findOne({ id: "autoval" })
+  console.log(count);
   // const outputDir = path.join(__dirname, '..', 'invoices'); // Directory for storing generated PDFs
   // const pdfPath = path.join(outputDir, `invoice_${uuidv4()}.pdf`); // Path to save the PDF
 
@@ -26,7 +29,7 @@ const sendMail = async (req, res) => {
     from: 'noreply@gmail.com',
     to: email,
     subject: 'Carnatic Foundation - Thanks & Donation Receipt',
-    html: giveHTML(req.body),
+    html: giveHTML(req.body, count.sequence),
     text: `
     `
     // attachments: [{
