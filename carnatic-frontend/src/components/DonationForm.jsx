@@ -380,7 +380,6 @@ export default function DonationForm() {
                 </div>
 
 
-
                 {/* Project Dropdown */}
                 <div onClick={() => setOpen(!open)} className={`relative z-0 select-none text-center w-full`}>
 

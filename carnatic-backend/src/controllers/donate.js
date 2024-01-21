@@ -25,12 +25,13 @@ const donate = async (req, res) => {
             )
             return res.status(201).json({ success: true, data: data });
         } else {
-            const { data } = await Donation.create({
+            const data = await Donation.create({
                 carnaticDonor: req.body.id,
                 amount: req.body.amount,
                 receipt: count.sequence,
                 project: req.body.project
             })
+            console.log(data)
             await Carnatic.findByIdAndUpdate(req.body.id,
                 { $inc: { donation: req.body.amount } },
                 { new: true, upsert: true }

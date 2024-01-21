@@ -115,10 +115,12 @@ function Amount() {
 
     const createTransaction = async () => {
         try {
+            console.log(donationInfo)
             const { data } = await axios.post(`${proxy}/donate`, {
                 amount: parseFloat(amount),
-                id: donationInfo.id,
+                id: donationInfo._id,
                 member: member,
+                project: donationInfo.project
 
             })
             console.log(data)
