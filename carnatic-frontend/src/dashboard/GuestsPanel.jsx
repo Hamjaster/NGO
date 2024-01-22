@@ -1,8 +1,11 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import DataTable from 'react-data-table-component';
 import axios from 'axios';
 import MyContext from '../context/context';
 import { useReactToPrint } from 'react-to-print';
+import Navbar from '../components/Navbar';
+import Dashboard from './Dashboard';
+import DashboardNavbar from './DashboardNav';
 
 const tableCustomStyles = {
     headCells: {
@@ -39,11 +42,17 @@ const tableCustomStyles = {
 
 export default function MembersPanel() {
 
+    const [selectedRows, setSelectedRows] = useState([]);
+    const [toggleCleared, setToggleCleared] = useState(false);
     const [loading, setLoading] = useState(false)
     const { proxy } = useContext(MyContext)
     const [count, setCount] = useState(0)
     const [data, setData] = useState([])
     const pdfRef = useRef()
+
+    const handleRowSelected = useCallback(state => {
+        setSelectedRows(state.selectedRows);
+    }, []);
 
     const getGuests = async () => {
         setLoading(true)
@@ -63,24 +72,22 @@ export default function MembersPanel() {
         getGuests()
     }, [count])
 
+    useEffect(() => {
+        console.log(selectedRows)
+    }, [selectedRows])
 
     const columns = [
         {
-            name: 'S.no',
-            selector: row => row.serial,
+            name: 'Receipt no.',
+            selector: row => row.receipt,
             width: "5%",
-            cell: (row, index, column, id) => { return <>{index + 1}</> }
+            cell: (r) => { return <>{r.receipt}</> }
 
         },
         {
             name: 'Name',
             selector: row => row.name,
 
-        },
-        {
-            name: 'Receipt No',
-            selector: row => row.receipt,
-            width: '5%'
         },
         {
             name: 'Timestamp',
@@ -127,33 +134,64 @@ export default function MembersPanel() {
         onAfterPrint: () => console.log('Save pdf')
     })
 
+    const handleDelete = async () => {
+        const ids = selectedRows.map(item => item.id)
+
+        console.log(ids)
+        try {
+            const { data } = await axios.delete(`${proxy}/dashboard/guests`, {
+                data: { ids: ids }
+            })
+            console.log(data);
+            if (data.success) {
+                getGuests()
+                console.log(data.message)
+            } else {
+                console.log(data.message)
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
-        <div className="flex flex-col justify-evenly py-20 space-y-4 items-center">
-            <div ref={pdfRef} className="containerr flex flex-col justify-evenly items-center space-y-8">
+        <>
+            <DashboardNavbar />
 
-                <div className="text my-4 text-5xl font-medium">
-                    Guest Members Table
+            <div className="flex flex-col justify-evenly py-20 space-y-4 items-center">
+                <div ref={pdfRef} className="containerr flex flex-col justify-evenly items-center space-y-8">
+
+                    <div className="text my-4 text-5xl font-medium">
+                        Guest Members Table
+                    </div>
+
+                    {loading ? <>Loading...</> : <div className="table">
+                        <DataTable
+                            columns={columns}
+                            data={data}
+                            customStyles={tableCustomStyles}
+                            selectableRows
+                            onSelectedRowsChange={handleRowSelected}
+                            clearSelectedRows={toggleCleared}
+                            pagination
+                        />
+                    </div>}
+
+                </div>
+                <div className="buttons  w-full items-end justify-end flex flex-row space-x-5">
+
+                    <div onClick={donwloadPDf2} className="bg-[#b5c3ff] hover:bg-[#92a6ff] cursor-pointer text-black rounded-xl px-10 py-3">
+                        Print / Download
+                    </div>
+                    <div onClick={handleDelete} className="bg-[#b5c3ff] hover:bg-[#92a6ff] cursor-pointer text-black rounded-xl px-10 py-3">
+                        Delete
+                    </div>
+
                 </div>
 
-                {loading ? <>Loading...</> : <div className="table">
-                    <DataTable
-                        columns={columns}
-                        data={data}
-                        customStyles={tableCustomStyles}
-                        pagination
-                    />
-                </div>}
+
 
             </div>
-            <div onClick={donwloadPDf2} className="buttons  w-full items-end justify-end flex flex-row space-x-5">
-                <div className="bg-[#b5c3ff] hover:bg-[#92a6ff] cursor-pointer text-black rounded-xl px-10 py-3">
-                    Print / Download
-                </div>
-
-            </div>
-
-
-
-        </div>
+        </>
     );
 };

@@ -8,7 +8,7 @@ export default function Footer() {
             <footer class=" w-full border-t-[1px] py-5 ">
                 <div class="w-full flex flex-col md:flex-row space-y-4 md:space-y-0 items-center justify-between mx-auto max-w-screen-xl p-4 md:flex md:justify-between">
 
-                    <span class="text-sm text-gray-500 sm:text-start text-center  :text-gray-400">© 2023 <a href="#" class="hover:underline">Carnatic Foundation</a>. All Rights Reserved.
+                    <span class="text-sm text-gray-500 sm:text-start text-center  :text-gray-400">© 2024 <a href="#" class="hover:underline">Carnatic Foundation</a>. All Rights Reserved.
                     </span>
                     <ul class="flex flex-col sm:flex-row  flex-wrap text-center items-center mt-3 text-sm font-medium text-gray-500  :text-gray-400 sm:mt-0">
 

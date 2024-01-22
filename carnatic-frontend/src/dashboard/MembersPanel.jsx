@@ -5,6 +5,8 @@ import { useDisclosure } from '@chakra-ui/react';
 import axios from 'axios';
 import MyContext from '../context/context';
 import { useNavigate } from 'react-router-dom';
+import EditMember from './EditMember';
+import DashboardNavbar from './DashboardNav';
 
 
 const tableCustomStyles = {
@@ -20,7 +22,7 @@ const tableCustomStyles = {
   cells: {
     style: {
       fontSize: '17px',
-      padding: '15px 10px',
+      padding: '5px 10px',
       justifyContent: 'center',
       border: '2px solid #b5c3ff',
       margin: '0px',
@@ -48,7 +50,8 @@ export default function MembersPanel() {
   const [count, setCount] = useState(0)
   const [data, setData] = useState([])
   const navigate = useNavigate()
-
+  const [editModalOpen, setEditModalOpen] = useState(false)
+  const [member, setMember] = useState({})
 
   var handleMemberClick = (id, name) => {
     navigate(`/dashboard/membersDB/member?id=${id}&name=${name}`)
@@ -99,6 +102,7 @@ export default function MembersPanel() {
     console.log(selectedRows)
   }, [selectedRows])
 
+
   const columns = [
     {
       name: 'Name',
@@ -128,39 +132,54 @@ export default function MembersPanel() {
       name: 'Donated',
       selector: row => row.donation,
     },
+    {
+      name: 'Action',
+      cell: row => {
+        return (
+          <div onClick={() => { setMember(row); setEditModalOpen(true) }} className='bg-[#b5c3ff] cursor-pointer py-3 px-8 rounded-xl'>
+            Edit
+          </div>
+        )
+      }
+    }
   ];
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
-    <div className="flex flex-col justify-evenly py-20 space-y-4 items-center">
-      <div className="text my-4 text-5xl font-medium">
-        Carnatic Members Table
-      </div>
-
-      {loading ? <>Loading...</> : <div className="table">
-        <DataTable
-          columns={columns}
-          data={data}
-          customStyles={tableCustomStyles}
-          selectableRows
-          onSelectedRowsChange={handleRowSelected}
-          clearSelectedRows={toggleCleared}
-          pagination
-        />
-      </div>}
-
-      <div className="buttons  w-full items-end justify-end flex flex-row space-x-5">
-        <div onClick={onOpen} className="bg-[#b5c3ff] hover:bg-[#92a6ff] cursor-pointer text-black rounded-xl px-10 py-3">
-          Add Member
+    <>
+      <DashboardNavbar />
+      <div className="flex flex-col justify-evenly py-5 space-y-4 items-center">
+        <div className="text my-4 text-5xl font-medium">
+          Carnatic Members Table
         </div>
-        <div onClick={handleDelete} className="bg-[#b5c3ff] hover:bg-[#92a6ff] cursor-pointer text-black rounded-xl px-10 py-3">
-          Delete Member
+
+        {loading ? <>Loading...</> : <div className="table">
+          <DataTable
+            columns={columns}
+            data={data}
+            customStyles={tableCustomStyles}
+            selectableRows
+            onSelectedRowsChange={handleRowSelected}
+            clearSelectedRows={toggleCleared}
+            pagination
+          />
+        </div>}
+
+        <div className="buttons  w-full items-end justify-end flex flex-row space-x-5">
+          <div onClick={onOpen} className="bg-[#b5c3ff] hover:bg-[#92a6ff] cursor-pointer text-black rounded-xl px-10 py-3">
+            Add Member
+          </div>
+          <div onClick={handleDelete} className="bg-[#b5c3ff] hover:bg-[#92a6ff] cursor-pointer text-black rounded-xl px-10 py-3">
+            Delete Member
+          </div>
         </div>
+
+        <Addmember setCount={setCount} isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
+        {editModalOpen &&
+          <EditMember setCount={setCount} member={member} isOpen={editModalOpen} onOpen={() => setEditModalOpen(true)} onClose={() => setEditModalOpen(false)} />
+        }
       </div>
-
-      <Addmember setCount={setCount} isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
-
-    </div>
+    </>
   );
 };

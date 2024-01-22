@@ -18,6 +18,7 @@ import GuestsPanel from './dashboard/GuestsPanel'
 import Transactions from './dashboard/Transactions'
 import RouteWrapper from './dashboard/RouteWrapper'
 import PrivateRoutes from './dashboard/RouteWrapper'
+import Navbar from './components/Navbar'
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
 
         {/* Dashboard Routes */}
         <Route element={<PrivateRoutes />}>
+
           <Route element={<Dashboard />} path="/dashboard" exact />
         </Route>
         <Route path='/dashboard/membersDB' element={<MembersPanel />} />

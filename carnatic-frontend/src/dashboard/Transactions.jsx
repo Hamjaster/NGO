@@ -4,6 +4,7 @@ import DataTable from 'react-data-table-component';
 import { useParams, useSearchParams } from 'react-router-dom'
 import MyContext from '../context/context';
 import { useReactToPrint } from 'react-to-print';
+import DashboardNavbar from './DashboardNav';
 
 const tableCustomStyles = {
     headCells: {
@@ -98,32 +99,35 @@ export default function Transactions() {
 
 
     return (
-        <div>
-            <div className="flex flex-col justify-evenly py-20 space-y-4 items-center">
-                <div ref={pdfRef} className="transactions flex flex-col justify-evenly items-center space-y-6">
+        <>
+            <DashboardNavbar />
+            <div>
+                <div className="flex flex-col justify-evenly py-5 space-y-4 items-center">
+                    <div ref={pdfRef} className="transactions flex flex-col justify-evenly items-center space-y-6">
 
-                    <div className="text my-4 text-center text-5xl font-medium">
-                        Transaction Details of {name}
+                        <div className="text my-4 text-center text-5xl font-medium">
+                            Transaction Details of {name}
+                        </div>
+
+                        <div className="table">
+                            <DataTable
+                                columns={columns}
+                                data={data}
+                                customStyles={tableCustomStyles}
+                                pagination
+                            />
+                        </div>
                     </div>
 
-                    <div className="table">
-                        <DataTable
-                            columns={columns}
-                            data={data}
-                            customStyles={tableCustomStyles}
-                            pagination
-                        />
+                    <div className="buttons  w-full items-end justify-end flex flex-row space-x-5">
+                        <div onClick={donwloadPDf2} className="bg-[#b5c3ff] hover:bg-[#92a6ff] cursor-pointer text-black rounded-xl px-10 py-3">
+                            Print / Download Statement
+                        </div>
+
                     </div>
+
                 </div>
-
-                <div className="buttons  w-full items-end justify-end flex flex-row space-x-5">
-                    <div onClick={donwloadPDf2} className="bg-[#b5c3ff] hover:bg-[#92a6ff] cursor-pointer text-black rounded-xl px-10 py-3">
-                        Print / Download Statement
-                    </div>
-
-                </div>
-
             </div>
-        </div>
+        </>
     )
 }
