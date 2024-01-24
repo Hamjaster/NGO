@@ -446,12 +446,12 @@ export default function DonationForm() {
 
                 {/* Proceed button */}
                 <button
-                    // disabled={
-                    //     member === "guest"
-                    //         ?
-                    //         !project || !donationInfo.PAN || !phoneVerified || !donationInfo.email || !donationInfo.name || !isValidEmail || !panValidated
-                    //         : !project
-                    // }
+                    disabled={
+                        member === "guest"
+                            ?
+                            !project || !donationInfo.PAN || !phoneVerified || !donationInfo.email || !donationInfo.name || !isValidEmail || !panValidated
+                            : !project
+                    }
                     onClick={() => {
                         member === 'guest'
                             ? createUser()
