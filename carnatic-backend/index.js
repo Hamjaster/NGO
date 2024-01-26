@@ -11,6 +11,7 @@ const donationRoutes = require('./src/routes/donationRoutes')
 const { sendMail } = require('./src/controllers/sendMail');
 const dashboardMemberRoutes = require('./src/dashboardBackend/routes/memberRoutes')
 const guestRoutes = require('./src/dashboardBackend/routes/guestRoutes')
+require('dotenv').config()
 
 app.use(cors({
     origin: '*'
@@ -45,8 +46,8 @@ app.get('/checkedMail', function (req, res) {
 app.post('/pay', function (req, res) {
     let data = req.body;
     var config = {
-        key: "8O8HMOWD9Y",
-        salt: "LH06DRZKC8",
+        key: process.env.EASEBUZ_KEY,
+        salt: process.env.EASEBUZ_SALT,
         env: "prod",
         enable_iframe: 1,
     };
