@@ -450,7 +450,10 @@ export default function DonationForm() {
                     disabled={
                         member === "guest"
                             ?
-                            !project || !donationInfo.PAN || !phoneVerified || !donationInfo.email || !donationInfo.name || !isValidEmail || !panValidated
+                            !project || !donationInfo.PAN
+                            // || !phoneVerified 
+                            || !donationInfo.email || !donationInfo.name || !isValidEmail
+                            // ||  !panValidated
                             : !project
                     }
                     onClick={() => {
