@@ -1,3 +1,6 @@
 /carnatic-frontend/node_modules
 /carnatic-backend/node_modules
 node_modules
+/carnatic-frontend/.env
+/carnatic-backend/.env
+
