@@ -1,5 +1,5 @@
 const Carnatic = require("../../models/CarnaticMember");
-const Donation = require("../../models/DonationSchema");
+const { Donation } = require("../../models/DonationSchema");
 
 
 const getMembers = async (req, res) => {
@@ -97,6 +97,7 @@ const getTransactions = async (req, res) => {
 
         // Find all donations associated with the Carnatic member
         const donations = await Donation.find({ carnaticDonor: carnaticId });
+        // const donations = await Donation.Donation.fi
 
         res.status(200).json({ success: true, message: donations });
     } catch (error) {
