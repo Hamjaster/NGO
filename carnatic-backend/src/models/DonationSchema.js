@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const DonationSchema = new mongoose.Schema({
+    txnid: {
+        type: String,
+        required: true
+    },
     receipt: {
         type: Number,
         required: true

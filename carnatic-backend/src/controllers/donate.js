@@ -14,6 +14,7 @@ const donate = async (req, res) => {
         if (req.body.member === "guest") {
 
             const { data } = await Donation.create({
+                txnid: req.body.txnid,
                 guestDonor: req.body.id,
                 amount: req.body.amount,
                 receipt: count.sequence,
@@ -26,6 +27,7 @@ const donate = async (req, res) => {
             return res.status(201).json({ success: true, data: data });
         } else {
             const data = await Donation.create({
+                txnid: req.body.txnid,
                 carnaticDonor: req.body.id,
                 amount: req.body.amount,
                 receipt: count.sequence,

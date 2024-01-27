@@ -8,6 +8,7 @@ import Navbar from './Navbar'
 import Payment from './Payment'
 import { v4 as uuidv4 } from 'uuid';
 import toast from 'react-hot-toast'
+import { nanoid } from 'nanoid'
 
 
 function Amount() {
@@ -21,7 +22,7 @@ function Amount() {
         try {
             const { data } = await axios.post(`${proxy}/pay`, {
                 amount: `${parseFloat(amount).toFixed(2)}`,
-                txnid: uuidv4(),
+                txnid: nanoid(10),
                 productinfo: 'Carnatic Foundation dontaion',
                 name: donationInfo.name.trim(),
                 email: donationInfo.email.trim(),
@@ -66,7 +67,7 @@ function Amount() {
                 onResponse: async (response) => {
                     console.log(response);
                     if (response.status === "success") {
-                        await handleAmountSubmit()
+                        await handleAmountSubmit(response.txnid)
                     } else if (response.status === "failure") {
                         toast.error("Transaction Failed")
                     } else if (response.status === "userCancelled") {
@@ -83,9 +84,9 @@ function Amount() {
 
     }
 
-    const handleAmountSubmit = async () => {
+    const handleAmountSubmit = async (txnid) => {
         setLoading(true)
-        const isDonated = await createTransaction()
+        const isDonated = await createTransaction(txnid)
         if (isDonated) {
             try {
                 // let data = { success: true }
@@ -113,15 +114,15 @@ function Amount() {
         }
     }
 
-    const createTransaction = async () => {
+    const createTransaction = async (txnid) => {
         try {
             console.log(donationInfo)
             const { data } = await axios.post(`${proxy}/donate`, {
+                txnid: txnid,
                 amount: parseFloat(amount),
-                id: donationInfo._id,
+                id: member === "guest" ? donationInfo.id : donationInfo._id,
                 member: member,
                 project: donationInfo.project
-
             })
             console.log(data)
             if (data.success) {

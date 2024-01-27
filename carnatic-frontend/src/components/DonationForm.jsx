@@ -244,7 +244,7 @@ export default function DonationForm() {
         <div className='text-[#474848] h-screen overflow-y-scroll font-roboto mx-auto w-full'>
 
 
-            <section className='mx-auto w-full md:w-2/3 justify-evenly flex h-screen flex-col bg-white shadow-lg px-2 sm:px-10 text-[#474848]'>
+            <section className='mx-auto w-full md:w-2/3 space-y-10 py-4  pb-8 bg-white shadow-lg px-4 sm:px-10 text-[#474848]'>
 
                 <h1 className='font-bold font-poppins 
             text-center mx-auto text-4xl flex w-full items-center justify-between space-x-0 sm:space-x-8 md:text-5xl'>
@@ -363,7 +363,7 @@ export default function DonationForm() {
                 }
 
                 {/* Email & Address */}
-                <div className="grid grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
 
 
                     <div class="relative z-0 w-full group">
@@ -460,7 +460,7 @@ export default function DonationForm() {
                         member === 'guest'
                             ? createUser()
                             : navigate('/amount')
-                    }} className='bg-[#4dd7fe] hover:bg-[#00c8ff] text-xl float-right disabled:bg-gray-400 h-12 flex items-center justify-center space-x-2 px-1 w-44 rounded-md text-white'>
+                    }} className='bg-[#4dd7fe] hover:bg-[#00c8ff] text-xl  disabled:bg-gray-400 h-12 flex items-center justify-center space-x-2 px-1 w-44 rounded-md text-white'>
                     {loading
                         ? <div className='animate-spin'>
                             <CgSpinner />

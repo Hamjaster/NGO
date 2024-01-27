@@ -204,6 +204,7 @@ export default function VerifyCarnaticMemberModal({ isOpen, onOpen, onClose }) {
                             //  disabled={!password} 
                             onClick={async () => {
                                 onSignup()
+                                // handleVerifyMember()
                             }} className='bg-[#4dd7fe] hover:bg-[#00c8ff] text-xl mt-5 float-right flex items-center disabled:bg-gray-300 justify-center space-x-2 w-44 h-12 rounded-md text-white'>
                             {otploading || loading ?
                                 <div className='animate-spin'>

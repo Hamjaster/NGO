@@ -22,6 +22,7 @@
     "js-sha512": "^0.8.0",
     "jspdf": "^2.5.1",
     "material-react-table": "^2.4.1",
+    "nanoid": "^3.3.7",
     "react": "^18.2.0",
     "react-data-table-component": "^7.5.4",
     "react-dom": "^18.2.0",

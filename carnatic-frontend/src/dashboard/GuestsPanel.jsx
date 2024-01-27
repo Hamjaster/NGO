@@ -20,7 +20,7 @@ const tableCustomStyles = {
     cells: {
         style: {
             fontSize: '17px',
-            padding: '15px 10px',
+            // padding: '15px 10px',
             justifyContent: 'center',
             border: '2px solid #b5c3ff',
             margin: '0px',
@@ -80,13 +80,13 @@ export default function MembersPanel() {
         {
             name: 'Receipt no.',
             selector: row => row.receipt,
-            width: "5%",
             cell: (r) => { return <>{r.receipt}</> }
 
         },
         {
             name: 'Name',
             selector: row => row.name,
+            cell: (r) => { return <>{r.name}</> }
 
         },
         {
@@ -96,7 +96,8 @@ export default function MembersPanel() {
         },
         {
             name: 'UTR',
-            selector: row => row.utr,
+            selector: row => row.txnid,
+            cell: (r) => { return <>{r.txnid}</> }
         },
         {
             name: 'Amount Donated',
@@ -106,7 +107,7 @@ export default function MembersPanel() {
             name: 'Email',
             selector: row => row.email,
             cell: row => <span>{row.email}</span>,
-            width: '20%',
+            width: "25%",
             style: {
                 fontSize: '16px'
             }
@@ -114,7 +115,7 @@ export default function MembersPanel() {
         {
             name: 'Phone',
             selector: row => row.phone,
-            width: '15%'
+
         },
         {
             name: 'Address',
@@ -124,7 +125,7 @@ export default function MembersPanel() {
             name: 'Membership Request',
             selector: row => row.isContacted,
             cell: row => <span> {row.isContacted ? "Yes" : "No"} </span>,
-            width: '5%'
+
         },
     ];
 

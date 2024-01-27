@@ -55,7 +55,8 @@ export default function Transactions() {
         },
         {
             name: 'UTR No',
-            selector: row => row.utr,
+            selector: row => row.txnid,
+            cell: (r) => { return <>{r.txnid}</> }
         },
         {
             name: 'Timestamp',

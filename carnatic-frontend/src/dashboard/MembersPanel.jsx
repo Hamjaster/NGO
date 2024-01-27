@@ -107,7 +107,7 @@ export default function MembersPanel() {
     {
       name: 'Name',
       selector: row => row.name,
-      cell: row => <span className='whitespace-nowrap cursor-pointer overflow-hidden overflow-ellipsis w-full' row={row} onClick={() => handleMemberClick(row.id, row.name)}>{row.name}</span>
+      cell: row => <span className='' row={row} onClick={() => handleMemberClick(row.id, row.name)}>{row.name}</span>
     },
     {
       name: 'PAN',

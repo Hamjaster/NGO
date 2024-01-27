@@ -13,8 +13,10 @@ const getGuests = async (req, res) => {
         console.log(donations)
 
         const donationsT = donations.map(don => {
+            console.log(don.txnid)
             return {
                 id: don._id,
+                txnid: don.txnid,
                 receipt: don.receipt,
                 timestamp: don.timestamp,
                 amount: don.amount,
