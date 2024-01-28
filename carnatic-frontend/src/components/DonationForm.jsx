@@ -47,6 +47,7 @@ export default function DonationForm() {
                 PAN: donationInfo.PAN,
                 email: donationInfo.email,
                 phone: donationInfo.phone,
+                address: donationInfo.address,
                 isContacted: checked
             })
             console.log(data);

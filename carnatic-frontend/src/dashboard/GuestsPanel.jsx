@@ -19,6 +19,7 @@ const tableCustomStyles = {
     },
     cells: {
         style: {
+
             fontSize: '17px',
             // padding: '15px 10px',
             justifyContent: 'center',
@@ -86,12 +87,15 @@ export default function MembersPanel() {
         {
             name: 'Name',
             selector: row => row.name,
+
             cell: (r) => { return <>{r.name}</> }
 
         },
         {
             name: 'Timestamp',
             selector: row => row.timestamp,
+
+            cell: (r) => { return <div className=''>{r.timestamp}</div> }
 
         },
         {
@@ -107,7 +111,7 @@ export default function MembersPanel() {
             name: 'Email',
             selector: row => row.email,
             cell: row => <span>{row.email}</span>,
-            width: "25%",
+
             style: {
                 fontSize: '16px'
             }
@@ -116,10 +120,13 @@ export default function MembersPanel() {
             name: 'Phone',
             selector: row => row.phone,
 
+            cell: (r) => { return <>{r.phone}</> }
+
         },
         {
             name: 'Address',
             selector: row => row.address,
+            cell: (r) => { return <>{r.address}</> }
         },
         {
             name: 'Membership Request',
@@ -156,13 +163,13 @@ export default function MembersPanel() {
     }
 
     return (
-        <>
+        <div ref={pdfRef}>
             <DashboardNavbar />
 
             <div className="flex flex-col justify-evenly py-20 space-y-4 items-center">
-                <div ref={pdfRef} className="containerr flex flex-col justify-evenly items-center space-y-8">
+                <div className="containerr flex flex-col justify-evenly items-center space-y-8">
 
-                    <div className="text my-4 text-5xl font-medium">
+                    <div className="text my-4 text-4xl sm:text-5xl text-center font-medium">
                         Guest Members Table
                     </div>
 
@@ -193,6 +200,6 @@ export default function MembersPanel() {
 
 
             </div>
-        </>
+        </div>
     );
 };

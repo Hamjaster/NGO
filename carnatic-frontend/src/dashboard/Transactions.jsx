@@ -106,7 +106,7 @@ export default function Transactions() {
                 <div className="flex flex-col justify-evenly py-5 space-y-4 items-center">
                     <div ref={pdfRef} className="transactions flex flex-col justify-evenly items-center space-y-6">
 
-                        <div className="text my-4 text-center text-5xl font-medium">
+                        <div className="text my-4 text-center text-3xl sm:text-5xl font-medium">
                             Transaction Details of {name}
                         </div>
 

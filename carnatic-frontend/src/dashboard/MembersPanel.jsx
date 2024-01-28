@@ -150,7 +150,7 @@ export default function MembersPanel() {
     <>
       <DashboardNavbar />
       <div className="flex flex-col justify-evenly py-5 space-y-4 items-center">
-        <div className="text my-4 text-5xl font-medium">
+        <div className="text my-4 text-4xl sm:text-5xl text-center font-medium">
           Carnatic Members Table
         </div>
 
