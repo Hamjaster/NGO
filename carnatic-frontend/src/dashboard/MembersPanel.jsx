@@ -111,6 +111,7 @@ export default function MembersPanel() {
     },
     {
       name: 'PAN',
+      cell: row => <span>{row.PAN}</span>,
       selector: row => row.PAN,
     },
     {
@@ -126,10 +127,12 @@ export default function MembersPanel() {
     },
     {
       name: 'Address',
+      cell: row => <span>{row.address}</span>,
       selector: row => row.address,
     },
     {
       name: 'Donated',
+      cell: row => <span>{row.donation}</span>,
       selector: row => row.donation,
     },
     {

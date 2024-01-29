@@ -61,15 +61,18 @@ export default function Transactions() {
         {
             name: 'Timestamp',
             selector: row => row.timestamp,
+            cell: row => <span>{row.timestamp}</span>,
             width: '35%'
         },
         {
             name: 'Amount',
             selector: row => row.amount,
+            cell: row => <span>{row.amount}</span>,
         },
         {
             name: 'Project',
             selector: row => row.project,
+            cell: row => <span>{row.project}</span>,
         },
 
     ];
