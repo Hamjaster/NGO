@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   Modal,
   ModalBody,
@@ -9,20 +9,39 @@ import {
   ModalOverlay,
 } from "@chakra-ui/react";
 import PhoneInput from "react-phone-input-2";
+import axios from "axios";
+import MyContext from "../context/context";
 
 export default function ProjectsPanel() {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null); // Store the selected project for editing/deleting
+  const [selectedProjectID, setselectedProjectID] = useState(null);
+  const [projects, setProjects] = useState([]);
+  const { proxy } = useContext(MyContext);
 
   const handleEditClick = (project) => {
-    setSelectedProject(project);
+    setselectedProjectID(project._id);
+    setSelectedProject(project.title);
     setEditModalOpen(true);
   };
 
   const handleAddClick = () => {
     setAddModalOpen(true);
   };
+
+  const getProjects = async () => {
+    try {
+      const { data } = await axios.get(`${proxy}/projects`);
+      setProjects(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getProjects();
+  }, []);
 
   return (
     <div className="min-h-screen w-screen bg-gray-100 p-8">
@@ -51,19 +70,25 @@ export default function ProjectsPanel() {
           <tbody className="divide-y divide-blue-500 bg-white">
             {/* Render project rows */}
             {/* Replace the hardcoded project data with dynamic data from a state or props */}
-            <tr className="divide-x divide-blue-500">
-              <td className="py-4 text-center pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                Corpus
-              </td>
-              <td
-                className="py-4 text-center px-3 cursor-pointer text-sm text-gray-500"
-                onClick={() => {
-                  handleEditClick("Corpus");
-                }}
-              >
-                Edit/Hide/Unhide
-              </td>
-            </tr>
+            {projects &&
+              projects.map((p) => {
+                return (
+                  <tr className="divide-x divide-blue-500">
+                    <td className="py-4 text-center pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                      {p.title}
+                    </td>
+                    <td
+                      className="py-4 text-center px-3 cursor-pointer text-sm text-gray-500"
+                      onClick={() => {
+                        handleEditClick(p);
+                      }}
+                    >
+                      Edit/Hide/Unhide
+                    </td>
+                  </tr>
+                );
+              })}
+
             {/* More project rows */}
             <tr>
               <td
@@ -81,6 +106,7 @@ export default function ProjectsPanel() {
       {/* Render modals */}
       {editModalOpen && (
         <EditProjectModal
+          id={selectedProjectID}
           selectedProject={selectedProject}
           isOpen={editModalOpen}
           onClose={() => setEditModalOpen(false)}
@@ -97,6 +123,22 @@ export default function ProjectsPanel() {
 }
 
 export const AddProjectModal = ({ isOpen, onClose }) => {
+  const [project, setProject] = useState("");
+  const { proxy } = useContext(MyContext);
+
+  const addProject = async () => {
+    try {
+      const { data } = await axios.post(`${proxy}/projects`, {
+        title: project,
+      });
+      console.log(data);
+      onClose();
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Modal
       size={{ xs: "full", base: "full", sm: "md", md: "md", lg: "lg" }}
@@ -111,6 +153,8 @@ export const AddProjectModal = ({ isOpen, onClose }) => {
           <div className="mx-5 mt-5 font-roboto">
             <div class="relative my-5 z-0 w-full group">
               <input
+                value={project}
+                onChange={(e) => setProject(e.target.value)}
                 class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-[#fe0248] peer"
                 placeholder="Add a project"
                 required
@@ -121,6 +165,9 @@ export const AddProjectModal = ({ isOpen, onClose }) => {
 
         <ModalFooter>
           <button
+            onClick={() => {
+              addProject();
+            }}
             className={`bg-[#4dd7fe] text-lg py-2 w-32 rounded-md hover:bg-[#00c8ff] text-white`}
           >
             Add
@@ -131,8 +178,31 @@ export const AddProjectModal = ({ isOpen, onClose }) => {
   );
 };
 
-export const EditProjectModal = ({ onClose, selectedProject, isOpen }) => {
+export const EditProjectModal = ({ onClose, selectedProject, isOpen, id }) => {
   const [editedProject, setEditedProject] = useState(selectedProject);
+  const { proxy } = useContext(MyContext);
+
+  const editProject = async () => {
+    try {
+      const { data } = await axios.put(`${proxy}/projects/${id}`, {
+        title: editedProject,
+      });
+      console.log(data);
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const delProject = async () => {
+    try {
+      const { data } = await axios.delete(`${proxy}/projects/${id}`);
+      console.log(data);
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Modal
@@ -165,6 +235,7 @@ export const EditProjectModal = ({ onClose, selectedProject, isOpen }) => {
           <button
             onClick={() => {
               onClose();
+              editProject();
             }}
             className={`bg-[#4dd7fe] text-lg py-2 w-32 rounded-md hover:bg-[#00c8ff] text-white`}
           >
@@ -173,6 +244,7 @@ export const EditProjectModal = ({ onClose, selectedProject, isOpen }) => {
           <button
             onClick={() => {
               onClose();
+              delProject();
             }}
             className={`mx-2 text-lg py-2 w-32 rounded-md bg-red-500 text-white`}
           >
