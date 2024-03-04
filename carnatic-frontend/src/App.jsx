@@ -20,6 +20,7 @@ import RouteWrapper from "./dashboard/RouteWrapper";
 import PrivateRoutes from "./dashboard/RouteWrapper";
 import Navbar from "./components/Navbar";
 import ProjectsPanel from "./dashboard/ProjectsPanel";
+import DonationsPanel from "./dashboard/DonationsPanel";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
         <Route path="/dashboard/membersDB/member" element={<Transactions />} />
         <Route path="/dashboard/guestsDB" element={<GuestsPanel />} />
         <Route path="/dashboard/projects" element={<ProjectsPanel />} />
+        <Route path="/dashboard/donations" element={<DonationsPanel />} />
       </Routes>
       <Toaster position="top-center" reverseOrder={false} />
     </div>

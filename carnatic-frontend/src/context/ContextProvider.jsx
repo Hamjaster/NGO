@@ -7,8 +7,8 @@ const MyContextProvider = ({ children }) => {
   const [project, setProject] = useState(null);
   const [userInfo, setUserInfo] = useState({});
   const [donationInfo, setDonationInfo] = useState({});
-  // const proxy = "http://localhost:5000"
-  const proxy = "https://carnatic-backend.vercel.app";
+  const proxy = "http://localhost:5000";
+  // const proxy = "https://carnatic-backend.vercel.app";
 
   return (
     <MyContext.Provider

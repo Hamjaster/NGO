@@ -12,6 +12,8 @@ const projectRoutes = require("./src/routes/projectRoutes");
 const { sendMail } = require("./src/controllers/sendMail");
 const dashboardMemberRoutes = require("./src/dashboardBackend/routes/memberRoutes");
 const guestRoutes = require("./src/dashboardBackend/routes/guestRoutes");
+const getDonationsByFilters = require("./src/dashboardBackend/routes/getDonationsByFilters");
+
 require("dotenv").config();
 
 app.use(
@@ -34,6 +36,7 @@ app.use("/projects", projectRoutes);
 // Dashbaord Routes
 app.use("/dashboard/members", dashboardMemberRoutes);
 app.use("/dashboard/guests", guestRoutes);
+app.use("/dashboard/donations", getDonationsByFilters);
 
 app.get("/", (req, res) => {
   res.send("APi is running successfully");

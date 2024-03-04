@@ -9,7 +9,7 @@ import logo from "../assets/logo.jpeg";
 const Dashboard = () => {
   return (
     <>
-      <div className="flex flex-col w-screen items-center h-screen">
+      <div className="flex flex-col w-full mb-10 items-center">
         <nav class="bg-white border-b-2 text-center items-center mx-auto justify-center flex p-5 w-full">
           <Link to={"/"} className="  ">
             <img src={logo} className="w-24" />
@@ -22,31 +22,37 @@ const Dashboard = () => {
             to="/dashboard/membersDB"
             className="relative shadow-xl hover:shadow-2xl transition-all cursor-pointer rounded-full bg-[#4dd7fe] px-5  w-2/3 py-6 text-center text-2xl  option-btn"
           >
-            Carnatic Members Database
+            Carnatic Members
           </Link>
           <Link
             to="/dashboard/guestsDB"
             className="relative shadow-xl hover:shadow-2xl transition-all cursor-pointer rounded-full bg-[#4dd7fe] px-5  w-2/3 py-6 text-center text-2xl  option-btn"
           >
-            Guests Database
-          </Link>
-          <Link
-            to="https://auth.easebuzz.in/easebuzz/login?next=easebuzz.in%2Fmerchant%2Fdashboard"
-            className="relative shadow-xl hover:shadow-2xl transition-all cursor-pointer rounded-full bg-[#4dd7fe] px-5  w-2/3 py-6 text-center text-2xl  option-btn"
-          >
-            Easebuzz Dashboard
-          </Link>
-          <Link
-            to="https://www.chatbase.co/auth/signin"
-            className="relative shadow-xl hover:shadow-2xl transition-all cursor-pointer rounded-full bg-[#4dd7fe] px-5  w-2/3 py-6 text-center text-2xl  option-btn"
-          >
-            Chatbase Dashboard
+            Guests
           </Link>
           <Link
             to="/dashboard/projects"
             className="relative shadow-xl hover:shadow-2xl transition-all cursor-pointer rounded-full bg-[#4dd7fe] px-5  w-2/3 py-6 text-center text-2xl  option-btn"
           >
-            Projects Dashboard
+            Projects
+          </Link>
+          <Link
+            to="/dashboard/donations"
+            className="relative shadow-xl hover:shadow-2xl transition-all cursor-pointer rounded-full bg-[#4dd7fe] px-5  w-2/3 py-6 text-center text-2xl  option-btn"
+          >
+            Donations
+          </Link>
+          <Link
+            to="https://auth.easebuzz.in/easebuzz/login?next=easebuzz.in%2Fmerchant%2Fdashboard"
+            className="relative shadow-xl hover:shadow-2xl transition-all cursor-pointer rounded-full bg-[#4dd7fe] px-5  w-2/3 py-6 text-center text-2xl  option-btn"
+          >
+            Easebuzz
+          </Link>
+          <Link
+            to="https://www.chatbase.co/auth/signin"
+            className="relative shadow-xl hover:shadow-2xl transition-all cursor-pointer rounded-full bg-[#4dd7fe] px-5  w-2/3 py-6 text-center text-2xl  option-btn"
+          >
+            Chatbase
           </Link>
         </div>
       </div>
