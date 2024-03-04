@@ -177,14 +177,29 @@ export default function MembersPanel() {
     getDonations({ projects, years, startMonth, endMonth, donorType });
   };
 
+  const calculateTotalDonationAmount = (donations) => {
+    let totalAmount = 0;
+
+    donations.forEach((donation) => {
+      totalAmount += donation.amount;
+    });
+
+    return totalAmount;
+  };
+
   return (
     <div className="w-full" ref={pdfRef}>
       <DashboardNavbar />
 
-      <div className="flex flex-col justify-evenly py-10 space-y-4 items-center">
+      <div className="flex flex-col justify-evenly py-3 space-y-4 items-center">
         <div className="containerr flex flex-col justify-evenly items-center space-y-8">
-          <div className="text my-4 text-4xl sm:text-5xl text-center font-medium">
-            Donation
+          <div className="w-full flex items-center justify-between">
+            <div className="text w-10/12 my-4 text-4xl sm:text-5xl text-center font-medium">
+              Donation
+            </div>
+            <div className="bg-[#b5c3ff] w-1/4 text-center float-right cursor-pointer text-black px-4 py-2 rounded-3xl text-lg">
+              Total Donation : {calculateTotalDonationAmount(data)}
+            </div>
           </div>
 
           {loading ? (
