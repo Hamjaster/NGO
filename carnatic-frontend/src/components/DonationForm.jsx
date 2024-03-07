@@ -524,21 +524,23 @@ export default function DonationForm() {
               class="text-lg select-none bg-gray-100 border-2  text-gray-700"
               aria-labelledby="dropdownDefaultButton"
             >
-              {projects.map((project) => {
-                return (
-                  <li>
-                    <div
-                      onClick={() => {
-                        setOpen(false);
-                        setProject(project.title);
-                      }}
-                      class="block  px-3  py-2  hover:bg-gray-200"
-                    >
-                      {project.title}
-                    </div>
-                  </li>
-                );
-              })}
+              {projects
+                .filter((project) => !project.isHidden)
+                .map((project) => {
+                  return (
+                    <li>
+                      <div
+                        onClick={() => {
+                          setOpen(false);
+                          setProject(project.title);
+                        }}
+                        class="block  px-3  py-2  hover:bg-gray-200"
+                      >
+                        {project.title}
+                      </div>
+                    </li>
+                  );
+                })}
             </ul>
           </div>
         </div>

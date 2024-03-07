@@ -49,6 +49,17 @@ router.delete("/:id", getProject, async (req, res) => {
   }
 });
 
+router.post("/toggleHide/:id", getProject, async (req, res) => {
+  try {
+    const project = res.project;
+    project.isHidden = !project.isHidden; // Toggle the value of isHidden
+    await project.save();
+    res.json(project);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 async function getProject(req, res, next) {
   let project;
   try {

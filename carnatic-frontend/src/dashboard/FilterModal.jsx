@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import {
   Modal,
   ModalOverlay,
@@ -18,7 +18,8 @@ import MyContext from "../context/context";
 import { IoIosArrowDropdown } from "react-icons/io";
 
 const FiltersModal = ({ isOpen, onClose, onSubmit, save }) => {
-  const [donorType, setDonorType] = useState("");
+  const dropdownRef = useRef(null);
+  const [donorType, setDonorType] = useState([]);
   const [projects, setProjects] = useState([]);
   // const [selectedYear, setSelectedYear] = useState("");
   const [years, setYears] = useState([]);
@@ -75,9 +76,28 @@ const FiltersModal = ({ isOpen, onClose, onSubmit, save }) => {
     getProjects();
   }, []);
 
+  const isPresent = (string) => {
+    return donorType.filter((donor) => donor === string)[0] ? true : false;
+  };
+
   useEffect(() => {
-    console.log(projects);
-  }, [projects]);
+    console.log(donorType);
+  }, [donorType]);
+
+  // useEffect(() => {
+  //   // Add event listener to detect clicks outside the dropdown
+  //   function handleClickOutside(event) {
+  //     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+  //       setDropdown(false);
+  //     }
+  //   }
+  //   // Bind the event listener
+  //   document.addEventListener("mousedown", handleClickOutside);
+  //   return () => {
+  //     // Unbind the event listener on cleanup
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, [dropdownRef]);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="md">
@@ -88,22 +108,33 @@ const FiltersModal = ({ isOpen, onClose, onSubmit, save }) => {
         <ModalBody>
           <Stack spacing={4}>
             <div className="font-semibold text-xl">Select Type</div>
+
             <Checkbox
-              isChecked={donorType === "guest"}
+              isChecked={isPresent("guest")}
               onChange={() =>
-                setDonorType(donorType === "guest" ? "" : "guest")
+                setDonorType((prevDonorType) =>
+                  isPresent("guest")
+                    ? prevDonorType.filter((donor) => donor !== "guest")
+                    : [...prevDonorType, "guest"]
+                )
               }
             >
               Guest Donors
             </Checkbox>
             <Checkbox
-              isChecked={donorType === "member"}
+              isChecked={isPresent("member")}
               onChange={() =>
-                setDonorType(donorType === "member" ? "" : "member")
+                setDonorType((prevDonorType) =>
+                  isPresent("member")
+                    ? prevDonorType.filter((donor) => donor !== "member")
+                    : [...prevDonorType, "member"]
+                )
               }
             >
               Carnatic Members
             </Checkbox>
+
+            {/* Select Year dropdown */}
             <div className="relative inline-block text-left">
               <div>
                 <span
@@ -125,6 +156,7 @@ const FiltersModal = ({ isOpen, onClose, onSubmit, save }) => {
               </div>
 
               <div
+                ref={dropdownRef}
                 className={`" ${
                   dropdown ? "" : "hidden"
                 } origin-top-right z-50 max-h-56 overflow-y-scroll absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 "`}
@@ -157,6 +189,7 @@ const FiltersModal = ({ isOpen, onClose, onSubmit, save }) => {
                 </div>
               </div>
             </div>
+
             <Select
               placeholder="Start Month"
               value={startMonth}

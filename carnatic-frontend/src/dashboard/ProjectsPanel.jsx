@@ -15,14 +15,15 @@ import MyContext from "../context/context";
 export default function ProjectsPanel() {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [addModalOpen, setAddModalOpen] = useState(false);
+  const [count, setCount] = useState(0);
   const [selectedProject, setSelectedProject] = useState(null); // Store the selected project for editing/deleting
-  const [selectedProjectID, setselectedProjectID] = useState(null);
+  // const [selectedProjectID, setselectedProjectID] = useState(null);
   const [projects, setProjects] = useState([]);
   const { proxy } = useContext(MyContext);
 
   const handleEditClick = (project) => {
-    setselectedProjectID(project._id);
-    setSelectedProject(project.title);
+    // setselectedProjectID(project._id);
+    setSelectedProject(project);
     setEditModalOpen(true);
   };
 
@@ -41,7 +42,7 @@ export default function ProjectsPanel() {
 
   useEffect(() => {
     getProjects();
-  }, []);
+  }, [count]);
 
   return (
     <div className="min-h-screen w-screen bg-gray-100 p-8">
@@ -106,7 +107,8 @@ export default function ProjectsPanel() {
       {/* Render modals */}
       {editModalOpen && (
         <EditProjectModal
-          id={selectedProjectID}
+          setCount={setCount}
+          id={selectedProject._id}
           selectedProject={selectedProject}
           isOpen={editModalOpen}
           onClose={() => setEditModalOpen(false)}
@@ -178,9 +180,18 @@ export const AddProjectModal = ({ isOpen, onClose }) => {
   );
 };
 
-export const EditProjectModal = ({ onClose, selectedProject, isOpen, id }) => {
-  const [editedProject, setEditedProject] = useState(selectedProject);
+export const EditProjectModal = ({
+  onClose,
+  selectedProject,
+  isOpen,
+  id,
+  setCount,
+}) => {
+  const [editedProject, setEditedProject] = useState(selectedProject.title);
   const { proxy } = useContext(MyContext);
+  useEffect(() => {
+    console.log(selectedProject);
+  }, []);
 
   const editProject = async () => {
     try {
@@ -200,6 +211,19 @@ export const EditProjectModal = ({ onClose, selectedProject, isOpen, id }) => {
       console.log(data);
       window.location.reload();
     } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const toggleHide = async () => {
+    try {
+      const { data } = await axios.post(`${proxy}/projects/toggleHide/${id}`);
+      console.log(data);
+      onClose();
+      setCount((c) => c + 1);
+    } catch (error) {
+      onClose();
+      setCount((c) => c + 1);
       console.log(error);
     }
   };
@@ -234,7 +258,16 @@ export const EditProjectModal = ({ onClose, selectedProject, isOpen, id }) => {
         <ModalFooter>
           <button
             onClick={() => {
+              toggleHide();
+            }}
+            className={`bg-zinc-500 hover:bg-zinc-600 mx-2 text-lg py-2 w-32 rounded-md  text-white`}
+          >
+            {selectedProject.isHidden ? "Unhide" : "Hide"}
+          </button>
+          <button
+            onClick={() => {
               onClose();
+              setCount((c) => c + 1);
               editProject();
             }}
             className={`bg-[#4dd7fe] text-lg py-2 w-32 rounded-md hover:bg-[#00c8ff] text-white`}

@@ -65,11 +65,12 @@ export default function MembersPanel() {
   }) => {
     setLoading(true);
     // Join the years and projects arrays into strings
-    const yearsString = years.join(",");
-    const projectsString = projects.join(",");
+    const yearsString = years && years.join(",");
+    const projectsString = projects && projects.join(",");
+    const donorTypeString = donorType && donorType.join(",");
 
     const { data } = await axios.get(
-      `${proxy}/dashboard/donations?years=${yearsString}&donorType=${donorType}&projects=${projectsString}&startMonth=${startMonth}&endMonth=${endMonth}`
+      `${proxy}/dashboard/donations?years=${yearsString}&donorType=${donorTypeString}&projects=${projectsString}&startMonth=${startMonth}&endMonth=${endMonth}`
     );
     console.log(data);
 

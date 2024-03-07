@@ -39,6 +39,8 @@ app.use("/dashboard/guests", guestRoutes);
 app.use("/dashboard/donations", getDonationsByFilters);
 
 app.get("/", (req, res) => {
+  console.log(process.env.EASEBUZ_KEY, "key");
+  console.log(process.env.EASEBUZ_SALT, "salt");
   res.send("APi is running successfully");
 });
 
