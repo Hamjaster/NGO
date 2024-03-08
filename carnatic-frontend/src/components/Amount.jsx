@@ -66,7 +66,7 @@ function Amount() {
         onResponse: async (response) => {
           console.log(response);
           if (response.status === "success") {
-            await handleAmountSubmit(response.txnid);
+            await handleAmountSubmit(response.easepayid);
           } else if (response.status === "failure") {
             toast.error("Transaction Failed");
           } else if (response.status === "userCancelled") {
