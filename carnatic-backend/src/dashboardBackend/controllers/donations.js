@@ -1,14 +1,18 @@
 const mongoose = require("mongoose");
 const { Donation } = require("../../models/DonationSchema");
 
+function getLastDayOfMonth(month, year) {
+  console.log(month, year, "m dn yr");
+  year = year || new Date().getFullYear();
+  const lastDay = new Date(year, month, 0).toISOString();
+  return lastDay;
+}
+
 function getFirstDayOfMonth(month, year) {
   console.log(month, year);
-  // Create a new Date object with the given month and year
-  // Months in JavaScript are 0-indexed, so we subtract 1 from the month
-  const date = new Date(year ? year : "2024", month - 1, 1);
-
-  // Return the ISO date format of the 1st day of the month
-  return date.toISOString();
+  year = year || new Date().getFullYear();
+  const firstDay = new Date(year, month - 1, 1).toISOString();
+  return firstDay;
 }
 
 const getDonations = async (req, res) => {
@@ -56,18 +60,20 @@ const getDonations = async (req, res) => {
       // If only startMonth is provided, apply greater than equal filter
       if (startMonth) {
         console.log("Provided start");
+        const yearArray = years.split(",").map((year) => year);
         filter.timestamp.$gte = getFirstDayOfMonth(
           startMonth,
-          years.length > 1 ? null : years[0]
+          years ? (years.length < 1 ? null : yearArray[0]) : null
         );
       }
 
       // If only endMonth is provided, apply less than filter
       if (endMonth) {
         console.log("Provided end");
-        filter.timestamp.$lt = getFirstDayOfMonth(
+        const yearArray = years.split(",").map((year) => year);
+        filter.timestamp.$lt = getLastDayOfMonth(
           endMonth,
-          years.length > 1 ? null : years[0]
+          years ? (years.length < 1 ? null : yearArray[0]) : null
         );
       }
 
