@@ -189,10 +189,13 @@ export default function MembersPanel() {
   };
 
   return (
-    <div className="w-full" ref={pdfRef}>
+    <div className="w-full">
       <DashboardNavbar />
 
-      <div className="flex flex-col justify-evenly py-3 space-y-4 items-center">
+      <div
+        ref={pdfRef}
+        className="flex flex-col justify-evenly py-3 space-y-4 items-center"
+      >
         <div className="containerr flex flex-col justify-evenly items-center space-y-8">
           <div className="w-full flex items-center justify-between">
             <div className="text w-10/12 my-4 text-4xl sm:text-5xl text-center font-medium">
