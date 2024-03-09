@@ -166,7 +166,7 @@ export default function MembersPanel() {
         <div ref={pdfRef}>
             <DashboardNavbar />
 
-            <div className="flex flex-col justify-evenly py-20 space-y-4 items-center">
+            <div className="flex flex-col justify-evenly  space-y-4 items-center">
                 <div className="containerr flex flex-col justify-evenly items-center space-y-8">
 
                     <div className="text my-4 text-4xl sm:text-5xl text-center font-medium">
