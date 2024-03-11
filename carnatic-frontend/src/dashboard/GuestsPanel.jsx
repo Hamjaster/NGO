@@ -181,18 +181,19 @@ export default function MembersPanel() {
       >
         <div className="containerr flex flex-col justify-evenly items-center space-y-8">
           <div className="text my-4 text-4xl sm:text-5xl text-center font-medium">
-            Guest Members Table
+            Guests  
           </div>
 
           {loading ? (
             <>Loading...</>
           ) : (
-            <div className="table">
+            <div>
               <DataTable
                 columns={columns}
                 data={data}
                 customStyles={tableCustomStyles}
                 selectableRows
+                className="table py-5"
                 onSelectedRowsChange={handleRowSelected}
                 clearSelectedRows={toggleCleared}
                 pagination
