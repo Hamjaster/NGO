@@ -16,9 +16,9 @@ import DashboardNavbar from "./DashboardNav";
 const tableCustomStyles = {
   headCells: {
     style: {
-      fontSize: "14px",
+      // fontSize: "14px",
       fontWeight: "bold",
-      paddingLeft: "0 8px",
+      // paddingLeft: "0 4px",
       justifyContent: "center",
       border: "2px solid #b5c3ff",
     },
@@ -34,7 +34,7 @@ const tableCustomStyles = {
   },
   table: {
     style: {
-      width: "99vw",
+      width: "90vw",
     },
   },
   rows: {
@@ -172,23 +172,24 @@ export default function MembersPanel() {
   };
 
   return (
+    
     <div>
       <DashboardNavbar />
 
       <div
-        ref={pdfRef}
         className="flex flex-col justify-evenly  space-y-4 items-center"
       >
-        <div className="containerr flex flex-col justify-evenly items-center space-y-8">
-          <div className="text my-4 text-4xl sm:text-5xl text-center font-medium">
+        <div ref={pdfRef}  className="containerr flex flex-col justify-evenly items-center space-y-8">
+          <div  className="text my-4 text-4xl sm:text-5xl text-center font-medium">
             Guests  
           </div>
 
           {loading ? (
             <>Loading...</>
           ) : (
-            <div>
+            <div className="w-[100vw] overflow-x-auto">
               <DataTable
+              
                 columns={columns}
                 data={data}
                 customStyles={tableCustomStyles}
@@ -201,7 +202,7 @@ export default function MembersPanel() {
             </div>
           )}
         </div>
-        <div className="buttons  w-full items-end justify-end flex flex-row space-x-5">
+        <div  className="buttons  w-full items-end justify-end flex flex-row space-x-5">
           <div
             onClick={donwloadPDf2}
             className="bg-[#b5c3ff] hover:bg-[#92a6ff] cursor-pointer text-black rounded-xl px-10 py-3"

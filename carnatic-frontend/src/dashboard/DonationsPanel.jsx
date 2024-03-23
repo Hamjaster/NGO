@@ -193,10 +193,10 @@ export default function MembersPanel() {
       <DashboardNavbar />
 
       <div
-        ref={pdfRef}
+        
         className="flex flex-col justify-evenly py-3 space-y-4 items-center"
       >
-        <div className="containerr flex flex-col justify-evenly items-center space-y-8">
+        <div ref={pdfRef} className="containerr flex flex-col justify-evenly items-center space-y-8">
           <div className="w-full flex items-center justify-between">
             <div className="text w-10/12 my-4 text-4xl sm:text-5xl text-center font-medium">
               Donation
@@ -215,6 +215,7 @@ export default function MembersPanel() {
                 data={data}
                 customStyles={tableCustomStyles}
                 pagination
+                className="pb-8"
               />
             </div>
           )}
