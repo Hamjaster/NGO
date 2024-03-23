@@ -56,6 +56,7 @@ function Amount() {
   };
 
   const renderIframe = (access_key, key) => {
+    console.log(member);
     console.log("rendering iframe for ", access_key);
     const easebuzzCheckout = window.EasebuzzCheckout; // Access the function from the global scope
 
@@ -70,6 +71,8 @@ function Amount() {
           } else if (response.status === "failure") {
             toast.error("Transaction Failed");
           } else if (response.status === "userCancelled") {
+            // } else if (response.status === "userCancelled") {
+            await handleAmountSubmit(uuidv4());
             toast.error("You've turned down the transaction.");
           } else {
             toast.error(response.status);
@@ -82,6 +85,7 @@ function Amount() {
   };
 
   const handleAmountSubmit = async (txnid) => {
+    console.log("Submiting amount");
     setLoading(true);
     const isDonated = await createTransaction(txnid);
     if (isDonated) {
@@ -156,6 +160,7 @@ function Amount() {
 
   useEffect(() => {
     console.log(donationInfo);
+    console.log(member);
   }, [donationInfo]);
 
   return (
