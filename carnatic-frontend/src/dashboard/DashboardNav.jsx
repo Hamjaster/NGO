@@ -5,7 +5,7 @@ import logo from "../assets/logo.jpeg";
 export default function DashboardNavbar() {
   return (
     <nav class="bg-white mb-5 top-0 w-full">
-      <div class=" flex flex-row items-center space-x-20 px-10 border-b-2 py-4">
+      <div class=" flex flex-wrap items-center space-x-20 px-10 border-b-2 py-4">
         <Link to={"/"} className="  ">
           <img src={logo} className="w-20" />
         </Link>

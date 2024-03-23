@@ -223,7 +223,7 @@ export default function DonationForm() {
   const verifyPAN = async () => {
     setPanverifyloading(true);
 
-    const BearerToken = import.meta.env.VITE_SUREPASS;
+    const BearerToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcwMTM0NTM4NSwianRpIjoiNGEyZjU2MDMtOWU4NC00NmFjLWFkMzAtMmY0NzE5NTNhZDQ5IiwidHlwZSI6ImFjY2VzcyIsImlkZW50aXR5IjoiZGV2LmNvbnNvbGVfMnl0bjlzbW1uemJrbmo1aXN3cHRld2xoN2J2QHN1cmVwYXNzLmlvIiwibmJmIjoxNzAxMzQ1Mzg1LCJleHAiOjIwMTY3MDUzODUsInVzZXJfY2xhaW1zIjp7InNjb3BlcyI6WyJ3YWxsZXQiXX19.lOBahAK49nL2H5t2B4vfe8Grj1D8EXpUU2ztBjn-FR8";
     // Checking if name is empty
     if (!donationInfo.name) {
       toast.error("Fill the Name Field first");
