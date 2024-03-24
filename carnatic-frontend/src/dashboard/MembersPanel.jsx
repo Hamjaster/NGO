@@ -64,12 +64,12 @@ export default function MembersPanel() {
     setSelectedRows(state.selectedRows);
   }, []);
 
-  const handleDelete = async () => {
-    const ids = selectedRows.map((item) => item.id);
-    console.log(ids);
+  const handleDelete = async (id) => {
+    // const ids = selectedRows.map((item) => item.id);
+    // console.log(ids);
     try {
       const { data } = await axios.delete(`${proxy}/dashboard/members`, {
-        data: { ids: ids },
+        data: { ids: [id] },
       });
       console.log(data);
       if (data.success) {
@@ -88,9 +88,7 @@ export default function MembersPanel() {
     const { data } = await axios.get(`${proxy}/dashboard/members`);
     console.log(data);
     if (data.success) {
-      const filtered = data.message.filter((member) => !member.deactivated);
-      console.log(filtered);
-      setData(filtered);
+      setData(data.message);
       setLoading(false);
       console.log("got it all members");
     } else {
@@ -149,16 +147,25 @@ export default function MembersPanel() {
     },
     {
       name: "Action",
+      width: "20%",
       cell: (row) => {
         return (
-          <div
-            onClick={() => {
-              setMember(row);
-              setEditModalOpen(true);
-            }}
-            className="bg-[#b5c3ff] cursor-pointer py-3 px-8 rounded-xl"
-          >
-            Edit
+          <div className="space-x-3 flex">
+            <div
+              onClick={() => {
+                setMember(row);
+                setEditModalOpen(true);
+              }}
+              className="bg-[#b5c3ff] cursor-pointer py-3 px-5 rounded-xl"
+            >
+              Edit
+            </div>
+            <div
+              onClick={() => handleDelete(row.id)}
+              className="bg-[#b5c3ff] cursor-pointer py-3 px-3 rounded-xl"
+            >
+              {row.deactivated ? "Activate" : "Deactivate"}
+            </div>
           </div>
         );
       },
@@ -198,12 +205,12 @@ export default function MembersPanel() {
           >
             Add Member
           </div>
-          <div
+          {/* <div
             onClick={handleDelete}
             className="bg-[#b5c3ff] hover:bg-[#92a6ff] cursor-pointer text-black rounded-xl px-10 py-3"
           >
             Delete Member
-          </div>
+          </div> */}
         </div>
 
         <Addmember

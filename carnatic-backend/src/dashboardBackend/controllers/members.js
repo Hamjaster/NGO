@@ -81,11 +81,11 @@ const deleteMember = async (req, res) => {
   const { ids } = req.body;
   console.log(ids);
   try {
+    const memberFound = await Carnatic.findById(ids[0]);
     const updated = await Carnatic.updateMany(
       { _id: { $in: ids } },
-      { $set: { deactivated: true } } // Match members with IDs in the provided array
+      { $set: { deactivated: !memberFound.deactivated } } // Match members with IDs in the provided array
     );
-    console.log(updated);
     res.json({ success: true, message: `All members deleted` });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
