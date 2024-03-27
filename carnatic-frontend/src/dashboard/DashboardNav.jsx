@@ -10,20 +10,24 @@ export default function DashboardNavbar() {
           <img src={logo} className="w-20" />
         </Link>
 
-        <Link className="text-xl" to={"/dashboard/membersDB"}>
+       <div className="flex flex-wrap justify-around gap-x-8">
+       <Link className="md:text-xl" to={"/dashboard/membersDB"}>
           Carnatic Members
         </Link>
 
-        <Link className="text-xl" to={"/dashboard/guestsDB"}>
+        <Link className="md:text-xl" to={"/dashboard/guestsDB"}>
           Guests
         </Link>
 
-        <Link className="text-xl" to={"/dashboard/donations"}>
+        <Link className="md:text-xl" to={"/dashboard/donations"}>
           Donations
+        </Link>
+        <Link className="md:text-xl" to={"/dashboard/projects"}>
+          Projects
         </Link>
 
         <Link
-          className="text-xl"
+          className="md:text-xl"
           to={
             "https://auth.easebuzz.in/easebuzz/login?next=easebuzz.in%2Fmerchant%2Fdashboard"
           }
@@ -31,9 +35,10 @@ export default function DashboardNavbar() {
           Easebuzz
         </Link>
 
-        <Link className="text-xl" to={"https://www.chatbase.co/auth/signin"}>
+        <Link className="md:text-xl" to={"https://www.chatbase.co/auth/signin"}>
           Chatbase
         </Link>
+       </div>
       </div>
     </nav>
   );
