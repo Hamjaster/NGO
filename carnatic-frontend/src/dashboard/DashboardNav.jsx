@@ -21,6 +21,19 @@ export default function DashboardNavbar() {
         <Link className="text-xl" to={"/dashboard/donations"}>
           Donations
         </Link>
+
+        <Link
+          className="text-xl"
+          to={
+            "https://auth.easebuzz.in/easebuzz/login?next=easebuzz.in%2Fmerchant%2Fdashboard"
+          }
+        >
+          Easebuzz
+        </Link>
+
+        <Link className="text-xl" to={"https://www.chatbase.co/auth/signin"}>
+          Chatbase
+        </Link>
       </div>
     </nav>
   );
