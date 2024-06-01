@@ -11,6 +11,7 @@ import {
 import PhoneInput from "react-phone-input-2";
 import axios from "axios";
 import MyContext from "../context/context";
+import DashboardNavbar from "./DashboardNav";
 
 export default function ProjectsPanel() {
   const [editModalOpen, setEditModalOpen] = useState(false);
@@ -45,6 +46,8 @@ export default function ProjectsPanel() {
   }, [count]);
 
   return (
+     <>
+       <DashboardNavbar />
     <div className="min-h-screen w-screen bg-gray-100 p-8">
       <h1 className="text-3xl font-bold text-center mb-6">
         Project Admin Panel
@@ -121,6 +124,7 @@ export default function ProjectsPanel() {
         />
       )}
     </div>
+     </>
   );
 }
 

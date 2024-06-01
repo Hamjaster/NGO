@@ -176,7 +176,7 @@ export default function MembersPanel() {
     <div>
       <DashboardNavbar />
 
-      <div
+      <center
         className="flex flex-col justify-evenly  space-y-4 items-center"
       >
         <div ref={pdfRef}  className="containerr flex flex-col justify-evenly items-center space-y-8">
@@ -216,7 +216,7 @@ export default function MembersPanel() {
             Delete
           </div>
         </div>
-      </div>
+      </center>
     </div>
   );
 }
